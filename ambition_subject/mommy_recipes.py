@@ -11,12 +11,12 @@ from .models import BloodResult, Microbiology, FollowUp
 from .models import Education, EducationHoh
 from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
-from .models import PatientHistory, Week16
+from .models import PatientHistory, Week16, Week4
 from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import Antibiotic, Symptom, SubjectReconsent
 from .models import SignificantNewDiagnosis, PkPdCrf
-from .models import Neurological
+from .models import Neurological, Day14Medication
 
 
 fake = Faker()
@@ -91,26 +91,24 @@ patienthistory = Recipe(
 
 antibiotic = Recipe(Antibiotic)
 
+medicines = Recipe(Day14Medication)
+
 week2 = Recipe(
     Week2,
     discharged=NO,
     died=NO,
-    flucon_start_datetime=get_utcnow(),
-    flucon_stop_datetime=None,
-    other_drug=None,
+    flucy_start_date=date.today(),
+    flucon_stop_date=date.today(),
     antibiotic=related(antibiotic),
     blood_received=NO,
     units=None,
     headache=YES,
     temperature=41.2,
-    glasgow_cs=8,
-    seizures_during_admission=NO,
-    recent_seizure=NO,
     behaviour_change=YES,
     confusion=NO,
     cn_palsy=YES,
     focal_neurology=NO,
-    medicines='Fluconazole',)
+    medicines=related(medicines),)
 
 
 radiology = Recipe(
@@ -175,6 +173,8 @@ education = Recipe(Education)
 educationhoh = Recipe(EducationHoh)
 
 pkpdcrf = Recipe(PkPdCrf)
+
+week4 = Recipe(Week4)
 
 subjectreconsent = Recipe(
     SubjectReconsent,
