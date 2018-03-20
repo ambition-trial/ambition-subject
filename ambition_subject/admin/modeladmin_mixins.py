@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
+from simple_history.admin import SimpleHistoryAdmin
 from edc_base.sites.admin import ModelAdminSiteMixin
 from edc_model_admin import (
     ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
@@ -31,6 +32,7 @@ class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                          ModelAdminMixin,
                          FieldsetsModelAdminMixin,
                          FormAsJSONModelAdminMixin,
+                         SimpleHistoryAdmin,
                          admin.ModelAdmin):
 
     show_save_next = True
