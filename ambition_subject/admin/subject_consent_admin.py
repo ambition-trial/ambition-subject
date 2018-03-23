@@ -11,6 +11,7 @@ from edc_model_admin import (
     audit_fieldset_tuple, audit_fields, ModelAdminNextUrlRedirectMixin,
     ModelAdminNextUrlRedirectError, ModelAdminReplaceLabelTextMixin)
 from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
+from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
@@ -43,7 +44,7 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin, ModelAdminFormAutoNumberMi
 
 
 @admin.register(SubjectConsent, site=ambition_subject_admin)
-class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin,
+class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin, SimpleHistoryAdmin,
                           admin.ModelAdmin):
 
     form = SubjectConsentForm

@@ -53,7 +53,8 @@ class SubjectRequisitionAdmin(CrfModelAdminMixin,
                 + requisition_verify_fields)
 
     def get_search_results(self, request, queryset, search_term):
-        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
+        queryset, use_distinct = super().get_search_results(
+            request, queryset, search_term)
         path = urlsplit(request.META.get('HTTP_REFERER')).path
         query = urlsplit(request.META.get('HTTP_REFERER')).query
         if 'bloodresult' in path or 'lumbarpuncturecsf' in path:
