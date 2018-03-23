@@ -21,7 +21,10 @@ from .models import Neurological
 
 fake = Faker()
 
-bloodresult = Recipe(BloodResult)
+bloodresult = Recipe(
+    BloodResult,
+    action_identifier=None,
+    tracking_identifier=None)
 
 neurological = Recipe(
     Neurological,
@@ -181,4 +184,6 @@ subjectreconsent = Recipe(
     consent_reviewed=YES,
     assessment_score=YES,
     study_questions=YES,
-    consent_copy=YES)
+    consent_copy=YES,
+    action_identifier=None,
+    tracking_identifier=None)

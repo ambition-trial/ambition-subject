@@ -12,7 +12,7 @@ RECONSENT_ACTION = 'reconsent'
 class BloodResultAction(Action):
     name = BLOOD_RESULTS_ACTION
     display_name = 'Reportable Blood Result'
-    model = 'ambition_subject.bloodresult'
+    reference_model = 'ambition_subject.bloodresult'
     priority = HIGH_PRIORITY
     show_on_dashboard = True
     create_by_user = False
@@ -20,15 +20,15 @@ class BloodResultAction(Action):
     def get_next_actions(self):
         actions = []
         self.delete_if_new(action_cls=AeInitialAction)
-        if self.model_obj.subject_visit.visit_code == DAY1:
+        if self.reference_model_obj.subject_visit.visit_code == DAY1:
             # early withdrawal if qualifying blood results
             # are abnormal on DAY1
             evaluator = EarlyWithdrawalEvaluator(
-                subject_identifier=self.model_obj.subject_identifier)
+                subject_identifier=self.reference_model_obj.subject_identifier)
             if not evaluator.eligible:
                 actions = [StudyTerminationConclusionAction]
-        elif (self.model_obj.results_abnormal == YES
-              and self.model_obj.results_reportable == YES):
+        elif (self.reference_model_obj.results_abnormal == YES
+              and self.reference_model_obj.results_reportable == YES):
             # AE for reportable result, not on DAY1
             actions = [AeInitialAction]
         return actions
@@ -37,7 +37,7 @@ class BloodResultAction(Action):
 class ReconsentAction(Action):
     name = RECONSENT_ACTION
     display_name = 'Re-consent participant'
-    model = 'ambition_subject.subjectreconsent'
+    reference_model = 'ambition_subject.subjectreconsent'
     priority = HIGH_PRIORITY
     show_on_dashboard = True
     show_link_to_changelist = True

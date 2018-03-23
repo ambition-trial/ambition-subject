@@ -3,7 +3,7 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db import models
 from django_crypto_fields.fields.identity_field import IdentityField
-from edc_action_item.model_mixins.action_item_model_mixin import ActionItemModelMixin
+from edc_action_item.model_mixins import ActionModelMixin
 from edc_base import get_utcnow
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
@@ -12,27 +12,28 @@ from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
 from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
-from edc_identifier.model_mixins.tracking_identifier_model_mixin import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
 
-from ..action_items import ReconsentAction
+from ..action_items import RECONSENT_ACTION
 from .model_mixins import SearchSlugModelMixin
 
 
 class SubjectReconsent(
         UniqueSubjectIdentifierModelMixin,
         ReviewFieldsMixin, SearchSlugModelMixin,
-        ActionItemModelMixin, TrackingIdentifierModelMixin,
-        BaseUuidModel):
+        ActionModelMixin, BaseUuidModel):
 
     """ A model completed by the user that updates the consent
     for those originally consented by next of kin.
     """
 
     subject_screening_model = 'ambition_screening.subjectscreening'
+
     subject_consent_model = 'ambition_subject.subjectconsent'
+
     tracking_identifier_prefix = 'SR'
-    action_cls = ReconsentAction
+
+    action_name = RECONSENT_ACTION
 
     site = models.ForeignKey(
         Site, on_delete=models.PROTECT, null=True, editable=False)

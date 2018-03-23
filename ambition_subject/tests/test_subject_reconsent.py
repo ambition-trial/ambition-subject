@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist,\
     MultipleObjectsReturned
 from django.test import TestCase, tag
 from django.test.utils import override_settings
-from edc_action_item.models.action_item import ActionItem
+from edc_action_item.models import ActionItem
 from edc_constants.constants import ABNORMAL, NORMAL, CLOSED
 from model_mommy import mommy
 
@@ -95,7 +95,7 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             screening_identifier=subject_screening.screening_identifier)
-        subject_reconsent = mommy.make_recipe(
+        mommy.make_recipe(
             'ambition_subject.subjectreconsent',
             subject_identifier=subject_consent.subject_identifier,
             identity=subject_consent.identity)
