@@ -10,6 +10,7 @@ from edc_sync.tests import SyncTestHelper
 from edc_visit_tracking.constants import SCHEDULED
 from edc_facility.import_holidays import import_holidays
 from model_mommy import mommy
+
 from ..models import SubjectVisit
 
 

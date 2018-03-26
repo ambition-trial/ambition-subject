@@ -1,6 +1,6 @@
 from ambition_rando.tests.ambition_test_case_mixin import AmbitionTestCaseMixin
-from django.core.exceptions import ValidationError, ObjectDoesNotExist,\
-    MultipleObjectsReturned
+from django.core.exceptions import MultipleObjectsReturned
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.test import TestCase, tag
 from django.test.utils import override_settings
 from edc_action_item.models import ActionItem

@@ -10,7 +10,6 @@ from edc_constants.constants import YES
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 from model_mommy.mommy import make_recipe
-from pprint import pprint
 
 
 @override_settings(SITE_ID='10')
