@@ -7,7 +7,6 @@ from django.test import TestCase, tag
 from django.test.utils import override_settings
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
-from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
@@ -32,21 +31,8 @@ class TestSyncInlineOrder(AmbitionTestCaseMixin, TestCase):
             reason=SCHEDULED)
 
     def test_inline_order_outgoing(self):
-        options = {'taking_arv': NOT_APPLICABLE,
-                   'new_hiv_diagnosis': NO,
-                   'subject_visit': self.subject_visit,
-                   'report_datetime': get_utcnow()}
-#         patient_history = mommy.prepare_recipe(
-#             'ambition_subject.patienthistory', **options)
-#         patient_history_form = PatientHistoryForm(
-#             data=patient_history.__dict__)
         PatientHistoryFormSet = inlineformset_factory(
             PatientHistory,
             PreviousOpportunisticInfection,
             form=PreviousOpportunisticInfectionForm, extra=1)
-        patient_history_form = PatientHistoryFormSet()
-
-#         obj_inline = PreviousOpportunisticInfection(
-#             patient_history=patient_history
-#         )
-#         self.assertTrue(obj_inline)
+        PatientHistoryFormSet()

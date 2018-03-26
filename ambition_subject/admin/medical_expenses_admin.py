@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from edc_model_admin import audit_fieldset_tuple, ModelAdminReplaceLabelTextMixin
+from edc_model_admin import audit_fieldset_tuple
+from edc_model_admin import ModelAdminReplaceLabelTextMixin
 from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
@@ -43,7 +44,8 @@ welfare = Fieldset(
 
 
 @admin.register(MedicalExpenses, site=ambition_subject_admin)
-class MedicalExpensesAdmin(CrfModelAdminMixin, ModelAdminReplaceLabelTextMixin, admin.ModelAdmin):
+class MedicalExpensesAdmin(CrfModelAdminMixin, ModelAdminReplaceLabelTextMixin,
+                           admin.ModelAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {

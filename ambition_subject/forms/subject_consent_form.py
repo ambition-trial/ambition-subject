@@ -9,7 +9,8 @@ from ..choices import ID_TYPE
 from ..models import SubjectConsent
 
 
-class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin, ConsentModelFormMixin, forms.ModelForm):
+class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin,
+                         ConsentModelFormMixin, forms.ModelForm):
 
     form_validator_cls = SubjectConsentFormValidator
 
@@ -35,8 +36,9 @@ class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin, ConsentModelFor
         fields = '__all__'
         help_texts = {
             'guardian_name': mark_safe(
-                'Required only if participant is unconscious or has an abnormal mental '
-                'status.<br>Format is \'LASTNAME, FIRSTNAME\'. All uppercase separated '
+                'Required only if participant is unconscious or '
+                'has an abnormal mental status.<br>Format is \'LASTNAME, '
+                'FIRSTNAME\'. All uppercase separated '
                 'by a comma then followed by a space.'),
             'identity': ('Use Country ID Number, Passport number, driver\'s license '
                          'number or Country ID receipt number'),
