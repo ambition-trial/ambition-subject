@@ -11,7 +11,7 @@ services:
   - mysql
 
 install:
-  - pip install --upgrade pip setuptools
+  - pip install --upgrade pip
   - pip install flake8
   - pip install coveralls
   - pip install mysqlclient
