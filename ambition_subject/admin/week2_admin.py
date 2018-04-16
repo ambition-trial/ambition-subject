@@ -88,6 +88,7 @@ class Week2Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
                 'subject_visit',
                 'discharged',
                 'discharge_date',
+                'research_discharge_date',
                 'died',
                 'death_date_time')},
          ],

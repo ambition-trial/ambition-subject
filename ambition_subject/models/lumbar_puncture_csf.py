@@ -61,6 +61,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         help_text=mark_safe('Units cm of H<sub>2</sub>O'))
 
     closing_pressure = models.IntegerField(
+        blank=True,
+        null=True,
         validators=[MinValueValidator(0), MaxValueValidator(99)],
         help_text=mark_safe('Units cm of H<sub>2</sub>O'))
 

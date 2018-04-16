@@ -81,6 +81,13 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
         null=True,
         blank=True)
 
+    research_discharge_date = models.DateField(
+        verbose_name='On which date did the research team feel the patient was well '
+        'enough to go home?',
+        validators=[date_not_future],
+        null=True,
+        blank=True)
+
     died = models.CharField(
         verbose_name='Died?',
         max_length=25,
