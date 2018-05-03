@@ -45,7 +45,7 @@ biosynex_fieldset = Fieldset(
     'crag_t2_result',
     section='BIOSYNEX® CryptoPS (Semi-quantitative CrAg)')
 
-fieldset = [(None, {'fields': ('subject_visit',)})]
+fieldset = [(None, {'fields': ('subject_visit', 'report_datetime',)})]
 fieldset.extend(results_fieldsets)
 fieldset.append(('Conclusion', {
     'fields': ('results_abnormal', 'results_reportable')}))

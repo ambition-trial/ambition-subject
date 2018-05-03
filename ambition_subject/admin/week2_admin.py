@@ -86,6 +86,7 @@ class Week2Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
         ['Admission history', {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'discharged',
                 'discharge_date',
                 'research_discharge_date',

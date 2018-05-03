@@ -23,6 +23,7 @@ class Week16Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'patient_alive',
                 'death_datetime',
                 'activities_help',

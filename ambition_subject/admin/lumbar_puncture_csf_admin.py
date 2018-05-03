@@ -18,6 +18,7 @@ class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'lp_datetime',
                 'reason_for_lp',
                 'opening_pressure',

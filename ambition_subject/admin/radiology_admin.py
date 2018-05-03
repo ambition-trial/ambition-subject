@@ -24,6 +24,7 @@ class RadiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         ['CXR', {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'cxr_done',
                 'cxr_date',
                 'cxr_type',

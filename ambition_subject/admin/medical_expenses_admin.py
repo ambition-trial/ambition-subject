@@ -56,6 +56,7 @@ class MedicalExpensesAdmin(CrfModelAdminMixin, ModelAdminReplaceLabelTextMixin,
         ('Medical Expenses', {
             'fields': [
                 'subject_visit',
+                'report_datetime',
                 'currency',
                 'subject_spent_last_4wks',
                 'someone_spent_last_4wks',
