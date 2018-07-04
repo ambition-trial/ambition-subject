@@ -1,13 +1,13 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from ..managers import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_model_fields.fields import OtherCharField
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..validators import hm_validator
 from ..choices import PATIENT_REL, ACTIVITIES_MISSED, CURRENCY, TRANSPORT
+from ..managers import CurrentSiteManager
+from ..validators import hm_validator
 from .model_mixins import CrfModelMixin
 
 

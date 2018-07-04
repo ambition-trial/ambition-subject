@@ -1,16 +1,16 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from ..managers import CurrentSiteManager
 from edc_constants.choices import NOT_APPLICABLE, YES_NO, YES_NO_NA
+from edc_model_fields.fields import OtherCharField
 from edc_protocol.validators import date_not_before_study_start
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
     CULTURE_RESULTS, POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM, SPUTUM_GENEXPERT)
+from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin
 
 

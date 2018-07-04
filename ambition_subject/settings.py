@@ -32,21 +32,22 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
+    'django_offline.apps.AppConfig',
+    'django_offline_files.apps.AppConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'edc_action_item.apps.AppConfig',
     'edc_base.apps.AppConfig',
     'edc_prn.apps.AppConfig',
-    'edc_pharmacy.apps.AppConfig',
     'edc_reference.apps.AppConfig',
     'edc_metadata_rules.apps.AppConfig',
     'edc_consent.apps.AppConfig',
+    'edc_offstudy.apps.AppConfig',
     'edc_timepoint.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_registration.apps.AppConfig',
     'edc_visit_schedule.apps.AppConfig',
-    'edc_sync.apps.AppConfig',
-    'edc_sync_files.apps.AppConfig',
+    'edc_visit_tracking.apps.AppConfig',
     'ambition_labs.apps.AppConfig',
     'ambition_ae.apps.AppConfig',
     'ambition_prn.apps.AppConfig',
@@ -63,7 +64,6 @@ INSTALLED_APPS = [
     'ambition_subject.apps.EdcIdentifierAppConfig',
     'ambition_subject.apps.EdcProtocolAppConfig',
     'ambition_subject.apps.EdcAppointmentAppConfig',
-    'ambition_subject.apps.EdcVisitTrackingAppConfig',
     'ambition_subject.apps.AppConfig',
 ]
 
@@ -160,16 +160,15 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_subject', 'static')
 STATIC_URL = '/static/'
 DEVICE_ID = '99'
-EDC_LAB_REQUISITION_MODEL = 'ambition_subject.subjectrequisition'
 
 COUNTRY = 'botswana'
 HOLIDAY_FILE = os.path.join(BASE_DIR, 'holidays.csv')
 GIT_DIR = BASE_DIR
 
 EDC_SYNC_SERVER_IP = None
-EDC_SYNC_FILES_REMOTE_HOST = None
-EDC_SYNC_FILES_USER = None
-EDC_SYNC_FILES_USB_VOLUME = None
+DJANGO_OFFLINE_FILES_REMOTE_HOST = None
+DJANGO_OFFLINE_FILES_USER = None
+DJANGO_OFFLINE_FILES_USB_VOLUME = None
 
 DASHBOARD_URL_NAMES = {
     'subject_listboard_url': 'ambition_dashboard:subject_listboard_url',

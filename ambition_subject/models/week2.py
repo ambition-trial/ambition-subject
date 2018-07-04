@@ -4,10 +4,10 @@ from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
-from ..managers import CurrentSiteManager
 from edc_constants.choices import YES_NO
 from edc_visit_tracking.managers import CrfModelManager
 
+from ..managers import CurrentSiteManager
 from .list_models import Antibiotic, Day14Medication, OtherDrug
 from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 from .model_mixins import FluconazoleMissedDosesModelMixin, SignificantDiagnosesModelMixin

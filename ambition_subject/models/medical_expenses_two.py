@@ -1,7 +1,7 @@
 from edc_base.model_managers import HistoricalRecords
-from ..managers import CurrentSiteManager
 from edc_visit_tracking.managers import CrfModelManager
 
+from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin
 
 

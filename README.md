@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ambition-study/ambition-subject.svg?branch=develop)](https://travis-ci.org/ambition-study/ambition-subject) [![Coverage Status](https://coveralls.io/repos/github/ambition-study/ambition-subject/badge.svg?branch=develop)](https://coveralls.io/github/ambition-study/ambition-subject?branch=develop)
+[![Build Status](https://travis-ci.org/ambition-trial/ambition-subject.svg?branch=develop)](https://travis-ci.org/ambition-trial/ambition-subject) [![Coverage Status](https://coveralls.io/repos/github/ambition-trial/ambition-subject/badge.svg?branch=develop)](https://coveralls.io/github/ambition-trial/ambition-subject?branch=develop)
 
 # ambition_subject
 

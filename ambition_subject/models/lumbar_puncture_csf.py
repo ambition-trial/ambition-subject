@@ -4,13 +4,13 @@ from django.db.models.deletion import PROTECT
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
-from ..managers import CurrentSiteManager
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from ..choices import YES_NO_NOT_DONE_WAIT_RESULTS
 from ..constants import AWAITING_RESULTS
+from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
 from .subject_requisition import SubjectRequisition
 

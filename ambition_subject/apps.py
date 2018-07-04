@@ -54,10 +54,6 @@ if settings.APP_NAME == 'ambition_subject':
         def site_code(self):
             return '40'
 
-    class EdcVisitTrackingAppConfig(BaseEdcVisitTrackingAppConfig):
-        visit_models = {
-            'ambition_subject': ('subject_visit', 'ambition_subject.subjectvisit')}
-
     class EdcIdentifierAppConfig(BaseEdcIdentifierAppConfig):
         identifier_prefix = '092'
 

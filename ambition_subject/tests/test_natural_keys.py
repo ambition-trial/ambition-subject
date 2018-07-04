@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
 from edc_metadata.tests import CrfTestHelper
-from edc_sync.tests import SyncTestHelper
+from django_offline.tests import OfflineTestHelper
 from edc_visit_tracking.constants import SCHEDULED
 from edc_facility.import_holidays import import_holidays
 from model_mommy import mommy
@@ -17,7 +17,7 @@ from ..models import SubjectVisit
 @override_settings(SITE_ID='10')
 class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
 
-    sync_test_helper = SyncTestHelper()
+    offline_test_helper = OfflineTestHelper()
     crf_test_helper = CrfTestHelper()
 
     def setUp(self):
@@ -26,11 +26,11 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                             DAY10, WEEK4, WEEK6, WEEK8, WEEK10, WEEK16]
 
     def test_natural_key_attrs(self):
-        self.sync_test_helper.sync_test_natural_key_attr(
+        self.offline_test_helper.offline_test_natural_key_attr(
             'ambition_subject')
 
     def test_get_by_natural_key_attr(self):
-        self.sync_test_helper.sync_test_get_by_natural_key_attr(
+        self.offline_test_helper.offline_test_get_by_natural_key_attr(
             'ambition_subject')
 
     def complete_all_subject_visits(self):
@@ -48,7 +48,7 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                 subject_identifier=consent.subject_identifier,
                 reason=SCHEDULED)
 
-    def test_sync_test_natural_keys(self):
+    def test_offline_test_natural_keys(self):
         complete_required_crfs = {}
         visit = self.complete_all_subject_visits()
         for visit_code in self.visit_codes:
@@ -59,10 +59,10 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                     visit_code=visit.visit_code,
                     visit=visit,
                     subject_identifier=visit.subject_identifier)})
-            self.sync_test_helper.sync_test_natural_keys(
+            self.offline_test_helper.offline_test_natural_keys(
                 complete_required_crfs)
 
-    def test_sync_deserialize(self):
+    def test_offline_deserialize(self):
         complete_required_crfs = {}
         visit = self.complete_all_subject_visits()
         for visit_code in self.visit_codes:
@@ -73,5 +73,5 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                     visit_code=visit.visit_code,
                     visit=visit,
                     subject_identifier=visit.subject_identifier)})
-            self.sync_test_helper.sync_test_serializers_for_visit(
+            self.offline_test_helper.offline_test_serializers_for_visit(
                 complete_required_crfs)
