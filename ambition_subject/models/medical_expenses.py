@@ -47,28 +47,33 @@ class MedicalExpenses(CrfModelMixin):
         validators=[MinValueValidator(0)])
 
     subject_spent_last_4wks = models.DecimalField(
-        verbose_name=('Over that last 4 weeks, how much have you '
+        verbose_name=('Over the last 4/10 weeks, how much have you '
                       'spent on activities relating to your health?'),
         decimal_places=2,
         max_digits=15,
         null=True,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        help_text=('On D1 record data for the four weeks prior to recruitment. '
+                   'On W10 record data for the ten weeks since recruitment.'))
 
     someone_spent_last_4wks = models.DecimalField(
-        verbose_name=('Over that last 4 weeks, how much has someone else '
+        verbose_name=('Over the last 4/10 weeks, how much has someone else '
                       'spent on activities relating to your health?'),
         decimal_places=2,
         max_digits=15,
         null=True,
-        validators=[MinValueValidator(0)])
-
+        validators=[MinValueValidator(0)],
+        help_text=('On D1 record data for the four weeks prior to recruitment. '
+                   'On W10 record data for the ten weeks since recruitment.'))
     total_spent_last_4wks = models.DecimalField(
         verbose_name=(
-            'How much in total has been spent on your healthcare in the last 4 weeks?'),
+            'How much in total has been spent on your healthcare in the last 4/10 weeks?'),
         decimal_places=2,
         max_digits=16,
         null=True,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        help_text=('On D1 record data for the four weeks prior to recruitment. '
+                   'On W10 record data for the ten weeks since recruitment.'))
 
     care_before_hospital = models.CharField(
         verbose_name=('Have you received any treatment or care '
