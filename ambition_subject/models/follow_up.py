@@ -1,12 +1,13 @@
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_model_fields.fields import OtherCharField
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..managers import CurrentSiteManager
 from ..choices import FLUCONAZOLE_DOSE, RANKIN_SCORE, YES_NO_ND, YES_NO_ALREADY_ND
+from .list_models import Antibiotic
 from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 
 
@@ -31,6 +32,36 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
         validators=[date_not_future],
         null=True,
         blank=True,)
+
+    days_hospitalized = models.DecimalField(
+        verbose_name=('Over the ten weeks spent in the study how '
+                      'many days did the patient spend in hospital?'),
+        decimal_places=3,
+        max_digits=5,
+        null=True)
+
+    antibiotic = models.ManyToManyField(
+        Antibiotic,
+        blank=True,
+        verbose_name="Were any of the following antibiotics given?",)
+
+    antibiotic_other = models.CharField(
+        verbose_name='If other antibiotics, please specify:',
+        max_length=50,
+        null=True,
+        blank=True)
+
+    blood_transfusions = models.CharField(
+        verbose_name='Has the patient had any blood transfusions since week two? ',
+        max_length=5,
+        choices=YES_NO,
+        null=True)
+
+    blood_transfusions_units = models.DecimalField(
+        verbose_name='If YES, no. of units?    ',
+        decimal_places=3,
+        max_digits=5,
+        null=True)
 
     patient_help = models.CharField(
         verbose_name=('Does the patient require help from'
