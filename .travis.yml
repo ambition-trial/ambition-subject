@@ -18,5 +18,3 @@ script:
 - coverage run --source=ambition_subject manage.py test
 after_success:
 - coveralls
-notifications:
-    slack: ambition-trial:DZJ9vw27xIjEXE5a6ZlY9kDT

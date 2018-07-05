@@ -1,3 +1,4 @@
+.
 git+https://github.com/ambition-trial/ambition-labs.git@develop#egg=ambition-labs
 git+https://github.com/ambition-trial/ambition.git@develop#egg=ambition
 git+https://github.com/ambition-trial/ambition-metadata-rules.git@develop#egg=ambition-metadata-rules
