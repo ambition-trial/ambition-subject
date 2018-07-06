@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
-from edc_action_item.model_mixins import ActionModelMixin
+from edc_action_item.models import ActionModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA

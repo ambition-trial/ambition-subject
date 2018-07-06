@@ -3,7 +3,7 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db import models
 from django_crypto_fields.fields.identity_field import IdentityField
-from edc_action_item.model_mixins import ActionModelMixin
+from edc_action_item.models import ActionModelMixin
 from edc_base import get_utcnow
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
