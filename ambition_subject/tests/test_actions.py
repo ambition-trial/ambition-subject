@@ -45,12 +45,12 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
 
         try:
             ActionItem.objects.get(
-                reference_identifier=obj.tracking_identifier)
+                action_identifier=obj.action_identifier)
         except ObjectDoesNotExist:
             self.fail('ActionItem unexpectedly does not exist.')
 
         try:
             obj = ActionItem.objects.get(
-                parent_reference_identifier=obj.tracking_identifier)
+                parent_reference_identifier=obj.action_identifier)
         except ObjectDoesNotExist:
             self.fail('ActionItem unexpectedly does not exist.')
