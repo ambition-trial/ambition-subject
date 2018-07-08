@@ -1,4 +1,4 @@
-from edc_action_item import action_fieldset
+from edc_action_item import action_fieldset_tuple
 from edc_fieldsets import Fieldset
 from edc_model_admin import audit_fieldset_tuple
 
@@ -51,5 +51,5 @@ fieldset.append(('Conclusion', {
     'fields': ('results_abnormal', 'results_reportable')}))
 fieldset.append(
     ('Summary', {'classes': ('collapse', ), 'fields': ('summary', )}))
-fieldset.append(action_fieldset)
+fieldset.append(action_fieldset_tuple)
 fieldset.append(audit_fieldset_tuple)
