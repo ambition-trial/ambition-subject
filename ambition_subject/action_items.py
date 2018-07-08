@@ -20,15 +20,15 @@ class BloodResultAction(Action):
     def get_next_actions(self):
         actions = []
         self.delete_if_new(action_cls=AeInitialAction)
-        if self.reference_model_obj.subject_visit.visit_code == DAY1:
+        if self.reference_obj.subject_visit.visit_code == DAY1:
             # early withdrawal if qualifying blood results
             # are abnormal on DAY1
             evaluator = EarlyWithdrawalEvaluator(
-                subject_identifier=self.reference_model_obj.subject_identifier)
+                subject_identifier=self.reference_obj.subject_identifier)
             if not evaluator.eligible:
                 actions = [StudyTerminationConclusionAction]
-        elif (self.reference_model_obj.results_abnormal == YES
-              and self.reference_model_obj.results_reportable == YES):
+        elif (self.reference_obj.results_abnormal == YES
+              and self.reference_obj.results_reportable == YES):
             # AE for reportable result, not on DAY1
             actions = [AeInitialAction]
         return actions
