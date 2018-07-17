@@ -113,8 +113,8 @@ class PatientHistory(CrfModelMixin):
         default=NOT_APPLICABLE)
 
     tablets_missed = models.IntegerField(
-        verbose_name=('If not adherent, how many tablets missed in '
-                      'the last month?'),
+        verbose_name=(
+            'If not adherent, how many doses missed in the last month?'),
         validators=[MinValueValidator(0), MaxValueValidator(31)],
         null=True,
         blank=True)
