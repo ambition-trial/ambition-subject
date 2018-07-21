@@ -1,2 +1,2 @@
-include AUTHORS CHANGES README.rst LICENCE
+include AUTHORS CHANGES README LICENSE VERSION
 recursive-include ambition_subject/templates *

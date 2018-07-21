@@ -3,7 +3,7 @@
 ambition-subject
 -----------------
 
-Subject/Paticipant models
+Subject/Participant models
 
 .. |pypi| image:: https://img.shields.io/pypi/v/ambition-subject.svg
     :target: https://pypi.python.org/pypi/ambition-subject
