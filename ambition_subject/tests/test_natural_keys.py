@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from edc_appointment.models import Appointment
 from edc_base.utils import get_utcnow
 from edc_metadata.tests import CrfTestHelper
-from django_offline.tests import OfflineTestHelper
+from django_collect_offline.tests import OfflineTestHelper
 from edc_visit_tracking.constants import SCHEDULED
 from edc_facility.import_holidays import import_holidays
 from model_mommy import mommy

@@ -32,8 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
-    'django_offline.apps.AppConfig',
-    'django_offline_files.apps.AppConfig',
+    'django_collect_offline.apps.AppConfig',
+    'django_collect_offline_files.apps.AppConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'edc_action_item.apps.AppConfig',
@@ -157,18 +157,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'ambition_subject', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, APP_NAME, 'tests',
+                           'ambition_subject', 'static')
 STATIC_URL = '/static/'
 DEVICE_ID = '99'
 
 COUNTRY = 'botswana'
-HOLIDAY_FILE = os.path.join(BASE_DIR, 'holidays.csv')
+HOLIDAY_FILE = os.path.join(BASE_DIR, APP_NAME, 'tests', 'holidays.csv')
 GIT_DIR = BASE_DIR
 
 EDC_SYNC_SERVER_IP = None
-DJANGO_OFFLINE_FILES_REMOTE_HOST = None
-DJANGO_OFFLINE_FILES_USER = None
-DJANGO_OFFLINE_FILES_USB_VOLUME = None
+DJANGO_COLLECT_OFFLINE_FILES_REMOTE_HOST = None
+DJANGO_COLLECT_OFFLINE_FILES_USER = None
+DJANGO_COLLECT_OFFLINE_FILES_USB_VOLUME = None
 
 DASHBOARD_URL_NAMES = {
     'subject_listboard_url': 'ambition_dashboard:subject_listboard_url',
