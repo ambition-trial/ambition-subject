@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
+from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import Week4Form, Week4DiagnosesForm
@@ -24,7 +25,7 @@ class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(Week4, site=ambition_subject_admin)
-class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
+class Week4Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
 
     form = Week4Form
 
@@ -47,6 +48,7 @@ class Week4Admin(ModelAdminMixin, admin.ModelAdmin):
         ['Clinical Assessment', {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'physical_symptoms',
                 'headache',
                 'glasgow_coma_score',

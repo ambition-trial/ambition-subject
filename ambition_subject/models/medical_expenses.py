@@ -1,13 +1,13 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from edc_base.model_fields.custom_fields import OtherCharField
 from edc_base.model_managers import HistoricalRecords
-from edc_base.sites import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_model_fields.fields import OtherCharField
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..validators import hm_validator
 from ..choices import PATIENT_REL, ACTIVITIES_MISSED, CURRENCY, TRANSPORT
+from ..managers import CurrentSiteManager
+from ..validators import hm_validator
 from .model_mixins import CrfModelMixin
 
 
@@ -47,28 +47,33 @@ class MedicalExpenses(CrfModelMixin):
         validators=[MinValueValidator(0)])
 
     subject_spent_last_4wks = models.DecimalField(
-        verbose_name=('Over that last 4 weeks, how much have you '
+        verbose_name=('Over the last 4/10 weeks, how much have you '
                       'spent on activities relating to your health?'),
         decimal_places=2,
         max_digits=15,
         null=True,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        help_text=('On D1 record data for the four weeks prior to recruitment. '
+                   'On W10 record data for the ten weeks since recruitment.'))
 
     someone_spent_last_4wks = models.DecimalField(
-        verbose_name=('Over that last 4 weeks, how much has someone else '
+        verbose_name=('Over the last 4/10 weeks, how much has someone else '
                       'spent on activities relating to your health?'),
         decimal_places=2,
         max_digits=15,
         null=True,
-        validators=[MinValueValidator(0)])
-
+        validators=[MinValueValidator(0)],
+        help_text=('On D1 record data for the four weeks prior to recruitment. '
+                   'On W10 record data for the ten weeks since recruitment.'))
     total_spent_last_4wks = models.DecimalField(
         verbose_name=(
-            'How much in total has been spent on your healthcare in the last 4 weeks?'),
+            'How much in total has been spent on your healthcare in the last 4/10 weeks?'),
         decimal_places=2,
         max_digits=16,
         null=True,
-        validators=[MinValueValidator(0)])
+        validators=[MinValueValidator(0)],
+        help_text=('On D1 record data for the four weeks prior to recruitment. '
+                   'On W10 record data for the ten weeks since recruitment.'))
 
     care_before_hospital = models.CharField(
         verbose_name=('Have you received any treatment or care '

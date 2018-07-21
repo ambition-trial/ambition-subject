@@ -17,6 +17,7 @@ class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
         ['Urine Culture (Only for patients with >50 white cells in urine)', {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'urine_culture_performed',
                 'urine_taken_date',
                 'urine_culture_results',

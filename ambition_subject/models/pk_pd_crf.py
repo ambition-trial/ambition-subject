@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
-from edc_base.sites import CurrentSiteManager
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 from edc_visit_tracking.managers import CrfModelManager
 
+from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin
 
 
@@ -111,10 +112,10 @@ class PkPdCrf(CrfModelMixin):
 
     fluconazole_dose_given = models.CharField(
         verbose_name='Was the Fluconazole dose given?',
-        choices=YES_NO,
-        max_length=5,
-        null=True,
-        blank=True)
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        max_length=11,
+        null=True,)
 
     fluconazole_dose_datetime = models.DateTimeField(
         verbose_name='Date and time Fluconazole was swallowed?',

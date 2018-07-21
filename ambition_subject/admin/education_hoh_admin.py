@@ -23,6 +23,7 @@ class EducationHohAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': [
                 'subject_visit',
+                'report_datetime',
                 'profession',
                 'education_years',
                 'education_certificate',

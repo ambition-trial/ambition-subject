@@ -1,5 +1,6 @@
 from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
+from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import Week16Form
@@ -8,7 +9,7 @@ from .modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(Week16, site=ambition_subject_admin)
-class Week16Admin(ModelAdminMixin, admin.ModelAdmin):
+class Week16Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
 
     form = Week16Form
 
@@ -22,6 +23,7 @@ class Week16Admin(ModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'patient_alive',
                 'death_datetime',
                 'activities_help',

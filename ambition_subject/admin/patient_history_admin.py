@@ -36,6 +36,7 @@ class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         ('Current Symptoms', {
             'fields': [
                 'subject_visit',
+                'report_datetime',
                 'symptom',
                 'headache_duration',
                 'visual_loss_duration']}

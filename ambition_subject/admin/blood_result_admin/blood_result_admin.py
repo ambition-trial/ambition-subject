@@ -1,4 +1,5 @@
 from django.contrib import admin
+from edc_action_item import action_fields
 from edc_model_admin import audit_fieldset_tuple
 
 from ...admin_site import ambition_subject_admin
@@ -32,7 +33,7 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'crag_t1_result': admin.VERTICAL,
         'crag_t2_result': admin.VERTICAL}
 
-    readonly_fields = ('summary', 'tracking_identifier', 'action_identifier')
+    readonly_fields = ('summary', ) + action_fields
 
     list_display = ('subject_visit', 'abnormal',
                     'reportable', 'tracking_identifier', 'action_identifier')

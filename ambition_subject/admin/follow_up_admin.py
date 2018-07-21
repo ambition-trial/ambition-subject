@@ -16,6 +16,13 @@ visual_acuity_fieldset = Fieldset(
     'rankin_score',
     section='Disability Assessment')
 
+hospitilization_and_drugs_fieldset = Fieldset(
+    'days_hospitalized',
+    'antibiotic',
+    'blood_transfusions',
+    'blood_transfusions_units',
+    section='Hospitalization and Drugs')
+
 
 class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
 
@@ -40,12 +47,13 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     inlines = [FollowUpDiagnosesInline]
 
     conditional_fieldsets = {
-        WEEK10: visual_acuity_fieldset, }
+        WEEK10: (hospitilization_and_drugs_fieldset, visual_acuity_fieldset)}
 
     fieldsets = (
         ('Clinical Assessment', {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'physical_symptoms',
                 'headache',
                 'glasgow_coma_score',
@@ -78,4 +86,5 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'other_significant_dx': admin.VERTICAL,
         'patient_help': admin.VERTICAL,
         'patient_problems': admin.VERTICAL,
-        'rankin_score': admin.VERTICAL, }
+        'rankin_score': admin.VERTICAL,
+        'blood_transfusions': admin.VERTICAL}

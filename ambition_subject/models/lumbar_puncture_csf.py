@@ -4,13 +4,13 @@ from django.db.models.deletion import PROTECT
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
-from edc_base.sites import CurrentSiteManager
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from ..choices import YES_NO_NOT_DONE_WAIT_RESULTS
 from ..constants import AWAITING_RESULTS
+from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
 from .subject_requisition import SubjectRequisition
 
@@ -61,6 +61,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         help_text=mark_safe('Units cm of H<sub>2</sub>O'))
 
     closing_pressure = models.IntegerField(
+        blank=True,
+        null=True,
         validators=[MinValueValidator(0), MaxValueValidator(99)],
         help_text=mark_safe('Units cm of H<sub>2</sub>O'))
 
@@ -93,13 +95,13 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
         help_text=mark_safe('acceptable units are mm<sup>3</sup>'),
-        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        validators=[MinValueValidator(0)],
         null=True,
         blank=True)
 
     differential_lymphocyte_count = models.IntegerField(
         verbose_name='Differential lymphocyte cell count:',
-        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True,
         help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
@@ -112,7 +114,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     differential_neutrophil_count = models.IntegerField(
         verbose_name='Differential neutrophil cell count:',
-        validators=[MinValueValidator(0), MaxValueValidator(999)],
+        validators=[MinValueValidator(0)],
         blank=True,
         null=True,
         help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
@@ -126,7 +128,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     india_ink = models.CharField(
         max_length=15,
         choices=POS_NEG,
-        null=True,)
+        null=True,
+        blank=True)
 
     csf_glucose = models.DecimalField(
         verbose_name='CSF glucose:',
@@ -155,10 +158,11 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         verbose_name='CSF CrAg:',
         max_length=15,
         choices=POS_NEG,
+        blank=True,
         null=True)
 
     csf_cr_ag_lfa = models.CharField(
-        verbose_name='CSF CrAg done by CSF CrAg LFA:',
+        verbose_name='CSF CrAg done by IMMY CrAg LFA:',
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE)

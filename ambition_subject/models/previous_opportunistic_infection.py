@@ -49,8 +49,8 @@ class PreviousOpportunisticInfection(BaseUuidModel):
     history = HistoricalRecords()
 
     def natural_key(self):
-        return ((self.previous_non_tb_oi, self.previous_non_tb_oi_date,) +
-                self.patient_history.natural_key())
+        return ((self.previous_non_tb_oi, self.previous_non_tb_oi_date,)
+                + self.patient_history.natural_key())
     natural_key.dependencies = ['ambition_subject.patienthistory']
 
     class Meta:

@@ -12,7 +12,7 @@ v1 = Consent(
     end=edc_protocol.study_close_datetime,
     age_min=18,
     age_is_adult=18,
-    age_max=64,
+    age_max=110,
     gender=[MALE, FEMALE])
 
 site_consents.register(v1)

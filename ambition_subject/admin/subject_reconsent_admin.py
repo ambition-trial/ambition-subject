@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from edc_model_admin import audit_fieldset_tuple, audit_fields
+from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectReconsentForm
@@ -12,7 +13,7 @@ from .modeladmin_mixins import ModelAdminMixin
 
 
 @admin.register(SubjectReconsent, site=ambition_subject_admin)
-class SubjectReconsentAdmin(ModelAdminMixin, admin.ModelAdmin):
+class SubjectReconsentAdmin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
 
     form = SubjectReconsentForm
 

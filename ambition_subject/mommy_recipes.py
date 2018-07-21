@@ -1,4 +1,4 @@
-from ambition_ae.mommy_recipes import neurological
+from datetime import date
 from dateutil.relativedelta import relativedelta
 from django.contrib.sites.models import Site
 from edc_base.utils import get_utcnow
@@ -11,16 +11,25 @@ from .models import BloodResult, Microbiology, FollowUp
 from .models import Education, EducationHoh
 from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
-from .models import PatientHistory, Week16
+from .models import PatientHistory, Week16, Week4
 from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import Antibiotic, Symptom, SubjectReconsent
 from .models import SignificantNewDiagnosis, PkPdCrf
+from .models import Neurological, Day14Medication
 
 
 fake = Faker()
 
-bloodresult = Recipe(BloodResult)
+bloodresult = Recipe(
+    BloodResult,
+    action_identifier=None,
+    tracking_identifier=None)
+
+neurological = Recipe(
+    Neurological,
+    name='meningismus',
+    short_name='Meningismus')
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis,
@@ -74,7 +83,7 @@ patienthistory = Recipe(
     respiratory_rate=22,
     weight=60,
     glasgow_coma_score=8,
-    visual_acuity_day=get_utcnow,
+    visual_acuity_day=date.today,
     left_acuity=0.52,
     right_acuity=0.53,
     lung_exam=YES,
@@ -85,26 +94,24 @@ patienthistory = Recipe(
 
 antibiotic = Recipe(Antibiotic)
 
+medicines = Recipe(Day14Medication)
+
 week2 = Recipe(
     Week2,
     discharged=NO,
     died=NO,
-    flucon_start_datetime=get_utcnow(),
-    flucon_stop_datetime=None,
-    other_drug=None,
+    flucy_start_date=date.today(),
+    flucon_stop_date=date.today(),
     antibiotic=related(antibiotic),
     blood_received=NO,
     units=None,
     headache=YES,
     temperature=41.2,
-    glasgow_cs=8,
-    seizures_during_admission=NO,
-    recent_seizure=NO,
     behaviour_change=YES,
     confusion=NO,
     cn_palsy=YES,
     focal_neurology=NO,
-    medicines='Fluconazole',)
+    medicines=related(medicines),)
 
 
 radiology = Recipe(
@@ -170,9 +177,13 @@ educationhoh = Recipe(EducationHoh)
 
 pkpdcrf = Recipe(PkPdCrf)
 
+week4 = Recipe(Week4)
+
 subjectreconsent = Recipe(
     SubjectReconsent,
     consent_reviewed=YES,
     assessment_score=YES,
     study_questions=YES,
-    consent_copy=YES)
+    consent_copy=YES,
+    action_identifier=None,
+    tracking_identifier=None)

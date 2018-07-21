@@ -1,12 +1,10 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
-from edc_action_item.model_mixins import ActionItemModelMixin
+from edc_action_item.models import ActionModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
-from edc_base.sites import CurrentSiteManager
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_identifier.model_mixins import TrackingIdentifierModelMixin
 from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
 from edc_reportable import COPIES_PER_MILLILITER
@@ -14,21 +12,22 @@ from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
 from edc_reportable import site_reportables
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..action_items import BloodResultAction
+from ..action_items import BLOOD_RESULTS_ACTION
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS, REPORTABLE
+from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
 from .subject_requisition import SubjectRequisition
 
 
-class BloodResult(CrfModelMixin, ActionItemModelMixin, TrackingIdentifierModelMixin,
-                  BiosynexSemiQuantitativeCragMixin):
+class BloodResult(CrfModelMixin, ActionModelMixin, BiosynexSemiQuantitativeCragMixin):
 
-    action_cls = BloodResultAction
+    action_name = BLOOD_RESULTS_ACTION
 
     tracking_identifier_prefix = 'BR'
 
     ft_fields = ['creatinine', 'urea', 'sodium',
                  'potassium', 'magnesium', 'alt']
+
     cbc_fields = ['haemoglobin', 'wbc', 'neutrophil', 'platelets']
 
     ft_requisition = models.ForeignKey(

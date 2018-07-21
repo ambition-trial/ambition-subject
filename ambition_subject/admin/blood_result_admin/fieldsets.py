@@ -1,4 +1,4 @@
-from edc_action_item import action_fieldset
+from edc_action_item import action_fieldset_tuple
 from edc_fieldsets import Fieldset
 from edc_model_admin import audit_fieldset_tuple
 
@@ -45,11 +45,11 @@ biosynex_fieldset = Fieldset(
     'crag_t2_result',
     section='BIOSYNEX® CryptoPS (Semi-quantitative CrAg)')
 
-fieldset = [(None, {'fields': ('subject_visit',)})]
+fieldset = [(None, {'fields': ('subject_visit', 'report_datetime',)})]
 fieldset.extend(results_fieldsets)
 fieldset.append(('Conclusion', {
     'fields': ('results_abnormal', 'results_reportable')}))
 fieldset.append(
     ('Summary', {'classes': ('collapse', ), 'fields': ('summary', )}))
-fieldset.append(action_fieldset)
+fieldset.append(action_fieldset_tuple)
 fieldset.append(audit_fieldset_tuple)

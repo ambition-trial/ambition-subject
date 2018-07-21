@@ -3,3 +3,6 @@ omit =
     */wsgi.py
     setup.py
     manage.py
+    */migrations/*
+    */mommy_*
+    venv/*

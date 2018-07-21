@@ -78,6 +78,7 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         (None, {
             'fields': (
                 'subject_visit',
+                'report_datetime',
                 'albumin')}),
         ('Flucytosine', {
             'fields': (

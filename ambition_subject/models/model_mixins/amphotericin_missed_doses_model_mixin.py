@@ -1,6 +1,6 @@
 from django.db import models
 
-from edc_base.model_fields.custom_fields import OtherCharField
+from edc_model_fields.fields import OtherCharField
 
 from ...choices import REASON_DRUG_MISSED, DAYS_MISSED
 

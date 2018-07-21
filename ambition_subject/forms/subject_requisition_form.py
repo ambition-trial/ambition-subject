@@ -26,11 +26,12 @@ class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin):
                         is_drawn=YES)
                 except ObjectDoesNotExist:
                     raise forms.ValidationError(
-                        {'reason_not_drawn': 'Invalid choice. At least one chemistry panel is expected.'})
+                        {'reason_not_drawn': 'Invalid choice. At least one '
+                         'chemistry panel is expected.'})
             else:
                 raise forms.ValidationError(
-                    {'reason_not_drawn': 'Invalid choice. Not expected for this panel'})
-
+                    {'reason_not_drawn': 'Invalid choice. Not expected '
+                     'for this panel'})
         if (self.cleaned_data.get('panel') == chemistry_alt_panel.panel_model_obj
                 and self.cleaned_data.get('is_drawn') == NO):
             try:
@@ -44,7 +45,6 @@ class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin):
                 raise forms.ValidationError(
                     f'Remove the "{chemistry_panel.name}" requisition before '
                     f'setting this requisition to not drawn.')
-
         return cleaned_data
 
     class Meta:
