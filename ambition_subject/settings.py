@@ -8,7 +8,8 @@ ETC_DIR = os.path.join(BASE_DIR, 'etc')
 SITE_ID = 40
 REVIEWER_SITE_ID = 0
 
-RANDOMIZATION_LIST_PATH = os.path.join(BASE_DIR, 'test_randomization_list.csv')
+RANDOMIZATION_LIST_PATH = os.path.join(BASE_DIR, APP_NAME, 'tests',
+                                       'test_randomization_list.csv')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -166,7 +167,7 @@ COUNTRY = 'botswana'
 HOLIDAY_FILE = os.path.join(BASE_DIR, APP_NAME, 'tests', 'holidays.csv')
 GIT_DIR = BASE_DIR
 
-EDC_SYNC_SERVER_IP = None
+DJANGO_COLLECT_OFFLINE_SERVER_IP = None
 DJANGO_COLLECT_OFFLINE_FILES_REMOTE_HOST = None
 DJANGO_COLLECT_OFFLINE_FILES_USER = None
 DJANGO_COLLECT_OFFLINE_FILES_USB_VOLUME = None
