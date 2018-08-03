@@ -14,17 +14,13 @@ class AppConfig(DjangoApponfig):
 
 if settings.APP_NAME == 'ambition_subject':
 
-    import os
-
     from datetime import datetime
     from edc_appointment.apps import AppConfig as BaseEdcAppointmentAppConfig
     from edc_constants.constants import FAILED_ELIGIBILITY
     from edc_identifier.apps import AppConfig as BaseEdcIdentifierAppConfig
     from edc_lab.apps import AppConfig as BaseEdcLabAppConfig
-    from edc_label.apps import AppConfig as BaseEdcLabelAppConfig
     from edc_metadata.apps import AppConfig as BaseEdcMetadataAppConfig
     from edc_protocol.apps import AppConfig as BaseEdcProtocolAppConfig
-    from edc_visit_tracking.apps import AppConfig as BaseEdcVisitTrackingAppConfig
     from edc_visit_tracking.constants import MISSED_VISIT
     from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
     from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
@@ -78,7 +74,3 @@ if settings.APP_NAME == 'ambition_subject':
                                  slots=[100, 100, 100, 100, 100, 100, 100]),
             '5-day clinic': dict(days=[MO, TU, WE, TH, FR],
                                  slots=[100, 100, 100, 100, 100])}
-
-    class EdcLabelAppConfig(BaseEdcLabelAppConfig):
-        template_folder = os.path.join(
-            settings.STATIC_ROOT, 'ambition', 'label_templates')
