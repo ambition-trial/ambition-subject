@@ -40,7 +40,9 @@ class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     list_filter = ('results_abnormal', 'results_reportable',)
 
-    search_fields = ('tracking_identifier', 'action_identifier', )
+    search_fields = ('action_identifier',
+                     'subject_identifier',
+                     'tracking_identifier', )
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'appointment' and request.GET.get('appointment'):
