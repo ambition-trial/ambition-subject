@@ -11,6 +11,7 @@ from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
 from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
+from edc_identifier.model_mixins import TrackingModelMixin
 from edc_registration.models import RegisteredSubject
 
 from ..action_items import RECONSENT_ACTION
@@ -21,7 +22,7 @@ from .model_mixins import SearchSlugModelMixin
 class SubjectReconsent(
         UniqueSubjectIdentifierModelMixin,
         ReviewFieldsMixin, SearchSlugModelMixin,
-        ActionModelMixin, BaseUuidModel):
+        ActionModelMixin, TrackingModelMixin, BaseUuidModel):
 
     """ A model completed by the user that updates the consent
     for those originally consented by next of kin.

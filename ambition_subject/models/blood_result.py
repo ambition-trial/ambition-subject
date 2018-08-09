@@ -5,6 +5,7 @@ from edc_action_item.models import ActionModelMixin
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_identifier.model_mixins import TrackingModelMixin
 from edc_registration.models import RegisteredSubject
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED, MILLIMOLES_PER_LITER
 from edc_reportable import COPIES_PER_MILLILITER
@@ -19,7 +20,8 @@ from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
 from .subject_requisition import SubjectRequisition
 
 
-class BloodResult(CrfModelMixin, ActionModelMixin, BiosynexSemiQuantitativeCragMixin):
+class BloodResult(CrfModelMixin, ActionModelMixin,
+                  TrackingModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     action_name = BLOOD_RESULTS_ACTION
 

@@ -1,5 +1,5 @@
 from ambition_rando.tests import AmbitionTestCaseMixin
-from ambition_visit_schedule import DAY1
+from ambition_visit_schedule import DAY1, DAY3, DAY5
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, tag
 from django.test.utils import override_settings
@@ -10,6 +10,7 @@ from edc_constants.constants import YES
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 from model_mommy.mommy import make_recipe
+from pprint import pprint
 
 
 @override_settings(SITE_ID='10')
@@ -35,6 +36,7 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
             appointment=self.appointment,
             reason=SCHEDULED)
 
+    @tag('1')
     def test_(self):
 
         obj = make_recipe(
@@ -54,3 +56,45 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
                 parent_reference_identifier=obj.action_identifier)
         except ObjectDoesNotExist:
             self.fail('ActionItem unexpectedly does not exist.')
+
+        obj.save()
+
+    @tag('1')
+    def test_2(self):
+        make_recipe(
+            'ambition_subject.bloodresult',
+            subject_visit=self.subject_visit,
+            results_abnormal=YES,
+            results_reportable=YES)
+
+        appointment = Appointment.objects.get(
+            subject_identifier=self.subject_identifier,
+            visit_code=DAY3)
+        mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=appointment,
+            reason=SCHEDULED)
+
+        appointment = Appointment.objects.get(
+            subject_identifier=self.subject_identifier,
+            visit_code=DAY5)
+        subject_visit = mommy.make_recipe(
+            'ambition_subject.subjectvisit',
+            appointment=appointment,
+            reason=SCHEDULED)
+
+        obj = make_recipe(
+            'ambition_subject.bloodresult',
+            subject_visit=subject_visit,
+            results_abnormal=YES,
+            results_reportable=YES)
+
+        try:
+            action_item = ActionItem.objects.get(
+                action_identifier=obj.action_identifier)
+        except ObjectDoesNotExist:
+            self.fail('ActionItem unexpectedly does not exist.')
+
+        pprint(action_item.__dict__)
+        action_item.delete()
+        obj.save()
