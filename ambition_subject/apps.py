@@ -39,7 +39,6 @@ if settings.APP_NAME == 'ambition_subject':
 
     class EdcLabAppConfig(BaseEdcLabAppConfig):
         base_template_name = 'ambition/base.html'
-        requisition_model = 'ambition_subject.subjectrequisition'
         result_model = 'edc_lab.result'
 
         @property
