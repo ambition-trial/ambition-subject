@@ -40,7 +40,8 @@ class SubjectConsent(
 
     screening_identifier = models.CharField(
         verbose_name='Screening identifier',
-        max_length=50)
+        max_length=50,
+        unique=True)
 
     completed_by_next_of_kin = models.CharField(
         max_length=10,
