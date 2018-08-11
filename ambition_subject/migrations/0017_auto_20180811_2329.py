@@ -3,7 +3,7 @@
 
 import sys
 
-from django.db import migrations, models
+from django.db import migrations
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.color import color_style
 
@@ -23,7 +23,7 @@ def update_screening_datetime(apps, schema_editor):
                 f'  not found! screening_identifier='
                 f'{subject_consent.screening_identifier}\n'))
         else:
-            subject_consent.screening_datetime = subject_screening.screening_datetime
+            subject_consent.screening_datetime = subject_screening.report_datetime
             subject_consent.save_base()
     sys.stdout.write('Done.\n')
 
@@ -36,11 +36,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        #         migrations.AlterModelManagers(
-        #             name='subjectscreening',
-        #             managers=['objects', models.manager.Manager()]),
-        #         migrations.AlterModelManagers(
-        #             name='subjectconsent',
-        #             managers=['objects', models.manager.Manager()]),
         migrations.RunPython(update_screening_datetime),
     ]
