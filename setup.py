@@ -40,6 +40,7 @@ setup(
         'django-collect-offline',
         'django-collect-offline-files',
         'edc-action-item',
+        'edc-appointment',
         'edc-base',
         'edc-consent',
         'edc-offstudy',
