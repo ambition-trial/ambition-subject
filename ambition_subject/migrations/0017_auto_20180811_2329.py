@@ -14,9 +14,9 @@ def update_screening_datetime(apps, schema_editor):
     sys.stdout.write('\nUpdating screening_datetime on subject consent\n')
     SubjectScreening = apps.get_model('ambition_screening', 'subjectscreening')
     SubjectConsent = apps.get_model('ambition_subject', 'subjectconsent')
-    for subject_consent in SubjectConsent.objects.filter(screening_datetime__isnull=True):
+    for subject_consent in SubjectConsent._default_manager.filter(screening_datetime__isnull=True):
         try:
-            subject_screening = SubjectScreening.objects.get(
+            subject_screening = SubjectScreening._default_manager.get(
                 screening_identifier=subject_consent.screening_identifier)
         except ObjectDoesNotExist:
             sys.stdout.write(style.ERROR(
@@ -36,11 +36,11 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelManagers(
-            name='subjectscreening',
-            managers=['objects', models.manager.Manager()]),
-        migrations.AlterModelManagers(
-            name='subjectconsent',
-            managers=['objects', models.manager.Manager()]),
+        #         migrations.AlterModelManagers(
+        #             name='subjectscreening',
+        #             managers=['objects', models.manager.Manager()]),
+        #         migrations.AlterModelManagers(
+        #             name='subjectconsent',
+        #             managers=['objects', models.manager.Manager()]),
         migrations.RunPython(update_screening_datetime),
     ]
