@@ -31,6 +31,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('ambition_subject', '0016_auto_20180811_2328'),
+        ('ambition_screening', '0002_auto_20180706_1519'),
     ]
 
     operations = [
