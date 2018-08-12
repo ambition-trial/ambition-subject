@@ -3,7 +3,7 @@
 
 import sys
 
-from django.db import migrations, models
+from django.db import migrations
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.management.color import color_style
 
@@ -14,7 +14,7 @@ def update_screening_datetime(apps, schema_editor):
     sys.stdout.write('\nUpdating screening_datetime on subject consent\n')
     SubjectScreening = apps.get_model('ambition_screening', 'subjectscreening')
     SubjectConsent = apps.get_model('ambition_subject', 'subjectconsent')
-    for subject_consent in SubjectConsent.objects.filter(screening_datetime__isnull=True):
+    for subject_consent in SubjectConsent._default_manager.filter(screening_datetime__isnull=True):
         try:
             subject_screening = SubjectScreening._default_manager.get(
                 screening_identifier=subject_consent.screening_identifier)
@@ -36,8 +36,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelManagers(
-            name='subjectconsent',
-            managers=['objects', models.manager.Manager()]),
         migrations.RunPython(update_screening_datetime),
     ]
