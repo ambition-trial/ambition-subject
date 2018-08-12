@@ -24,7 +24,7 @@ def update_screening_datetime(apps, schema_editor):
             subject_consent.save_base(raw=True)
         try:
             registered_subject = RegisteredSubject._default_manager.get(
-                subject_identifier=subject_consent.subject_identifier)
+                screening_identifier=subject_consent.screening_identifier)
         except ObjectDoesNotExist:
             pass
         else:
