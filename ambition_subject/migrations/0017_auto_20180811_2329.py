@@ -11,7 +11,7 @@ style = color_style()
 
 
 def update_screening_datetime(apps, schema_editor):
-    sys.stdout.write('\nUpdating screening_datetime on subject consent\n')
+    sys.stdout.write('\n    Updating screening_datetime on subject consent\n')
     SubjectScreening = apps.get_model('ambition_screening', 'subjectscreening')
     SubjectConsent = apps.get_model('ambition_subject', 'subjectconsent')
     for subject_consent in SubjectConsent._default_manager.filter(screening_datetime__isnull=True):
@@ -20,13 +20,13 @@ def update_screening_datetime(apps, schema_editor):
                 screening_identifier=subject_consent.screening_identifier)
         except ObjectDoesNotExist:
             sys.stdout.write(style.ERROR(
-                f'  not found! screening_identifier='
+                f'    * not found! screening_identifier='
                 f'{subject_consent.screening_identifier}\n'))
         else:
             subject_consent.screening_datetime = (
                 subject_screening.report_datetime or subject_screening.created)
             subject_consent.save_base(raw=True)
-    sys.stdout.write('Done.\n')
+    sys.stdout.write('    Done.\n')
 
 
 class Migration(migrations.Migration):
