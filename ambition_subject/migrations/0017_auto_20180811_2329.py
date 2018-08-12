@@ -24,7 +24,7 @@ def update_screening_datetime(apps, schema_editor):
                 f'{subject_consent.screening_identifier}\n'))
         else:
             subject_consent.screening_datetime = subject_screening.report_datetime
-            subject_consent.save_base()
+            subject_consent.save_base(raw=True)
     sys.stdout.write('Done.\n')
 
 
