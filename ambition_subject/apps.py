@@ -1,5 +1,5 @@
-from django.conf import settings
 from django.apps import AppConfig as DjangoApponfig
+from django.conf import settings
 from edc_facility.apps import AppConfig as BaseEdcFacilityAppConfig
 
 
@@ -38,7 +38,7 @@ if settings.APP_NAME == 'ambition_subject':
             2018, 12, 31, 23, 59, 59, tzinfo=gettz('UTC'))
 
     class EdcLabAppConfig(BaseEdcLabAppConfig):
-        base_template_name = 'ambition/base.html'
+        base_template_name = f'ambition/bootstrap{settings.EDC_BOOTSTRAP}/base.html'
         result_model = 'edc_lab.result'
 
         @property
