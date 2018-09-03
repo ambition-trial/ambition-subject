@@ -185,6 +185,8 @@ DASHBOARD_BASE_TEMPLATES = {
     'subject_dashboard_template': 'ambition_dashboard/subject/dashboard.html',
 }
 
+EDC_BOOTSTRAP = 3
+
 if 'test' in sys.argv:
 
     class DisableMigrations:
