@@ -91,6 +91,7 @@ class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin, SimpleHistory
         "consent_signature": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "is_dob_estimated": admin.VERTICAL,
+        "identity_type": admin.VERTICAL,
         "is_incarcerated": admin.VERTICAL,
         "is_literate": admin.VERTICAL,
         "language": admin.VERTICAL,
