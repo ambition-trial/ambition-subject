@@ -200,16 +200,6 @@ GLASGOW_COMA_SCORE_MOTOR = (
     ('obey_commands', 'Obey commands'),
 )
 
-ID_TYPE = (
-    ('country_id', 'Country ID number'),
-    ('drivers', 'Driver\'s license'),
-    ('passport', 'Passport'),
-    ('hospital_no', 'Hospital number'),
-    ('country_id_rcpt', 'Country ID receipt'),
-    (OTHER, 'Other'),
-)
-
-
 INFECTION = (
     ('kaposi_sarcoma', 'Kaposi Sarcoma'),
     ('herpes_zoster_virus', 'Herpes-Zoster virus'),

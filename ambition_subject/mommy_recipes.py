@@ -148,6 +148,7 @@ subjectconsent = Recipe(
     consent_copy=YES,
     consent_datetime=get_utcnow(),
     consent_reviewed=YES,
+    consent_signature=YES,
     dob=get_utcnow() - relativedelta(years=25),
     first_name=fake.first_name,
     gender='M',

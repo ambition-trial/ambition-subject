@@ -5,7 +5,6 @@ from edc_base.sites import SiteModelFormMixin
 from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_form_validators import FormValidatorMixin
 
-from ..choices import ID_TYPE
 from ..models import SubjectConsent
 
 
@@ -17,10 +16,6 @@ class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin,
     screening_identifier = forms.CharField(
         label='Screening identifier',
         widget=forms.TextInput(attrs={'readonly': 'readonly'}))
-
-    identity_type = forms.CharField(
-        label='What type of identity number is this?',
-        widget=forms.RadioSelect(choices=list(ID_TYPE)))
 
     def clean_gender_of_consent(self):
         return None
