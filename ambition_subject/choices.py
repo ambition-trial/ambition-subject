@@ -3,6 +3,7 @@ from ambition_validators import WORKING, NO_GROWTH, KLEBSIELLA_SPP
 from ambition_validators import CRYPTOCOCCUS_NEOFORMANS, BACTERIA
 from edc_constants.constants import NEG, OTHER, POS, NOT_APPLICABLE, NOT_DONE
 from edc_constants.constants import NORMAL, IND, YES, NO
+from edc_metadata.constants import NOT_REQUIRED
 from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICROMOLES_PER_LITER
 from edc_reportable import GRADE3, GRADE4, MICROMOLES_PER_LITER_DISPLAY, MM3, MM3_DISPLAY
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
@@ -13,8 +14,7 @@ from .constants import AZT_3TC_with_EFV_NVP_or_DTG
 from .constants import ROUTINE_APPT, THERAPEUTIC_PL
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
-from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS
-from edc_metadata.constants import NOT_REQUIRED
+from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS, PATIENT
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -223,7 +223,7 @@ INFILTRATE_LOCATION = (
 INFO_SOURCE = (
     ('hospital_notes', 'Hospital notes'),
     ('outpatient_cards', 'Outpatient cards'),
-    ('patient', 'Patient'),
+    (PATIENT, 'Patient'),
     ('collateral_history',
      'Collateral History from relative/guardian'),
     (OTHER, 'Other'),
