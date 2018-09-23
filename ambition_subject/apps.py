@@ -7,6 +7,7 @@ class AppConfig(DjangoApponfig):
     name = 'ambition_subject'
     verbose_name = 'Ambition Subject CRFs'
     admin_site_name = 'ambition_subject_admin'
+    has_exportable_data = True
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save
