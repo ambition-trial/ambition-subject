@@ -50,7 +50,7 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
 
         try:
             obj = ActionItem.objects.get(
-                parent_reference_identifier=obj.action_identifier)
+                parent_action_identifier=obj.action_identifier)
         except ObjectDoesNotExist:
             self.fail('ActionItem unexpectedly does not exist.')
         obj.save()
