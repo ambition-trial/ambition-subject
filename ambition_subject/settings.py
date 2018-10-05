@@ -187,6 +187,10 @@ DASHBOARD_BASE_TEMPLATES = {
 }
 
 EDC_BOOTSTRAP = 3
+EMAIL_CONTACTS = {'data_request': 'someone@example.com',
+                  'data_manager': 'someone@example.com',
+                  'tmg': 'someone@example.com'}
+EMAIL_ENABLED = False
 
 if 'test' in sys.argv:
 

@@ -19,7 +19,6 @@ class BloodResultAction(Action):
 
     def get_next_actions(self):
         actions = []
-        self.delete_if_new(action_cls=AeInitialAction)
         if (self.reference_obj.subject_visit.visit_code == DAY1
                 and self.reference_obj.subject_visit.visit_code_sequence == 0):
             # early withdrawal if qualifying blood results
