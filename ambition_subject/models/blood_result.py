@@ -13,7 +13,7 @@ from edc_reportable import IU_LITER, GRAMS_PER_DECILITER, TEN_X_9_PER_LITER
 from edc_reportable import site_reportables
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..action_items import BLOOD_RESULTS_ACTION
+from ..constants import BLOOD_RESULTS_ACTION
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS, REPORTABLE
 from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin

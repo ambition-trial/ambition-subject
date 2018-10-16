@@ -49,8 +49,8 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
             self.fail('ActionItem unexpectedly does not exist.')
 
         try:
-            obj = ActionItem.objects.get(
-                parent_action_identifier=obj.action_identifier)
+            ActionItem.objects.get(
+                parent_action_item__action_identifier=obj.action_identifier)
         except ObjectDoesNotExist:
             self.fail('ActionItem unexpectedly does not exist.')
         obj.save()

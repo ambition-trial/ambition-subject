@@ -1,12 +1,11 @@
-from ambition_ae.action_items import AeInitialAction
-from ambition_prn.action_items import StudyTerminationConclusionAction
+from ambition_ae.constants import AE_INITIAL_ACTION
+from ambition_prn.constants import STUDY_TERMINATION_CONCLUSION_ACTION
 from ambition_screening import EarlyWithdrawalEvaluator
 from ambition_visit_schedule import DAY1
 from edc_action_item import Action, site_action_items, HIGH_PRIORITY
 from edc_constants.constants import YES
 
-BLOOD_RESULTS_ACTION = 'abnormal-blood-result'
-RECONSENT_ACTION = 'reconsent'
+from .constants import BLOOD_RESULTS_ACTION, RECONSENT_ACTION
 
 
 class BloodResultAction(Action):
@@ -18,7 +17,7 @@ class BloodResultAction(Action):
     create_by_user = False
 
     def get_next_actions(self):
-        actions = []
+        next_actions = []
         if (self.reference_obj.subject_visit.visit_code == DAY1
                 and self.reference_obj.subject_visit.visit_code_sequence == 0):
             # early withdrawal if qualifying blood results
@@ -26,12 +25,12 @@ class BloodResultAction(Action):
             evaluator = EarlyWithdrawalEvaluator(
                 subject_identifier=self.reference_obj.subject_identifier)
             if not evaluator.eligible:
-                actions = [StudyTerminationConclusionAction]
+                next_actions = [STUDY_TERMINATION_CONCLUSION_ACTION]
         elif (self.reference_obj.results_abnormal == YES
               and self.reference_obj.results_reportable == YES):
             # AE for reportable result, though not on DAY1.0
-            actions = [AeInitialAction]
-        return actions
+            next_actions = [AE_INITIAL_ACTION]
+        return next_actions
 
 
 class ReconsentAction(Action):
