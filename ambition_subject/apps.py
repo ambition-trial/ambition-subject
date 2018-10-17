@@ -59,13 +59,11 @@ if settings.APP_NAME == 'ambition_subject':
         delete_on_reasons = [LOST_VISIT, FAILED_ELIGIBILITY, MISSED_VISIT]
 
     class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
-        # app_label = 'ambition_subject'
         default_appt_type = 'hospital'
         configurations = [
             AppointmentConfig(
                 model='edc_appointment.appointment',
-                related_visit_model='ambition_subject.subjectvisit')
-        ]
+                related_visit_model='ambition_subject.subjectvisit')]
 
     class EdcFacilityAppConfig(BaseEdcFacilityAppConfig):
         country = 'botswana'
