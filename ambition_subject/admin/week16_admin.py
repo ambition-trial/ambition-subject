@@ -1,15 +1,14 @@
 from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
-from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import Week16Form
 from ..models import Week16
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(Week16, site=ambition_subject_admin)
-class Week16Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
+class Week16Admin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = Week16Form
 

@@ -5,11 +5,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import MicrobiologyForm
 from ..models import Microbiology
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 @admin.register(Microbiology, site=ambition_subject_admin)
-class MicrobiologyAdmin(ModelAdminMixin, admin.ModelAdmin):
+class MicrobiologyAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = MicrobiologyForm
 
