@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
@@ -44,10 +45,10 @@ class PkPdCrf(CrfModelMixin):
         verbose_name='Flucytosine dose?',
         null=True,
         blank=True,
-        help_text='Units in mg')
+        help_text='Total dose. Units in mg')
 
     flucytosine_dose_one_given = models.CharField(
-        verbose_name='Flucytosine <u>DOSE&nbsp;1</u> given? ',
+        verbose_name='Flucytosine <b><u>DOSE&nbsp;1</u></b> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -59,8 +60,15 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
+    flucytosine_dose_one = models.IntegerField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;1</u>',
+        validators=[MinValueValidator(0), MaxValueValidator(9999)],
+        null=True,
+        blank=True,
+        help_text='Units in mg')
+
     flucytosine_dose_two_given = models.CharField(
-        verbose_name='Flucytosine <u>DOSE&nbsp;2</u> given? ',
+        verbose_name='Flucytosine <b><u>DOSE&nbsp;2</u></b> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -72,8 +80,15 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
+    flucytosine_dose_two = models.IntegerField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;2</u>',
+        validators=[MinValueValidator(0), MaxValueValidator(9999)],
+        null=True,
+        blank=True,
+        help_text='Units in mg')
+
     flucytosine_dose_three_given = models.CharField(
-        verbose_name='Flucytosine <u>DOSE&nbsp;3</u> given? ',
+        verbose_name='Flucytosine <b><u>DOSE&nbsp;3</u></b> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -85,8 +100,15 @@ class PkPdCrf(CrfModelMixin):
         null=True,
         blank=True)
 
+    flucytosine_dose_three = models.IntegerField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;3</u>',
+        validators=[MinValueValidator(0), MaxValueValidator(9999)],
+        null=True,
+        blank=True,
+        help_text='Units in mg')
+
     flucytosine_dose_four_given = models.CharField(
-        verbose_name='Flucytosine <u>DOSE&nbsp;4</u> given? ',
+        verbose_name='Flucytosine <b><u>DOSE&nbsp;4</u></b> given? ',
         choices=YES_NO,
         max_length=5,
         null=True,
@@ -97,6 +119,13 @@ class PkPdCrf(CrfModelMixin):
             'Date and time Flucytosine <u>DOSE&nbsp;4</u> was swallowed?'),
         null=True,
         blank=True)
+
+    flucytosine_dose_four = models.IntegerField(
+        verbose_name='Flucytosine <u>DOSE&nbsp;4</u>',
+        validators=[MinValueValidator(0), MaxValueValidator(9999)],
+        null=True,
+        blank=True,
+        help_text='Units in mg')
 
     flucytosine_dose_reason_missed = models.TextField(
         verbose_name='If any Flucytosine doses not given, provide reason',

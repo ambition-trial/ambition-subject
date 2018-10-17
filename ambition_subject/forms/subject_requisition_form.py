@@ -3,13 +3,17 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import YES, NO
 from edc_lab.forms import RequisitionFormMixin
+from edc_lab.form_validators import RequisitionFormValidator
 from edc_metadata.constants import NOT_REQUIRED
 
 from ..models import SubjectRequisition
 from .form_mixins import SubjectModelFormMixin
+from edc_form_validators.form_validator_mixin import FormValidatorMixin
 
 
-class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin):
+class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin, FormValidatorMixin):
+
+    form_validator_cls = RequisitionFormValidator
 
     requisition_identifier = forms.CharField(
         label='Requisition identifier',

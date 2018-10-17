@@ -85,12 +85,16 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'flucytosine_dose',
                 'flucytosine_dose_one_given',
                 'flucytosine_dose_one_datetime',
+                'flucytosine_dose_one',
                 'flucytosine_dose_two_given',
                 'flucytosine_dose_two_datetime',
+                'flucytosine_dose_two',
                 'flucytosine_dose_three_given',
                 'flucytosine_dose_three_datetime',
+                'flucytosine_dose_three',
                 'flucytosine_dose_four_given',
                 'flucytosine_dose_four_datetime',
+                'flucytosine_dose_four',
                 'flucytosine_dose_reason_missed')}),
         ('Fluconazole', {
             'fields': (
