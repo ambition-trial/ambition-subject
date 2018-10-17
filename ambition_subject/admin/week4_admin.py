@@ -1,12 +1,11 @@
 from django.contrib import admin
 
 from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
-from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import Week4Form, Week4DiagnosesForm
 from ..models import Week4, Week4Diagnoses
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin_mixins import CrfModelAdminMixin
 
 
 class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
@@ -25,7 +24,7 @@ class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(Week4, site=ambition_subject_admin)
-class Week4Admin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
+class Week4Admin(CrfModelAdminMixin, admin.ModelAdmin):
 
     form = Week4Form
 
