@@ -5,6 +5,8 @@ from django.utils.safestring import mark_safe
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
+from edc_reportable import GRAMS_PER_LITER, MILLIMOLES_PER_LITER, MILLIGRAMS_PER_DECILITER
+from edc_reportable import MM3_DISPLAY
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
@@ -94,7 +96,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     csf_wbc_cell_count = models.IntegerField(
         verbose_name='Total CSF WBC cell count:',
-        help_text=mark_safe('acceptable units are mm<sup>3</sup>'),
+        help_text=mark_safe(f'acceptable units are {MM3_DISPLAY}'),
         validators=[MinValueValidator(0)],
         null=True,
         blank=True)
@@ -104,7 +106,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         validators=[MinValueValidator(0)],
         blank=True,
         null=True,
-        help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
+        help_text=mark_safe(f'acceptable units are {MM3_DISPLAY} or %'))
 
     differential_lymphocyte_unit = models.CharField(
         choices=MM3_PERC_UNITS,
@@ -117,7 +119,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         validators=[MinValueValidator(0)],
         blank=True,
         null=True,
-        help_text=mark_safe('acceptable units are mm<sup>3</sup> or %'))
+        help_text=mark_safe(f'acceptable units are {MM3_DISPLAY} or %'))
 
     differential_neutrophil_unit = models.CharField(
         choices=MM3_PERC_UNITS,
@@ -137,7 +139,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         max_digits=3,
         blank=True,
         null=True,
-        help_text='Units in mmol/L or mg/dL')
+        help_text=f'Units in {MILLIMOLES_PER_LITER} or {MILLIGRAMS_PER_DECILITER}')
 
     csf_glucose_units = models.CharField(
         verbose_name='CSF glucose units:',
@@ -152,7 +154,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         max_digits=4,
         blank=True,
         null=True,
-        help_text='Units in g/dL')
+        help_text=f'Units in {GRAMS_PER_LITER}')
 
     csf_cr_ag = models.CharField(
         verbose_name='CSF CrAg:',
