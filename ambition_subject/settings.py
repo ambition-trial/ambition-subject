@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'edc_prn.apps.AppConfig',
     'edc_reference.apps.AppConfig',
     'edc_metadata_rules.apps.AppConfig',
+    'edc_notification.apps.AppConfig',
     'edc_consent.apps.AppConfig',
     'edc_offstudy.apps.AppConfig',
     'edc_timepoint.apps.AppConfig',

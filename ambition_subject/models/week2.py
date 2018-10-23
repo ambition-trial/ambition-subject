@@ -215,9 +215,8 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
         Day14Medication,
         verbose_name='Medicine day 14:')
 
-    medicine_other = models.CharField(
+    medicine_other = models.TextField(
         verbose_name='If other, please specify:',
-        max_length=50,
         null=True,
         blank=True)
 

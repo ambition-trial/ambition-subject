@@ -11,7 +11,6 @@ from edc_constants.constants import YES, NO
 from edc_lab.constants import TUBE
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
-from pprint import pprint
 
 from ..forms import SubjectRequisitionForm
 
