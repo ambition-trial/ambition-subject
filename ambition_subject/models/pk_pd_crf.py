@@ -45,7 +45,7 @@ class PkPdCrf(CrfModelMixin):
         verbose_name='Flucytosine dose?',
         null=True,
         blank=True,
-        help_text='Total dose. Units in mg')
+        help_text='Total of all doses given. Units in mg')
 
     flucytosine_dose_one_given = models.CharField(
         verbose_name='Flucytosine <b><u>DOSE&nbsp;1</u></b> given? ',
