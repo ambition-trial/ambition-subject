@@ -1,72 +1,13 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..managers import CurrentSiteManager
-from .list_models import Antibiotic, Day14Medication, OtherDrug
-from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
-from .model_mixins import FluconazoleMissedDosesModelMixin, SignificantDiagnosesModelMixin
-from .model_mixins import AmphotericinMissedDosesModelMixin, FlucytosineMissedDosesModelMixin
-
-
-class AmphotericinMissedDosesManager(models.Manager):
-
-    def get_by_natural_key(self, day_missed, missed_reason,
-                           subject_identifier, visit_schedule_name,
-                           schedule_name, visit_code):
-        return self.get(
-            day_missed=day_missed,
-            ampho_missed_reason=missed_reason,
-            subject_visit__subject_identifier=subject_identifier,
-            subject_visit__visit_schedule_name=visit_schedule_name,
-            subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code)
-
-
-class FluconazoleMissedDosesManager(models.Manager):
-
-    def get_by_natural_key(self, day_missed, missed_reason,
-                           subject_identifier, visit_schedule_name,
-                           schedule_name, visit_code):
-        return self.get(
-            day_missed=day_missed,
-            flucon_missed_reason=missed_reason,
-            subject_visit__subject_identifier=subject_identifier,
-            subject_visit__visit_schedule_name=visit_schedule_name,
-            subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code)
-
-
-class FlucytosineMissedDosesManager(models.Manager):
-
-    def get_by_natural_key(self, day_missed, missed_reason,
-                           subject_identifier, visit_schedule_name,
-                           schedule_name, visit_code):
-        return self.get(
-            day_missed=day_missed,
-            flucy_missed_reason=missed_reason,
-            subject_visit__subject_identifier=subject_identifier,
-            subject_visit__visit_schedule_name=visit_schedule_name,
-            subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code)
-
-
-class SignificantDiagnosesManager(models.Manager):
-
-    def get_by_natural_key(self, possible_diagnoses, dx_date, subject_identifier,
-                           visit_schedule_name, schedule_name, visit_code):
-        return self.get(
-            possible_diagnoses=possible_diagnoses,
-            dx_date=dx_date,
-            subject_visit__subject_identifier=subject_identifier,
-            subject_visit__visit_schedule_name=visit_schedule_name,
-            subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code)
+from ...managers import CurrentSiteManager
+from ..list_models import Antibiotic, Day14Medication, OtherDrug
+from ..model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
 
 
 class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
@@ -254,75 +195,3 @@ class Week2(ClinicalAssessmentModelMixin, CrfModelMixin):
     class Meta(CrfModelMixin.Meta):
         verbose_name = 'Week 2'
         verbose_name_plural = 'Week 2'
-
-
-class SignificantDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
-
-    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
-
-    objects = SignificantDiagnosesManager()
-
-    history = HistoricalRecords()
-
-    def natural_key(self):
-        return (self.possible_diagnoses, self.dx_date) + self.week2.natural_key()
-    natural_key.dependencies = ['ambition_subject.week2']
-
-    class Meta:
-        verbose_name = 'Significant Diagnosis'
-        verbose_name_plural = 'Significant Diagnoses'
-        unique_together = (
-            'week2', 'possible_diagnoses', 'dx_date', 'dx_other')
-
-
-class FluconazoleMissedDoses(FluconazoleMissedDosesModelMixin, BaseUuidModel):
-
-    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
-
-    objects = FluconazoleMissedDosesManager()
-
-    history = HistoricalRecords()
-
-    def natural_key(self):
-        return (self.flucon_day_missed, self.flucon_missed_reason) + self.week2.natural_key()
-    natural_key.dependencies = ['ambition_subject.week2']
-
-    class Meta:
-        verbose_name_plural = 'Fluconazole Missed Doses'
-        unique_together = (
-            'week2', 'flucon_day_missed', 'flucon_missed_reason')
-
-
-class AmphotericinMissedDoses(AmphotericinMissedDosesModelMixin, BaseUuidModel):
-
-    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
-
-    objects = FluconazoleMissedDosesManager()
-
-    history = HistoricalRecords()
-
-    def natural_key(self):
-        return (self.ampho_day_missed, self.ampho_missed_reason) + self.week2.natural_key()
-    natural_key.dependencies = ['ambition_subject.week2']
-
-    class Meta:
-        verbose_name_plural = 'Amphotericin Missed Doses'
-        unique_together = ('week2', 'ampho_day_missed', 'ampho_missed_reason')
-
-
-class FlucytosineMissedDoses(FlucytosineMissedDosesModelMixin, BaseUuidModel):
-
-    week2 = models.ForeignKey(Week2, on_delete=PROTECT)
-
-    objects = FluconazoleMissedDosesManager()
-
-    history = HistoricalRecords()
-
-    def natural_key(self):
-        return (self.flucy_day_missed, self.flucy_missed_reason) + self.week2.natural_key()
-    natural_key.dependencies = ['ambition_subject.week2']
-
-    class Meta:
-        verbose_name_plural = 'Flucytosine Missed Doses'
-        unique_together = ('week2', 'flucy_day_missed',
-                           'flucy_doses_missed', 'flucy_missed_reason')
