@@ -44,6 +44,7 @@ setup(
         'edc-appointment',
         'edc-base',
         'edc-consent',
+        'edc_model_admin',
         'edc_notification',
         'edc-offstudy',
         'edc-reportable',
