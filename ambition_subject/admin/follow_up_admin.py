@@ -1,6 +1,8 @@
 from django.contrib import admin
-from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
 from edc_fieldsets import Fieldset
+from edc_form_label import FormLabel, CustomLabelCondition
+from edc_form_label import FormLabelModelAdminMixin
+from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
 from ..constants import WEEK10
@@ -19,9 +21,16 @@ visual_acuity_fieldset = Fieldset(
 hospitilization_and_drugs_fieldset = Fieldset(
     'days_hospitalized',
     'antibiotic',
+    'antibiotic_other',
     'blood_transfusions',
     'blood_transfusions_units',
     section='Hospitalization and Drugs')
+
+
+class AntibioticCustomLabelCondition(CustomLabelCondition):
+
+    def check(self):
+        return True if self.appointment.visit_code == WEEK10 else False
 
 
 class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
@@ -40,7 +49,7 @@ class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(FollowUp, site=ambition_subject_admin)
-class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class FollowUpAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, admin.ModelAdmin):
 
     form = FollowUpForm
 
@@ -48,6 +57,12 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
 
     conditional_fieldsets = {
         WEEK10: (hospitilization_and_drugs_fieldset, visual_acuity_fieldset)}
+
+    custom_form_labels = [
+        FormLabel(
+            field='antibiotic',
+            custom_label='Were any of the following antibiotics given since week two?',
+            condition_cls=AntibioticCustomLabelCondition)]
 
     fieldsets = (
         ('Clinical Assessment', {
@@ -69,7 +84,6 @@ class FollowUpAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'fluconazole_dose_other',
                 'rifampicin_started',
                 'rifampicin_start_date')}),
-
         audit_fieldset_tuple
     )
 
