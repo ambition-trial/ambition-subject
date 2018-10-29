@@ -8,7 +8,7 @@ from edc_reportable import MILLIGRAMS_PER_DECILITER, MILLIMOLES_PER_LITER, MICRO
 from edc_reportable import GRADE3, GRADE4, MICROMOLES_PER_LITER_DISPLAY, MM3, MM3_DISPLAY
 from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, MISSED_VISIT
 
-from .constants import ALREADY_REPORTED
+from .constants import ALREADY_REPORTED, FOOT, BICYCLE
 from .constants import AZT_3TC_with_ATZ_r_or_Lopinavir_r
 from .constants import AZT_3TC_with_EFV_NVP_or_DTG
 from .constants import ROUTINE_APPT, THERAPEUTIC_PL
@@ -303,8 +303,8 @@ TRANSPORT = (
     ('hired_motorbike', 'Hired motorbike'),
     ('own_car', 'Own car'),
     ('own_motorbike', 'Own motorbike'),
-    ('bicycle', 'Bicycle'),
-    ('foot', 'Foot'),
+    (BICYCLE, 'Bicycle'),
+    (FOOT, 'Foot'),
     (NOT_APPLICABLE, 'Not applicable')
 )
 

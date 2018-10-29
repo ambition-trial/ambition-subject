@@ -61,7 +61,8 @@ class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):
         verbose_name='If YES, no. of units?    ',
         decimal_places=3,
         max_digits=5,
-        null=True)
+        null=True,
+        blank=True)
 
     patient_help = models.CharField(
         verbose_name=('Does the patient require help from'
