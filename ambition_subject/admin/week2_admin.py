@@ -37,7 +37,7 @@ class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'days_missed',
+                'day_missed',
                 'missed_reason',
                 'missed_reason_other')},
          ],)

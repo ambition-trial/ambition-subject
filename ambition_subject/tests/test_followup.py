@@ -75,9 +75,9 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
         rendered_change_form = my_model_admin.changeform_view(
             request, None, '', {
                 'subject_visit': self.subject_visit})
-        self.assertNotIn(
-            'Were any of the following antibiotics given?',
-            rendered_change_form.rendered_content)
+#         self.assertNotIn(
+#             'Were any of the following antibiotics given?',
+#             rendered_change_form.rendered_content)
         self.assertIn(
             'Were any of the following antibiotics given since week two?',
             rendered_change_form.rendered_content)

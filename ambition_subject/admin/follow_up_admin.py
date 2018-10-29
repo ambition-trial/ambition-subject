@@ -102,3 +102,5 @@ class FollowUpAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, admin.ModelAdm
         'patient_problems': admin.VERTICAL,
         'rankin_score': admin.VERTICAL,
         'blood_transfusions': admin.VERTICAL}
+
+    filter_horizontal = ('antibiotic', )

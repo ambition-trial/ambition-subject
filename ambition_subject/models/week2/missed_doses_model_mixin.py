@@ -1,8 +1,7 @@
 from django.db import models
-from edc_base.model_mixins import BaseUuidModel
 from edc_model_fields.fields import OtherCharField
 
-from ...choices import REASON_DRUG_MISSED, DAYS_MISSED, DOSES_MISSED
+from ...choices import REASON_DRUG_MISSED, DAYS_MISSED
 from .week2 import Week2
 
 
