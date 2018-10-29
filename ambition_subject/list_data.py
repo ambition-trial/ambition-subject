@@ -1,4 +1,4 @@
-from ambition_validators import HEADACHE, VISUAL_LOSS
+from ambition_form_validators import HEADACHE, VISUAL_LOSS
 from edc_constants.constants import OTHER, NORMAL
 from edc_list_data import PreloadData
 

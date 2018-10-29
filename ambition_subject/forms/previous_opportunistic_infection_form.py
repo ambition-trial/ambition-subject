@@ -1,4 +1,4 @@
-from ambition_validators import PreviousOpportunisticInfectionFormValidator
+from ambition_form_validators import PreviousOpportunisticInfectionFormValidator
 
 from ..models import PreviousOpportunisticInfection
 from .form_mixins import InlineSubjectModelFormMixin

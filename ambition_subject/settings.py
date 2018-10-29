@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     'ambition_reference.apps.AppConfig',
     'ambition_rando.apps.AppConfig',
     'ambition_metadata_rules.apps.AppConfig',
-    'ambition_validators.apps.AppConfig',
+    'ambition_form_validators.apps.AppConfig',
     'ambition_visit_schedule.apps.AppConfig',
     'ambition_subject.apps.EdcFacilityAppConfig',
     'ambition_subject.apps.EdcLabAppConfig',

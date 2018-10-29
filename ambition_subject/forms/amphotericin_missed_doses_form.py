@@ -1,4 +1,4 @@
-from ambition_validators import AmphotericinMissedDosesFormValidator
+from ambition_form_validators import AmphotericinMissedDosesFormValidator
 
 from ..models import AmphotericinMissedDoses
 from .form_mixins import InlineSubjectModelFormMixin

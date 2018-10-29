@@ -1,7 +1,7 @@
 from django import forms
 
-from ambition_validators import FollowUpFormValidator
-from ambition_validators import SignificantDiagnosesFormValidator
+from ambition_form_validators import FollowUpFormValidator
+from ambition_form_validators import SignificantDiagnosesFormValidator
 
 from .form_mixins import SubjectModelFormMixin
 from ..models import FollowUp, FollowUpDiagnoses

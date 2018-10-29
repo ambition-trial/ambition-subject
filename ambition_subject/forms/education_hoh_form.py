@@ -1,4 +1,4 @@
-from ambition_validators import EducationFormValidator
+from ambition_form_validators import EducationFormValidator
 
 from ..models import EducationHoh
 from .form_mixins import SubjectModelFormMixin

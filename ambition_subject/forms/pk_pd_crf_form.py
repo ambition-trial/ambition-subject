@@ -1,4 +1,4 @@
-from ambition_validators import PkPdCrfFormValidator
+from ambition_form_validators import PkPdCrfFormValidator
 
 from ..models import PkPdCrf
 from .form_mixins import SubjectModelFormMixin

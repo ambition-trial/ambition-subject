@@ -1,4 +1,4 @@
-from ambition_validators import FlucytosineMissedDosesFormValidator
+from ambition_form_validators import FlucytosineMissedDosesFormValidator
 
 from ..models import FlucytosineMissedDoses
 from .form_mixins import SubjectModelFormMixin
