@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'edc_prn.apps.AppConfig',
     'edc_reference.apps.AppConfig',
     'edc_metadata_rules.apps.AppConfig',
+    'edc_model_admin.apps.AppConfig',
     'edc_notification.apps.AppConfig',
     'edc_consent.apps.AppConfig',
     'edc_offstudy.apps.AppConfig',
@@ -193,6 +194,9 @@ EMAIL_CONTACTS = {'data_request': 'someone@example.com',
                   'data_manager': 'someone@example.com',
                   'tmg': 'someone@example.com'}
 EMAIL_ENABLED = False
+TWILIO_ACCOUNT_SID = None
+TWILIO_AUTH_TOKEN = None
+TWILIO_ENABLED = False
 
 if 'test' in sys.argv:
 

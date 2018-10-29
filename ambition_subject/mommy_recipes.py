@@ -182,6 +182,7 @@ week4 = Recipe(Week4)
 
 subjectreconsent = Recipe(
     SubjectReconsent,
+    site=Site.objects.get_current(),
     consent_reviewed=YES,
     assessment_score=YES,
     study_questions=YES,

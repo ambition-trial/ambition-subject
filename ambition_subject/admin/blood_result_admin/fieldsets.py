@@ -17,16 +17,16 @@ def get_results_fieldset(fields):
 
 ft_requisition_fieldset = Fieldset(
     'ft_requisition', 'ft_assay_datetime',
-    section=f'RFT and LFT')
+    section='RFT and LFT')
 cbc_requisition_fieldset = Fieldset(
     'cbc_requisition', 'cbc_assay_datetime',
-    section=f'FBC')
+    section='FBC')
 cd4_requisition_fieldset = Fieldset(
     'cd4_requisition', 'cd4_assay_datetime',
-    section=f'Immunology')
+    section='Immunology')
 vl_requisition_fieldset = Fieldset(
     'vl_requisition', 'vl_assay_datetime',
-    section=f'Virology')
+    section='Virology')
 
 results_fieldsets = []
 results_fieldsets.append(ft_requisition_fieldset.fieldset)

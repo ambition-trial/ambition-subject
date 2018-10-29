@@ -3,12 +3,13 @@ from edc_model_admin import TabularInlineMixin
 from edc_model_admin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
-from ..forms import (Week2Form, AmphotericinMissedDosesForm,
-                     FlucytosineMissedDosesForm, FluconazoleMissedDosesForm,
-                     SignificantDiagnosesForm)
-from ..models import (
-    Week2, FluconazoleMissedDoses, AmphotericinMissedDoses,
-    SignificantDiagnoses, FlucytosineMissedDoses)
+from ..forms import AmphotericinMissedDosesForm
+from ..forms import FluconazoleMissedDosesForm
+from ..forms import FlucytosineMissedDosesForm
+from ..forms import SignificantDiagnosesForm
+from ..forms import Week2Form
+from ..models import SignificantDiagnoses, FlucytosineMissedDoses
+from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
 from .modeladmin_mixins import CrfModelAdminMixin
 
 
@@ -36,8 +37,8 @@ class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'ampho_day_missed',
-                'ampho_missed_reason',
+                'day_missed',
+                'missed_reason',
                 'missed_reason_other')},
          ],)
 
@@ -51,8 +52,8 @@ class FluconazoleMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'flucon_day_missed',
-                'flucon_missed_reason',
+                'day_missed',
+                'missed_reason',
                 'missed_reason_other')},
          ],)
 
@@ -66,9 +67,9 @@ class FlucytosineMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     fieldsets = (
         ['Admission history', {
             'fields': (
-                'flucy_day_missed',
-                'flucy_doses_missed',
-                'flucy_missed_reason',
+                'day_missed',
+                'doses_missed',
+                'missed_reason',
                 'missed_reason_other')},
          ],)
 
@@ -92,7 +93,7 @@ class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
                 'died',
                 'death_date_time')},
          ],
-        ['Induction phase Study medication', {
+        ['Induction phase study medication', {
             'fields': (
                 'ampho_start_date',
                 'ampho_end_date',
@@ -109,7 +110,7 @@ class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
                 'blood_received',
                 'units')}
          ],
-        ['Clinical Assessment', {
+        ['Clinical assessment', {
             'fields': (
                 'headache',
                 'glasgow_coma_score',

@@ -15,7 +15,6 @@ from model_mommy import mommy
 from ..forms import SubjectRequisitionForm
 
 
-@tag('1')
 class TestForms(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):

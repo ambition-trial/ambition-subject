@@ -117,4 +117,3 @@ class MedicalExpensesTwoDetail(BaseUuidModel):
     class Meta:
         verbose_name = 'Medical Expenses Part 2: Detail'
         verbose_name_plural = 'Medical Expenses Part 2: Detail'
-        unique_together = ('medical_expenses_two', 'location_care')

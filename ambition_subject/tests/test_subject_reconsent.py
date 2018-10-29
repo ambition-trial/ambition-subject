@@ -10,7 +10,6 @@ from model_mommy import mommy
 from ..action_items import RECONSENT_ACTION
 
 
-@override_settings(SITE_ID='10')
 class TestReconsent(AmbitionTestCaseMixin, TestCase):
 
     def test_abnormal(self):
@@ -103,3 +102,10 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
             subject_identifier=subject_consent.subject_identifier,
             action_type__name=RECONSENT_ACTION)
         self.assertEqual(action_item.status, CLOSED)
+
+    @override_settings(SITE_ID=10)
+    def test_site_for_reconsent1(self):
+        subject_screening = mommy.make_recipe(
+            'ambition_screening.subjectscreening',
+            mental_status=ABNORMAL)
+        self.assertEqual(subject_screening.site.pk, 10)

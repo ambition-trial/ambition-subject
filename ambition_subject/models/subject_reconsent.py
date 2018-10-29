@@ -7,6 +7,7 @@ from edc_action_item.models import ActionModelMixin
 from edc_base import get_utcnow
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
@@ -20,7 +21,7 @@ from .model_mixins import SearchSlugModelMixin
 
 
 class SubjectReconsent(
-        UniqueSubjectIdentifierModelMixin,
+        UniqueSubjectIdentifierModelMixin, SiteModelMixin,
         ReviewFieldsMixin, SearchSlugModelMixin,
         ActionModelMixin, TrackingModelMixin, BaseUuidModel):
 
