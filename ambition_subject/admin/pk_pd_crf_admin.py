@@ -8,13 +8,7 @@ from ..forms import PkPdCrfForm, PkPdExtraSamplesForm
 from ..models import PkPdCrf, PkPdExtraSamples
 from .modeladmin_mixins import CrfModelAdminMixin
 
-
 day1_fields = (
-    Fieldset('ambisome_dose',
-             'ambisome_started_datetime',
-             'ambisome_ended_datetime',
-             'full_ambisome_dose_given',
-             section='Ambisome'),
     Fieldset('blood_sample_one_datetime',
              'blood_sample_two_datetime',
              'blood_sample_three_datetime',
@@ -24,16 +18,17 @@ day1_fields = (
              'blood_sample_reason_missed',
              section='Blood Results'))
 
-day7_fields = (Fieldset(
-    'blood_sample_one_datetime',
-    'blood_sample_two_datetime',
-    'blood_sample_three_datetime',
-    'blood_sample_four_datetime',
-    'blood_sample_five_datetime',
-    'blood_sample_six_datetime',
-    'blood_sample_missed',
-    'blood_sample_reason_missed',
-    section='Blood Results'),
+day7_fields = (
+    Fieldset(
+        'blood_sample_one_datetime',
+        'blood_sample_two_datetime',
+        'blood_sample_three_datetime',
+        'blood_sample_four_datetime',
+        'blood_sample_five_datetime',
+        'blood_sample_six_datetime',
+        'blood_sample_missed',
+        'blood_sample_reason_missed',
+        section='Blood Results'),
     Fieldset(
         'pre_dose_lp',
         'post_dose_lp',
@@ -80,6 +75,15 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'subject_visit',
                 'report_datetime',
                 'albumin')}),
+        ('Amphotericin', {
+            'fields': (
+                'amphotericin_given',
+                'amphotericin_formulation',
+                'amphotericin_dose',
+                'amphotericin_started_datetime',
+                'amphotericin_ended_datetime',
+                'amphotericin_full_dose_given',
+            )}),
         ('Flucytosine', {
             'fields': (
                 'flucytosine_dose',
@@ -106,7 +110,9 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     )
 
     radio_fields = {
-        'full_ambisome_dose_given': admin.VERTICAL,
+        'amphotericin_given': admin.VERTICAL,
+        'amphotericin_formulation': admin.VERTICAL,
+        'amphotericin_full_dose_given': admin.VERTICAL,
         'flucytosine_dose_one_given': admin.VERTICAL,
         'flucytosine_dose_two_given': admin.VERTICAL,
         'flucytosine_dose_three_given': admin.VERTICAL,

@@ -15,6 +15,7 @@ from .constants import ROUTINE_APPT, THERAPEUTIC_PL
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
 from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS, PATIENT
+from .constants import AMBISOME, AMPHOTERICIN
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -37,6 +38,10 @@ ACTIVITIES_MISSED = (
     (OTHER, 'Other'),
 )
 
+AMPHOTERICIN_FORMULATION = (
+    (AMBISOME, 'AmBisome'),
+    (AMPHOTERICIN, 'Amphotericin B Deoxycholate'),
+)
 
 ANTIBIOTICS = (
     ('amoxicillin', 'Amoxicillin'),

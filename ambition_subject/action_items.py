@@ -23,7 +23,8 @@ class BloodResultAction(Action):
             # early withdrawal if qualifying blood results
             # are abnormal on DAY1.0
             evaluator = EarlyWithdrawalEvaluator(
-                subject_identifier=self.reference_obj.subject_identifier)
+                subject_identifier=self.reference_obj.subject_identifier,
+                allow_none=True)
             if not evaluator.eligible:
                 next_actions = [STUDY_TERMINATION_CONCLUSION_ACTION]
         elif (self.reference_obj.results_abnormal == YES

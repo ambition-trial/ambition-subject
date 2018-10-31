@@ -5,6 +5,8 @@ from ambition_prn.constants import TDF_3TC_FTC_with_EFV_or_NVP
 from ambition_visit_schedule import DAY1, DAY3, DAY5, DAY7, DAY14, DAY12, DAY10
 from ambition_visit_schedule import WEEK16, WEEK10, WEEK8, WEEK6, WEEK4
 
+AMBISOME = 'ambisome'
+AMPHOTERICIN = 'amphotericin_b'
 ALREADY_REPORTED = 'Already reported'
 AMS_A4 = 'AMS_A'
 AMS_N3 = 'AMS_N'

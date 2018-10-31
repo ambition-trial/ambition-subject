@@ -8,6 +8,7 @@ from edc_visit_tracking.managers import CrfModelManager
 
 from ..managers import CurrentSiteManager
 from .model_mixins import CrfModelMixin
+from ..choices import AMPHOTERICIN_FORMULATION
 
 
 class PkPdCrf(CrfModelMixin):
@@ -18,24 +19,40 @@ class PkPdCrf(CrfModelMixin):
         blank=True,
         help_text='Units in g/L')
 
-    ambisome_dose = models.IntegerField(
-        verbose_name='Ambisome dose given',
+    amphotericin_given = models.CharField(
+        verbose_name=(
+            'Did the patient receive any amphotericin '
+            'formulation in the last 24 hours?'),
+        choices=YES_NO,
+        max_length=5,
+        null=True)
+
+    amphotericin_formulation = models.CharField(
+        verbose_name=(
+            'If Yes, Which formulation of amphotericin?'),
+        choices=AMPHOTERICIN_FORMULATION,
+        max_length=25,
+        blank=True,
+        null=True)
+
+    amphotericin_dose = models.IntegerField(
+        verbose_name='Dose given',
         null=True,
         blank=True,
         help_text='Units in mg')
 
-    ambisome_started_datetime = models.DateTimeField(
-        verbose_name='Date and time Ambisome infusion started?',
+    amphotericin_started_datetime = models.DateTimeField(
+        verbose_name='Date and time started',
         null=True,
         blank=True)
 
-    ambisome_ended_datetime = models.DateTimeField(
-        verbose_name='Date and time Ambisome infusion stopped',
+    amphotericin_ended_datetime = models.DateTimeField(
+        verbose_name='Date and time stopped',
         null=True,
         blank=True)
 
-    full_ambisome_dose_given = models.CharField(
-        verbose_name='Was the entire Ambisome dose given?',
+    amphotericin_full_dose_given = models.CharField(
+        verbose_name='Was the entire dose given?',
         choices=YES_NO,
         max_length=5,
         null=True,

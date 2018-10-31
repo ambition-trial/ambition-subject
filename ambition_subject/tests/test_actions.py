@@ -10,6 +10,7 @@ from edc_constants.constants import YES
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 from model_mommy.mommy import make_recipe
+from edc_reportable.units import TEN_X_9_PER_LITER
 
 
 @override_settings(SITE_ID='10')
@@ -35,10 +36,13 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
             appointment=self.appointment,
             reason=SCHEDULED)
 
+    @tag('1')
     def test_(self):
         obj = make_recipe(
             'ambition_subject.bloodresult',
             subject_visit=self.subject_visit,
+            platelets=49,
+            platelets_units=TEN_X_9_PER_LITER,
             results_abnormal=YES,
             results_reportable=YES)
 
@@ -55,10 +59,13 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
             self.fail('ActionItem unexpectedly does not exist.')
         obj.save()
 
+    @tag('1')
     def test_2(self):
         make_recipe(
             'ambition_subject.bloodresult',
             subject_visit=self.subject_visit,
+            platelets=49,
+            platelets_units=TEN_X_9_PER_LITER,
             results_abnormal=YES,
             results_reportable=YES)
         appointment = Appointment.objects.get(
