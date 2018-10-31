@@ -1,4 +1,4 @@
-from ambition_validators import SubjectConsentFormValidator
+from ambition_form_validators import SubjectConsentFormValidator
 from django import forms
 from django.utils.safestring import mark_safe
 from edc_base.sites import SiteModelFormMixin

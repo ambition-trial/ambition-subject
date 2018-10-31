@@ -1,6 +1,6 @@
 from django import forms
 
-from ambition_validators import BloodResultFormValidator
+from ambition_form_validators import BloodResultFormValidator
 
 from ..models import BloodResult
 from .form_mixins import SubjectModelFormMixin

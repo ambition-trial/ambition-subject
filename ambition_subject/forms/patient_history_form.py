@@ -1,4 +1,4 @@
-from ambition_validators import PatientHistoryFormValidator
+from ambition_form_validators import PatientHistoryFormValidator
 from django.forms import forms
 from edc_constants.constants import YES
 from edc_form_validators.base_form_validator import NOT_REQUIRED_ERROR

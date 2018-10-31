@@ -1,4 +1,4 @@
-from ambition_validators import MedicalExpensesTwoDetailFormValidator
+from ambition_form_validators import MedicalExpensesTwoDetailFormValidator
 
 from ..models import MedicalExpensesTwoDetail
 from .form_mixins import InlineSubjectModelFormMixin

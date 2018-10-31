@@ -1,4 +1,4 @@
-from ambition_validators import LumbarPunctureCsfFormValidator
+from ambition_form_validators import LumbarPunctureCsfFormValidator
 
 from ..models import LumbarPunctureCsf
 from .form_mixins import SubjectModelFormMixin
