@@ -36,7 +36,7 @@ setup(
         'ambition-reference',
         'ambition-sites',
         'ambition-screening',
-        'ambition-validators',
+        'ambition_form_validators',
         'ambition-visit-schedule',
         'django-collect-offline',
         'django-collect-offline-files',
