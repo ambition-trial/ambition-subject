@@ -37,7 +37,6 @@ class ClinicalAssessmentModelMixin(models.Model):
         verbose_name='Glasgow Coma Score',
         validators=[MaxValueValidator(15), MinValueValidator(3)],
         null=True,
-        blank=True,
         help_text='/15')
 
     confusion = models.CharField(
