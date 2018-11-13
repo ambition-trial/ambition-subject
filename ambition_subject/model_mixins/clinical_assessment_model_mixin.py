@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from ...choices import YES_NO_ND
+from ..choices import YES_NO_ND
 
 
 class ClinicalAssessmentModelMixin(models.Model):

@@ -1,7 +1,7 @@
 from django.db import models
 from edc_base.model_validators import date_not_future
 
-from ...choices import SIGNIFICANT_DX
+from ..choices import SIGNIFICANT_DX
 
 
 class SignificantDiagnosesModelMixin(models.Model):
