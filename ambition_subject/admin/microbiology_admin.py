@@ -45,6 +45,11 @@ class MicrobiologyAdmin(CrfModelAdminMixin, admin.ModelAdmin):
                 'sputum_genexpert_performed',
                 'sputum_genexpert_date',
                 'sputum_result_genexpert')}],
+        ['CSF Microbiology', {
+            'fields': (
+                'csf_genexpert_performed',
+                'csf_genexpert_date',
+                'csf_result_genexpert')}],
         ['Histopathology', {
             'fields': (
                 'tissue_biopsy_taken',
@@ -71,6 +76,8 @@ class MicrobiologyAdmin(CrfModelAdminMixin, admin.ModelAdmin):
         'sputum_results_culture': admin.VERTICAL,
         'sputum_result_genexpert': admin.VERTICAL,
         'sputum_genexpert_performed': admin.VERTICAL,
+        'csf_result_genexpert': admin.VERTICAL,
+        'csf_genexpert_performed': admin.VERTICAL,
         'tissue_biopsy_taken': admin.VERTICAL,
         'tissue_biopsy_results': admin.VERTICAL,
         'tissue_biopsy_organism': admin.VERTICAL}
