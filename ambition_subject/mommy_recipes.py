@@ -1,3 +1,5 @@
+from ambition_lists.models import Antibiotic, Symptom, SignificantNewDiagnosis
+from ambition_lists.models import Neurological, Day14Medication
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from django.contrib.sites.models import Site
@@ -14,9 +16,7 @@ from .models import MedicalExpensesTwo
 from .models import PatientHistory, Week16, Week4
 from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, MedicalExpensesTwoDetail
-from .models import Antibiotic, Symptom, SubjectReconsent
-from .models import SignificantNewDiagnosis, PkPdCrf
-from .models import Neurological, Day14Medication
+from .models import PkPdCrf, SubjectReconsent
 
 
 fake = Faker()
