@@ -11,7 +11,7 @@ from ..choices import (
     BACTERIA_TYPE, BLOOD_CULTURE_RESULTS_ORGANISM, BIOPSY_RESULTS_ORGANISM,
     CULTURE_RESULTS, POS_NEG_NA, URINE_CULTURE_RESULTS_ORGANISM, SPUTUM_GENEXPERT)
 from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin
+from .crf_model_mixin import CrfModelMixin
 
 
 class Microbiology(CrfModelMixin):
@@ -139,7 +139,7 @@ class Microbiology(CrfModelMixin):
         blank=True)
 
     sputum_result_genexpert = models.CharField(
-        verbose_name='Gene-Xpert results',
+        verbose_name='Sputum Gene-Xpert results',
         max_length=45,
         choices=SPUTUM_GENEXPERT,
         default=NOT_APPLICABLE)
@@ -179,6 +179,24 @@ class Microbiology(CrfModelMixin):
     histopathology_report = models.TextField(
         null=True,
         blank=True)
+
+    csf_genexpert_performed = models.CharField(
+        verbose_name='CSF Gene-Xpert performed?',
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE)
+
+    csf_genexpert_date = models.DateField(
+        verbose_name='Date CSF Gene-Xpert taken',
+        validators=[date_not_before_study_start, date_not_future],
+        null=True,
+        blank=True)
+
+    csf_result_genexpert = models.CharField(
+        verbose_name='CSF Gene-Xpert results',
+        max_length=45,
+        choices=SPUTUM_GENEXPERT,
+        default=NOT_APPLICABLE)
 
     on_site = CurrentSiteManager()
 

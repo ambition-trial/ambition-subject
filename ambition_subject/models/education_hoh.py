@@ -2,7 +2,8 @@ from edc_base.model_managers import HistoricalRecords
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin, EducationModelMixin
+from ..model_mixins import EducationModelMixin
+from .crf_model_mixin import CrfModelMixin
 
 
 class EducationHoh(EducationModelMixin, CrfModelMixin):

@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='followup',
             name='antibiotic',
-            field=models.ManyToManyField(blank=True, to='ambition_subject.Antibiotic',
+            field=models.ManyToManyField(blank=True, to='ambition_lists.Antibiotic',
                                          verbose_name='Were any of the following antibiotics given?'),
         ),
         migrations.AddField(

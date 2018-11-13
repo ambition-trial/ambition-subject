@@ -1,3 +1,4 @@
+from ambition_lists.models import AbnormalResultsReason, CXRType, InfiltrateLocation
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future, datetime_not_future
@@ -6,8 +7,7 @@ from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import BRAIN_IMAGINING_REASON
 from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin
-from .list_models import AbnormalResultsReason, CXRType, InfiltrateLocation
+from .crf_model_mixin import CrfModelMixin
 
 
 class Radiology(CrfModelMixin):

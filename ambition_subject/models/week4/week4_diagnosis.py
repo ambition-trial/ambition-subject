@@ -3,7 +3,7 @@ from django.db.models.deletion import PROTECT
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 
-from ..model_mixins import SignificantDiagnosesModelMixin
+from ...model_mixins import SignificantDiagnosesModelMixin
 from .week4 import Week4
 
 

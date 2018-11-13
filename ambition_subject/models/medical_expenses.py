@@ -8,7 +8,7 @@ from edc_visit_tracking.managers import CrfModelManager
 from ..choices import PATIENT_REL, ACTIVITIES_MISSED, CURRENCY, TRANSPORT
 from ..managers import CurrentSiteManager
 from ..validators import hm_validator
-from .model_mixins import CrfModelMixin
+from .crf_model_mixin import CrfModelMixin
 
 
 class MedicalExpenses(CrfModelMixin):

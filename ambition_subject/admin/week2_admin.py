@@ -83,7 +83,7 @@ class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
                AmphotericinMissedDosesInline, FlucytosineMissedDosesInline]
 
     fieldsets = (
-        ['Admission history', {
+        ['Part1: Admission history', {
             'fields': (
                 'subject_visit',
                 'report_datetime',
@@ -93,7 +93,7 @@ class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
                 'died',
                 'death_date_time')},
          ],
-        ['Induction phase study medication', {
+        ['Part2: Induction phase study medication', {
             'fields': (
                 'ampho_start_date',
                 'ampho_end_date',
@@ -110,7 +110,7 @@ class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
                 'blood_received',
                 'units')}
          ],
-        ['Clinical assessment', {
+        ['Part3: Clinical assessment', {
             'fields': (
                 'headache',
                 'glasgow_coma_score',

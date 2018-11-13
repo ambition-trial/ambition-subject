@@ -32,6 +32,7 @@ setup(
         'ambition-prn',
         'ambition-ae',
         'ambition-labs',
+        'ambition-lists',
         'ambition-metadata-rules',
         'ambition-reference',
         'ambition-sites',

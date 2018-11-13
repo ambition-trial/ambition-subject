@@ -16,7 +16,8 @@ from edc_visit_tracking.managers import CrfModelManager
 from ..constants import BLOOD_RESULTS_ACTION
 from ..choices import MG_MMOL_UNITS, MG_UMOL_UNITS, REPORTABLE
 from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
+from ..model_mixins import BiosynexSemiQuantitativeCragMixin
+from .crf_model_mixin import CrfModelMixin
 from .subject_requisition import SubjectRequisition
 
 

@@ -17,7 +17,7 @@ from edc_registration.models import RegisteredSubject
 
 from ..action_items import RECONSENT_ACTION
 from ..managers import CurrentSiteManager
-from .model_mixins import SearchSlugModelMixin
+from ..model_mixins import SearchSlugModelMixin
 
 
 class SubjectReconsent(

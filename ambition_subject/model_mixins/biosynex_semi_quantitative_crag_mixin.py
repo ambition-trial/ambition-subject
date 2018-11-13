@@ -1,7 +1,7 @@
 from django.db import models
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
 
-from ...choices import POS_NEG_NA
+from ..choices import POS_NEG_NA
 
 
 class BiosynexSemiQuantitativeCragMixin(models.Model):

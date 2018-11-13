@@ -16,7 +16,7 @@ from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
 
 from ..managers import CurrentSiteManager
-from .model_mixins import SearchSlugModelMixin
+from ..model_mixins import SearchSlugModelMixin
 
 
 class SubjectConsentManager(SearchSlugManager, models.Manager):

@@ -15,7 +15,7 @@ from .constants import ROUTINE_APPT, THERAPEUTIC_PL
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
 from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS, PATIENT
-from .constants import AMBISOME, AMPHOTERICIN
+from .constants import AMBISOME, AMPHOTERICIN, PRESENT_AT_BASELINE
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -276,10 +276,11 @@ REASON_DRUG_MISSED = (
 
 REPORTABLE = (
     (NOT_APPLICABLE, 'Not applicable'),
-    (NO, 'No'),
-    (GRADE3, 'Grade 3'),
-    (GRADE4, 'Grade 4'),
+    (GRADE3, 'Yes, grade 3'),
+    (GRADE4, 'Yes, grade 4'),
+    (NO, 'Not reportable'),
     (ALREADY_REPORTED, 'Already reported'),
+    (PRESENT_AT_BASELINE, 'Present at baseline'),
 )
 
 SIGNIFICANT_DX = (
