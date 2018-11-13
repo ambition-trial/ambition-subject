@@ -6,9 +6,9 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin
 from ..choices import AMPHOTERICIN_FORMULATION
+from ..managers import CurrentSiteManager
+from .crf_model_mixin import CrfModelMixin
 
 
 class PkPdCrf(CrfModelMixin):

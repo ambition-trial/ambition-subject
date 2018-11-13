@@ -7,7 +7,8 @@ from edc_visit_tracking.managers import CrfModelManager
 
 from ...choices import FLUCONAZOLE_DOSE, YES_NO_ALREADY_ND
 from ...managers import CurrentSiteManager
-from ..model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
+from ...model_mixins import ClinicalAssessmentModelMixin
+from ..crf_model_mixin import CrfModelMixin
 
 
 class Week4(ClinicalAssessmentModelMixin, CrfModelMixin):

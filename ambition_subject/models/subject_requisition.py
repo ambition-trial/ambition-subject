@@ -18,7 +18,7 @@ from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 
 from ..choices import REASON_NOT_DRAWN
 from ..managers import CurrentSiteManager
-from .model_mixins import SearchSlugModelMixin
+from ..model_mixins import SearchSlugModelMixin
 from .subject_visit import SubjectVisit
 
 

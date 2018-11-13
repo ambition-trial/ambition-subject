@@ -1,3 +1,4 @@
+from ambition_lists.models import Antibiotic
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
@@ -5,10 +6,10 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_model_fields.fields import OtherCharField
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..managers import CurrentSiteManager
 from ..choices import FLUCONAZOLE_DOSE, RANKIN_SCORE, YES_NO_ND, YES_NO_ALREADY_ND
-from .list_models import Antibiotic
-from .model_mixins import CrfModelMixin, ClinicalAssessmentModelMixin
+from ..managers import CurrentSiteManager
+from ..model_mixins import ClinicalAssessmentModelMixin
+from .crf_model_mixin import CrfModelMixin
 
 
 class FollowUp(ClinicalAssessmentModelMixin, CrfModelMixin):

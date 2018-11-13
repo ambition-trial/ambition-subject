@@ -13,7 +13,8 @@ from ..choices import LP_REASON, POS_NEG, MG_MMOL_UNITS, MM3_PERC_UNITS
 from ..choices import YES_NO_NOT_DONE_WAIT_RESULTS
 from ..constants import AWAITING_RESULTS
 from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin, BiosynexSemiQuantitativeCragMixin
+from ..model_mixins import BiosynexSemiQuantitativeCragMixin
+from .crf_model_mixin import CrfModelMixin
 from .subject_requisition import SubjectRequisition
 
 

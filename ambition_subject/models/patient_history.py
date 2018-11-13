@@ -1,3 +1,4 @@
+from ambition_lists.models import Medication, Symptom, Neurological
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
@@ -11,8 +12,7 @@ from edc_visit_tracking.managers import CrfModelManager
 from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE
 from ..choices import ECOG_SCORE, SECOND_ARV_REGIMEN, WEIGHT_DETERMINATION
 from ..managers import CurrentSiteManager
-from .list_models import Medication, Symptom, Neurological
-from .model_mixins import CrfModelMixin
+from .crf_model_mixin import CrfModelMixin
 
 
 class PatientHistory(CrfModelMixin):

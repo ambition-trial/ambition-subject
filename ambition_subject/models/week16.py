@@ -6,7 +6,7 @@ from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import RANKIN_SCORE
 from ..managers import CurrentSiteManager
-from .model_mixins import CrfModelMixin
+from .crf_model_mixin import CrfModelMixin
 
 
 class Week16(CrfModelMixin):
