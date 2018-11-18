@@ -15,7 +15,7 @@ class MedAndDrugInterventionModelMixin(models.Model):
 
     drug_intervention = models.ManyToManyField(
         OtherDrug,
-        verbose_name="Other drugs/interventions given during first 14 days",)
+        verbose_name="Other drugs/interventions given during first 14 days")
 
     drug_intervention_other = models.TextField(
         verbose_name='If other, please specify:',
