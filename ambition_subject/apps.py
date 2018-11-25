@@ -17,6 +17,8 @@ def post_migrate_forms_reference(sender=None, **kwargs):
     sys.stdout.write(style.MIGRATE_HEADING(
         f'Refreshing CRF reference document for {sender.name}\n'))
     doc_folder = os.path.join(settings.BASE_DIR, 'docs')
+    if not os.path.exists(doc_folder):
+        os.mkdir(doc_folder)
     forms = FormsReference(
         visit_schedules=[visit_schedule], admin_site=ambition_subject_admin)
     path = os.path.join(doc_folder, 'forms_reference.md')
