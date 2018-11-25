@@ -5,7 +5,6 @@ from django.apps import AppConfig as DjangoApponfig
 from django.conf import settings
 from django.core.management.color import color_style
 from django.db.models.signals import post_migrate
-from edc_facility.apps import AppConfig as BaseEdcFacilityAppConfig
 
 style = color_style()
 
@@ -31,24 +30,25 @@ class AppConfig(DjangoApponfig):
     has_exportable_data = True
 
     def ready(self):
-        from .models.signals import subject_consent_on_post_save
+        from .models.signals import subject_consent_on_post_save  # noqa
         post_migrate.connect(post_migrate_forms_reference, sender=self)
 
 
 if settings.APP_NAME == 'ambition_subject':
 
     from datetime import datetime
+    from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
+    from dateutil.tz import gettz
+    from edc_appointment.appointment_config import AppointmentConfig
     from edc_appointment.apps import AppConfig as BaseEdcAppointmentAppConfig
     from edc_constants.constants import FAILED_ELIGIBILITY
+    from edc_facility.apps import AppConfig as BaseEdcFacilityAppConfig
     from edc_identifier.apps import AppConfig as BaseEdcIdentifierAppConfig
     from edc_lab.apps import AppConfig as BaseEdcLabAppConfig
     from edc_metadata.apps import AppConfig as BaseEdcMetadataAppConfig
     from edc_protocol.apps import AppConfig as BaseEdcProtocolAppConfig
     from edc_visit_tracking.constants import MISSED_VISIT
     from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
-    from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
-    from dateutil.tz import gettz
-    from edc_appointment.appointment_config import AppointmentConfig
 
     class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
         protocol = 'BHP092'

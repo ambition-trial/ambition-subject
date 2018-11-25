@@ -45,6 +45,7 @@ setup(
         'edc-appointment',
         'edc-base',
         'edc-consent',
+        'edc-form-describer',
         'edc-form-label',
         'edc_model_admin',
         'edc_notification',
