@@ -33,7 +33,8 @@ class AppConfig(DjangoApponfig):
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save  # noqa
-        post_migrate.connect(post_migrate_forms_reference, sender=self)
+        if settings.APP_NAME != 'ambition_subject':
+            post_migrate.connect(post_migrate_forms_reference, sender=self)
 
 
 if settings.APP_NAME == 'ambition_subject':
