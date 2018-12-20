@@ -11,7 +11,7 @@ from ..forms import Week2Form
 from ..models import SignificantDiagnoses, FlucytosineMissedDoses
 from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
 from .modeladmin_mixins import CrfModelAdminMixin
-from ambition_lists.models import OtherDrug
+from ambition_lists.models import OtherDrug, Day14Medication
 from edc_constants.constants import NOT_APPLICABLE
 
 
@@ -148,8 +148,10 @@ class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
     filter_horizontal = ('antibiotic', 'medicines', 'drug_intervention')
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
-        print(db_field.name)
         if db_field.name == "drug_intervention":
             kwargs["queryset"] = OtherDrug.objects.exclude(
+                short_name=NOT_APPLICABLE).order_by('display_index')
+        if db_field.name == "medicines":
+            kwargs["queryset"] = Day14Medication.objects.exclude(
                 short_name=NOT_APPLICABLE).order_by('display_index')
         return super().formfield_for_manytomany(db_field, request, **kwargs)
