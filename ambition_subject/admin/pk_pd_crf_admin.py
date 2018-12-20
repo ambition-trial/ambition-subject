@@ -74,7 +74,8 @@ class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
             'fields': (
                 'subject_visit',
                 'report_datetime',
-                'albumin')}),
+                # 'albumin'
+            )}),
         ('Amphotericin', {
             'fields': (
                 'amphotericin_given',

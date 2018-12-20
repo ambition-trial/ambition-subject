@@ -13,6 +13,7 @@ from .crf_model_mixin import CrfModelMixin
 
 class PkPdCrf(CrfModelMixin):
 
+    # removed v 0.1.61
     albumin = models.IntegerField(
         verbose_name='Albumin',
         null=True,
