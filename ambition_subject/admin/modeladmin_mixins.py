@@ -9,7 +9,7 @@ from edc_model_admin import (
     ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
-    FormAsJSONModelAdminMixin, ModelAdminRedirectOnDeleteMixin)
+    ModelAdminRedirectOnDeleteMixin)
 from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_metadata import NextFormGetter
 from edc_notification import NotificationModelAdminMixin
@@ -33,7 +33,6 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
 class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
                          ModelAdminMixin,
                          FieldsetsModelAdminMixin,
-                         FormAsJSONModelAdminMixin,
                          SimpleHistoryAdmin,
                          admin.ModelAdmin):
 
