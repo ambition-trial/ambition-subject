@@ -5,7 +5,6 @@ from django.db import models
 from django_crypto_fields.fields.identity_field import IdentityField
 from edc_action_item.models import ActionModelMixin
 from edc_base import get_utcnow
-from edc_base.model_managers import HistoricalRecords
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.field_mixins import ReviewFieldsMixin
@@ -51,8 +50,6 @@ class SubjectReconsent(
     on_site = CurrentSiteManager()
 
     objects = SubjectIdentifierManager()
-
-    history = HistoricalRecords()
 
     def __str__(self):
         return self.subject_identifier
