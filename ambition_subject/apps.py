@@ -1,6 +1,7 @@
 from django.apps import AppConfig as DjangoApponfig
 from django.conf import settings
 from django.core.management.color import color_style
+from dateutil.relativedelta import relativedelta
 
 style = color_style()
 
@@ -36,10 +37,11 @@ if settings.APP_NAME == 'ambition_subject':
         protocol_number = '092'
         protocol_name = 'Ambition'
         protocol_title = ''
+        year = datetime.now().year
         study_open_datetime = datetime(
-            2016, 12, 31, 0, 0, 0, tzinfo=gettz('UTC'))
+            year, 1, 1, 0, 0, 0, tzinfo=gettz('UTC'))
         study_close_datetime = datetime(
-            2018, 12, 31, 23, 59, 59, tzinfo=gettz('UTC'))
+            year + 5, 12, 31, 23, 59, 59, tzinfo=gettz('UTC'))
 
     class EdcLabAppConfig(BaseEdcLabAppConfig):
         base_template_name = f'ambition/bootstrap{settings.EDC_BOOTSTRAP}/base.html'
