@@ -1,2 +1,3 @@
 faker
 model-mommy
+git+https://github.com/treyhunner/django-simple-history@master
