@@ -19,6 +19,7 @@ install:
 - pip install coveralls
 - pip install -e .
 - pip install -q -r requirements.txt
+- pip install -U git+https://github.com/treyhunner/django-simple-history@master
 before_script:
 - flake8 ambition_subject
 - mysql -e 'create database edc character set utf8;'
