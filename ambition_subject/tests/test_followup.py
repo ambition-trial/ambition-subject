@@ -1,6 +1,7 @@
 import pytz
 
 from ambition_rando.tests import AmbitionTestCaseMixin
+from ambition_sites.sites import fqdn, ambition_sites
 from ambition_visit_schedule.constants import WEEK10
 from datetime import datetime
 from django.apps import apps as django_apps
@@ -10,19 +11,20 @@ from django.test import TestCase, tag
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from edc_appointment.models.appointment import Appointment
+from edc_base.sites.utils import add_or_update_django_sites
+from edc_base.utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 from ..admin_site import ambition_subject_admin
 from ..models import FollowUp, SubjectVisit
-from ambition_sites.sites import fqdn, ambition_sites
-from edc_base.sites.utils import add_or_update_django_sites
 
 
 @override_settings(SITE_ID='10')
 class TestFollowUp(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
+        year = get_utcnow().year
         add_or_update_django_sites(
             apps=django_apps, sites=ambition_sites, fqdn=fqdn, verbose=False)
         self.user = User.objects.create(
@@ -39,7 +41,7 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
         consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             screening_identifier=subject_screening.screening_identifier,
-            consent_datetime=datetime(2017, 12, 1, 0, 0, 0, 0, pytz.utc))
+            consent_datetime=datetime(year, 12, 1, 0, 0, 0, 0, pytz.utc))
         self.subject_identifier = consent.subject_identifier
 
         for appointment in Appointment.objects.filter(
@@ -57,7 +59,6 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
                     subject_identifier=self.subject_identifier,
                     reason=SCHEDULED)
 
-    @tag('1')
     def test_(self):
         """Asserts custom antibiotic question shows for Week 10.
         """
@@ -75,9 +76,6 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
         rendered_change_form = my_model_admin.changeform_view(
             request, None, '', {
                 'subject_visit': self.subject_visit})
-#         self.assertNotIn(
-#             'Were any of the following antibiotics given?',
-#             rendered_change_form.rendered_content)
         self.assertIn(
             'Were any of the following antibiotics given since week two?',
             rendered_change_form.rendered_content)

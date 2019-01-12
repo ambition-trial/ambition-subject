@@ -18,12 +18,13 @@ from ..forms import SubjectRequisitionForm
 class TestForms(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
+        year = get_utcnow().year
         subject_screening = mommy.make_recipe(
             'ambition_screening.subjectscreening')
         consent = mommy.make_recipe(
             'ambition_subject.subjectconsent',
             screening_identifier=subject_screening.screening_identifier,
-            consent_datetime=datetime(2017, 12, 1, 0, 0, 0, 0, pytz.utc))
+            consent_datetime=datetime(year, 12, 1, 0, 0, 0, 0, pytz.utc))
         self.subject_identifier = consent.subject_identifier
         self.appointment = Appointment.objects.get(
             subject_identifier=self.subject_identifier,
