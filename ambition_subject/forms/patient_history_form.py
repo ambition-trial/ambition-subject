@@ -13,14 +13,15 @@ class PatientHistoryForm(SubjectModelFormMixin):
 
     def clean(self):
         cleaned_data = super().clean()
-        if (self.data.get('previous_oi') == YES and not
-                self.data.get('previousopportunisticinfection_set-0-previous_non_tb_oi')):
+        if self.data.get("previous_oi") == YES and not self.data.get(
+            "previousopportunisticinfection_set-0-previous_non_tb_oi"
+        ):
             message = {
-                'previous_oi':
-                'Please complete the opportunistic infection table below.'}
+                "previous_oi": "Please complete the opportunistic infection table below."
+            }
             raise forms.ValidationError(message, code=NOT_REQUIRED_ERROR)
         return cleaned_data
 
     class Meta:
         model = PatientHistory
-        fields = '__all__'
+        fields = "__all__"

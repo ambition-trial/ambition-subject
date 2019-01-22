@@ -13,4 +13,4 @@ class BloodResultForm(SubjectModelFormMixin, ActionItemFormMixin, forms.ModelFor
 
     class Meta:
         model = BloodResult
-        fields = '__all__'
+        fields = "__all__"

@@ -1,1 +1,1 @@
-subject_identifier = '092\-[0-9\-]+'  # noqa
+subject_identifier = "092\-[0-9\-]+"  # noqa

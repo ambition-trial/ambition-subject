@@ -10,25 +10,30 @@ from .constants import BLOOD_RESULTS_ACTION, RECONSENT_ACTION
 
 class BloodResultAction(Action):
     name = BLOOD_RESULTS_ACTION
-    display_name = 'Reportable Blood Result'
-    reference_model = 'ambition_subject.bloodresult'
+    display_name = "Reportable Blood Result"
+    reference_model = "ambition_subject.bloodresult"
     priority = HIGH_PRIORITY
     show_on_dashboard = True
     create_by_user = False
 
     def get_next_actions(self):
         next_actions = []
-        if (self.reference_obj.subject_visit.visit_code == DAY1
-                and self.reference_obj.subject_visit.visit_code_sequence == 0):
+        if (
+            self.reference_obj.subject_visit.visit_code == DAY1
+            and self.reference_obj.subject_visit.visit_code_sequence == 0
+        ):
             # early withdrawal if qualifying blood results
             # are abnormal on DAY1.0
             evaluator = EarlyWithdrawalEvaluator(
                 subject_identifier=self.reference_obj.subject_identifier,
-                allow_none=True)
+                allow_none=True,
+            )
             if not evaluator.eligible:
                 next_actions = [STUDY_TERMINATION_CONCLUSION_ACTION]
-        elif (self.reference_obj.results_abnormal == YES
-              and self.reference_obj.results_reportable == YES):
+        elif (
+            self.reference_obj.results_abnormal == YES
+            and self.reference_obj.results_reportable == YES
+        ):
             # AE for reportable result, though not on DAY1.0
             next_actions = [AE_INITIAL_ACTION]
         return next_actions
@@ -36,17 +41,18 @@ class BloodResultAction(Action):
 
 class ReconsentAction(Action):
     name = RECONSENT_ACTION
-    display_name = 'Re-consent participant'
-    reference_model = 'ambition_subject.subjectreconsent'
+    display_name = "Re-consent participant"
+    reference_model = "ambition_subject.subjectreconsent"
     priority = HIGH_PRIORITY
     show_on_dashboard = True
     show_link_to_changelist = True
-    admin_site_name = 'ambition_subject_admin'
+    admin_site_name = "ambition_subject_admin"
     create_by_user = False
     singleton = True
     instructions = (
-        'Participant must be re-consented as soon as able. '
-        'Participant\'s ICF was initially completed by next-of-kin.')
+        "Participant must be re-consented as soon as able. "
+        "Participant's ICF was initially completed by next-of-kin."
+    )
 
 
 site_action_items.register(BloodResultAction)

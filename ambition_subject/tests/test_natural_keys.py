@@ -14,7 +14,7 @@ from model_mommy import mommy
 from ..models import SubjectVisit
 
 
-@override_settings(SITE_ID='10')
+@override_settings(SITE_ID="10")
 class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
 
     offline_test_helper = OfflineTestHelper()
@@ -22,56 +22,82 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
 
     def setUp(self):
         import_holidays()
-        self.visit_codes = [DAY1, DAY3, DAY5, DAY7, DAY14, DAY12,
-                            DAY10, WEEK4, WEEK6, WEEK8, WEEK10, WEEK16]
+        self.visit_codes = [
+            DAY1,
+            DAY3,
+            DAY5,
+            DAY7,
+            DAY14,
+            DAY12,
+            DAY10,
+            WEEK4,
+            WEEK6,
+            WEEK8,
+            WEEK10,
+            WEEK16,
+        ]
 
     def test_natural_key_attrs(self):
-        self.offline_test_helper.offline_test_natural_key_attr(
-            'ambition_subject')
+        self.offline_test_helper.offline_test_natural_key_attr("ambition_subject")
 
     def test_get_by_natural_key_attr(self):
         self.offline_test_helper.offline_test_get_by_natural_key_attr(
-            'ambition_subject')
+            "ambition_subject"
+        )
 
     def complete_all_subject_visits(self):
-        screening = mommy.make_recipe('ambition_screening.subjectscreening',
-                                      report_datetime=get_utcnow())
-        consent = mommy.make_recipe('ambition_subject.subjectconsent',
-                                    consent_datetime=get_utcnow(),
-                                    screening_identifier=screening.screening_identifier)
+        screening = mommy.make_recipe(
+            "ambition_screening.subjectscreening", report_datetime=get_utcnow()
+        )
+        consent = mommy.make_recipe(
+            "ambition_subject.subjectconsent",
+            consent_datetime=get_utcnow(),
+            screening_identifier=screening.screening_identifier,
+        )
         self.subject_identifier = consent.subject_identifier
 
-        for appointment in Appointment.objects.all().order_by('timepoint'):
+        for appointment in Appointment.objects.all().order_by("timepoint"):
             mommy.make_recipe(
-                'ambition_subject.subjectvisit',
+                "ambition_subject.subjectvisit",
                 appointment=appointment,
                 subject_identifier=consent.subject_identifier,
-                reason=SCHEDULED)
+                reason=SCHEDULED,
+            )
 
     def test_offline_test_natural_keys(self):
         complete_required_crfs = {}
         visit = self.complete_all_subject_visits()
         for visit_code in self.visit_codes:
             visit = SubjectVisit.objects.get(
-                appointment=Appointment.objects.get(visit_code=visit_code))
-            complete_required_crfs.update({
-                visit.visit_code: self.crf_test_helper.complete_required_crfs(
-                    visit_code=visit.visit_code,
-                    visit=visit,
-                    subject_identifier=visit.subject_identifier)})
-            self.offline_test_helper.offline_test_natural_keys(
-                complete_required_crfs)
+                appointment=Appointment.objects.get(visit_code=visit_code)
+            )
+            complete_required_crfs.update(
+                {
+                    visit.visit_code: self.crf_test_helper.complete_required_crfs(
+                        visit_code=visit.visit_code,
+                        visit=visit,
+                        subject_identifier=visit.subject_identifier,
+                    )
+                }
+            )
+            self.offline_test_helper.offline_test_natural_keys(complete_required_crfs)
 
     def test_offline_deserialize(self):
         complete_required_crfs = {}
         visit = self.complete_all_subject_visits()
         for visit_code in self.visit_codes:
             visit = SubjectVisit.objects.get(
-                appointment=Appointment.objects.get(visit_code=visit_code))
-            complete_required_crfs.update({
-                visit.visit_code: self.crf_test_helper.complete_required_crfs(
-                    visit_code=visit.visit_code,
-                    visit=visit,
-                    subject_identifier=visit.subject_identifier)})
+                appointment=Appointment.objects.get(visit_code=visit_code)
+            )
+            complete_required_crfs.update(
+                {
+                    visit.visit_code: self.crf_test_helper.complete_required_crfs(
+                        visit_code=visit.visit_code,
+                        visit=visit,
+                        subject_identifier=visit.subject_identifier,
+                    )
+                }
+            )
             self.offline_test_helper.offline_test_serializers_for_visit(
-                complete_required_crfs)
+                complete_required_crfs
+            )

@@ -23,20 +23,12 @@ from edc_lab.constants import TUBE
 
 fake = Faker()
 
-bloodresult = Recipe(
-    BloodResult,
-    action_identifier=None,
-    tracking_identifier=None)
+bloodresult = Recipe(BloodResult, action_identifier=None, tracking_identifier=None)
 
-neurological = Recipe(
-    Neurological,
-    name='meningismus',
-    short_name='Meningismus')
+neurological = Recipe(Neurological, name="meningismus", short_name="Meningismus")
 
 significantnewdiagnosis = Recipe(
-    SignificantNewDiagnosis,
-    name=NOT_APPLICABLE,
-    short_name=NOT_APPLICABLE
+    SignificantNewDiagnosis, name=NOT_APPLICABLE, short_name=NOT_APPLICABLE
 )
 
 followup = Recipe(
@@ -48,27 +40,23 @@ followup = Recipe(
     cn_palsy=NO,
     behaviour_change=NO,
     focal_neurology=NO,
-    fluconazole_dose='800mg_daily',
-    rifampicin_started=NO)
+    fluconazole_dose="800mg_daily",
+    rifampicin_started=NO,
+)
 
-subjectvisit = Recipe(
-    SubjectVisit,
-    reason=SCHEDULED)
+subjectvisit = Recipe(SubjectVisit, reason=SCHEDULED)
 
-subjectrequisition = Recipe(
-    SubjectRequisition)
+subjectrequisition = Recipe(SubjectRequisition)
 
 microbiology = Recipe(
     Microbiology,
     urine_culture_performed=NO,
     blood_culture_performed=NO,
     sputum_results_culture=NEG,
-    tissue_biopsy_taken=NO,)
+    tissue_biopsy_taken=NO,
+)
 
-symptom = Recipe(
-    Symptom,
-    name='vomiting',
-    short_name='vomiting')
+symptom = Recipe(Symptom, name="vomiting", short_name="vomiting")
 
 patienthistory = Recipe(
     PatientHistory,
@@ -77,7 +65,7 @@ patienthistory = Recipe(
     tb_history=YES,
     symptom=related(symptom),
     neurological=related(neurological),
-    tb_site='pulmonary',
+    tb_site="pulmonary",
     tb_treatment=YES,
     taking_rifampicin=NO,
     taking_arv=NO,
@@ -94,7 +82,8 @@ patienthistory = Recipe(
     lung_exam=YES,
     cryptococcal_lesions=NO,
     cd4_date=None,
-    viral_load_date=None,)
+    viral_load_date=None,
+)
 
 
 antibiotic = Recipe(Antibiotic)
@@ -116,7 +105,8 @@ week2 = Recipe(
     confusion=NO,
     cn_palsy=YES,
     focal_neurology=NO,
-    medicines=related(medicines),)
+    medicines=related(medicines),
+)
 
 
 radiology = Recipe(
@@ -129,12 +119,13 @@ radiology = Recipe(
     is_ct_performed=YES,
     date_ct_performed=get_utcnow(),
     is_scanned_with_contrast=NO,
-    brain_imaging_reason='reduction_in_gcs',
+    brain_imaging_reason="reduction_in_gcs",
     brain_imaging_reason_other=None,
     are_results_abnormal=NOT_APPLICABLE,
     abnormal_results_reason=NOT_APPLICABLE,
     abnormal_results_reason_other=NOT_APPLICABLE,
-    if_infarcts_location=None)
+    if_infarcts_location=None,
+)
 
 lumbarpuncturecsf = Recipe(
     LumbarPunctureCsf,
@@ -144,30 +135,32 @@ lumbarpuncturecsf = Recipe(
     csf_wbc_cell_count=250,
     differential_lymphocyte_count=250,
     differential_neutrophil_count=250,
-    csf_protein=10)
+    csf_protein=10,
+)
 
 subjectconsent = Recipe(
     SubjectConsent,
     assessment_score=YES,
-    confirm_identity=seq('12315678'),
+    confirm_identity=seq("12315678"),
     consent_copy=YES,
     consent_datetime=get_utcnow(),
     consent_reviewed=YES,
     consent_signature=YES,
     dob=get_utcnow() - relativedelta(years=25),
     first_name=fake.first_name,
-    gender='M',
-    identity=seq('12315678'),
-    identity_type='country_id',
-    initials='XX',
-    is_dob_estimated='-',
+    gender="M",
+    identity=seq("12315678"),
+    identity_type="country_id",
+    initials="XX",
+    is_dob_estimated="-",
     is_incarcerated=NO,
     is_literate=YES,
     last_name=fake.last_name,
     screening_identifier=None,
     study_questions=YES,
     site=Site.objects.get_current(),
-    subject_identifier=None)
+    subject_identifier=None,
+)
 
 week16 = Recipe(Week16)
 
@@ -193,4 +186,5 @@ subjectreconsent = Recipe(
     study_questions=YES,
     consent_copy=YES,
     action_identifier=None,
-    tracking_identifier=None)
+    tracking_identifier=None,
+)

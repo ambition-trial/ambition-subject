@@ -13,22 +13,27 @@ class Week16Admin(CrfModelAdminMixin, admin.ModelAdmin):
     form = Week16Form
 
     radio_fields = {
-        'patient_alive': admin.VERTICAL,
-        'activities_help': admin.VERTICAL,
-        'illness_problems': admin.VERTICAL,
-        'rankin_score': admin.VERTICAL}
+        "patient_alive": admin.VERTICAL,
+        "activities_help": admin.VERTICAL,
+        "illness_problems": admin.VERTICAL,
+        "rankin_score": admin.VERTICAL,
+    }
 
     fieldsets = (
-        (None, {
-            'fields': (
-                'subject_visit',
-                'report_datetime',
-                'patient_alive',
-                'death_datetime',
-                'activities_help',
-                'illness_problems',
-                'rankin_score',
-                'week16_narrative',
-            )},
-         ),
-        audit_fieldset_tuple)
+        (
+            None,
+            {
+                "fields": (
+                    "subject_visit",
+                    "report_datetime",
+                    "patient_alive",
+                    "death_datetime",
+                    "activities_help",
+                    "illness_problems",
+                    "rankin_score",
+                    "week16_narrative",
+                )
+            },
+        ),
+        audit_fieldset_tuple,
+    )

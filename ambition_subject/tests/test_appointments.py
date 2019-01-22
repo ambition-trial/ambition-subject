@@ -11,38 +11,42 @@ from edc_facility.holidays import Holidays
 from model_mommy import mommy
 
 
-@override_settings(SITE_ID='10')
+@override_settings(SITE_ID="10")
 class TestAppointment(AmbitionTestCaseMixin, TestCase):
-
     def setUp(self):
         year = get_utcnow().year
-        subject_screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening')
+        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
         consent = mommy.make_recipe(
-            'ambition_subject.subjectconsent',
+            "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
-            consent_datetime=datetime(year, 12, 1, 0, 0, 0, 0, pytz.utc))
+            consent_datetime=datetime(year, 12, 1, 0, 0, 0, 0, pytz.utc),
+        )
         self.subject_identifier = consent.subject_identifier
 
     def test_appointments_creation(self):
         """Assert appointment triggering method creates appointments.
         """
         appointments = Appointment.objects.filter(
-            subject_identifier=self.subject_identifier)
+            subject_identifier=self.subject_identifier
+        )
         self.assertEqual(appointments.count(), 12)
 
     def test_appointments_rdates(self):
-        holidays = Holidays(country='botswana')
+        holidays = Holidays(country="botswana")
         appointments = Appointment.objects.filter(
-            subject_identifier=self.subject_identifier).order_by('appt_datetime')
+            subject_identifier=self.subject_identifier
+        ).order_by("appt_datetime")
         appt_datetimes = [obj.appt_datetime for obj in appointments]
         start = appt_datetimes[0]
         if not holidays.is_holiday(start + relativedelta(days=2)):
-            self.assertEqual(appt_datetimes[1].date(
-            ), start.date() + relativedelta(days=2))
+            self.assertEqual(
+                appt_datetimes[1].date(), start.date() + relativedelta(days=2)
+            )
         if not holidays.is_holiday(start + relativedelta(days=4)):
-            self.assertEqual(appt_datetimes[2].date(
-            ), start.date() + relativedelta(days=4))
+            self.assertEqual(
+                appt_datetimes[2].date(), start.date() + relativedelta(days=4)
+            )
         if not holidays.is_holiday(start + relativedelta(days=6)):
-            self.assertEqual(appt_datetimes[3].date(
-            ), start.date() + relativedelta(days=6))
+            self.assertEqual(
+                appt_datetimes[3].date(), start.date() + relativedelta(days=6)
+            )

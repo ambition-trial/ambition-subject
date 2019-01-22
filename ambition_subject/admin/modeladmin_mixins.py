@@ -6,55 +6,70 @@ from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
 from simple_history.admin import SimpleHistoryAdmin
 from edc_base.sites.admin import ModelAdminSiteMixin
 from edc_model_admin import (
-    ModelAdminNextUrlRedirectMixin, ModelAdminFormInstructionsMixin,
-    ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
-    ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
-    ModelAdminRedirectOnDeleteMixin)
+    ModelAdminNextUrlRedirectMixin,
+    ModelAdminFormInstructionsMixin,
+    ModelAdminFormAutoNumberMixin,
+    ModelAdminAuditFieldsMixin,
+    ModelAdminReadOnlyMixin,
+    ModelAdminInstitutionMixin,
+    ModelAdminRedirectOnDeleteMixin,
+)
 from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_metadata import NextFormGetter
 from edc_notification import NotificationModelAdminMixin
 from edc_visit_tracking.modeladmin_mixins import (
-    CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin)
+    CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin,
+)
 
 
-class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
-                      NotificationModelAdminMixin, ModelAdminFormInstructionsMixin,
-                      ModelAdminFormAutoNumberMixin, ModelAdminRevisionMixin,
-                      ModelAdminAuditFieldsMixin, ModelAdminReadOnlyMixin,
-                      ModelAdminInstitutionMixin, ModelAdminRedirectOnDeleteMixin,
-                      ModelAdminSiteMixin):
+class ModelAdminMixin(
+    ModelAdminNextUrlRedirectMixin,
+    NotificationModelAdminMixin,
+    ModelAdminFormInstructionsMixin,
+    ModelAdminFormAutoNumberMixin,
+    ModelAdminRevisionMixin,
+    ModelAdminAuditFieldsMixin,
+    ModelAdminReadOnlyMixin,
+    ModelAdminInstitutionMixin,
+    ModelAdminRedirectOnDeleteMixin,
+    ModelAdminSiteMixin,
+):
 
     list_per_page = 10
-    date_hierarchy = 'modified'
-    empty_value_display = '-'
+    date_hierarchy = "modified"
+    empty_value_display = "-"
     next_form_getter_cls = NextFormGetter
 
 
-class CrfModelAdminMixin(VisitTrackingCrfModelAdminMixin,
-                         ModelAdminMixin,
-                         FieldsetsModelAdminMixin,
-                         SimpleHistoryAdmin,
-                         admin.ModelAdmin):
+class CrfModelAdminMixin(
+    VisitTrackingCrfModelAdminMixin,
+    ModelAdminMixin,
+    FieldsetsModelAdminMixin,
+    SimpleHistoryAdmin,
+    admin.ModelAdmin,
+):
 
     show_save_next = True
     show_cancel = True
 
-    post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
-        'subject_dashboard_url')
+    post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get("subject_dashboard_url")
 
     def post_url_on_delete_kwargs(self, request, obj):
         return dict(
             subject_identifier=obj.subject_visit.subject_identifier,
-            appointment=str(obj.subject_visit.appointment.id))
+            appointment=str(obj.subject_visit.appointment.id),
+        )
 
     def view_on_site(self, obj):
-        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get(
-            'subject_dashboard_url')
+        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get("subject_dashboard_url")
         try:
             url = reverse(
-                dashboard_url_name, kwargs=dict(
+                dashboard_url_name,
+                kwargs=dict(
                     subject_identifier=obj.subject_visit.subject_identifier,
-                    appointment=str(obj.subject_visit.appointment.id)))
+                    appointment=str(obj.subject_visit.appointment.id),
+                ),
+            )
         except NoReverseMatch:
             url = super().view_on_site(obj)
         return url

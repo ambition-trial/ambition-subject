@@ -8,14 +8,16 @@ from edc_form_validators import FormValidatorMixin
 from ..models import SubjectConsent
 
 
-class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin,
-                         ConsentModelFormMixin, forms.ModelForm):
+class SubjectConsentForm(
+    SiteModelFormMixin, FormValidatorMixin, ConsentModelFormMixin, forms.ModelForm
+):
 
     form_validator_cls = SubjectConsentFormValidator
 
     screening_identifier = forms.CharField(
-        label='Screening identifier',
-        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+        label="Screening identifier",
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+    )
 
     def clean_gender_of_consent(self):
         return None
@@ -28,16 +30,21 @@ class SubjectConsentForm(SiteModelFormMixin, FormValidatorMixin,
 
     class Meta:
         model = SubjectConsent
-        fields = '__all__'
+        fields = "__all__"
         help_texts = {
-            'guardian_name': mark_safe(
-                'Required only if participant is unconscious or '
-                'has an abnormal mental status.<br>Format is \'LASTNAME, '
-                'FIRSTNAME\'. All uppercase separated '
-                'by a comma then followed by a space.'),
-            'identity': ('Use Country ID Number, Passport number, driver\'s license '
-                         'number or Country ID receipt number'),
-            'witness_name': ('Required only if participant is illiterate. '
-                             'Format is \'LASTNAME, FIRSTNAME\'. '
-                             'All uppercase separated by a comma.')
+            "guardian_name": mark_safe(
+                "Required only if participant is unconscious or "
+                "has an abnormal mental status.<br>Format is 'LASTNAME, "
+                "FIRSTNAME'. All uppercase separated "
+                "by a comma then followed by a space."
+            ),
+            "identity": (
+                "Use Country ID Number, Passport number, driver's license "
+                "number or Country ID receipt number"
+            ),
+            "witness_name": (
+                "Required only if participant is illiterate. "
+                "Format is 'LASTNAME, FIRSTNAME'. "
+                "All uppercase separated by a comma."
+            ),
         }

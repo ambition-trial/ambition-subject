@@ -10,4 +10,4 @@ class EducationForm(SubjectModelFormMixin):
 
     class Meta:
         model = Education
-        fields = '__all__'
+        fields = "__all__"

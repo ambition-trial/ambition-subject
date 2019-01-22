@@ -10,4 +10,4 @@ class LumbarPunctureCsfForm(SubjectModelFormMixin):
 
     class Meta:
         model = LumbarPunctureCsf
-        fields = '__all__'
+        fields = "__all__"

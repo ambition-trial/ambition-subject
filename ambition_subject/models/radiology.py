@@ -13,88 +13,85 @@ from .crf_model_mixin import CrfModelMixin
 class Radiology(CrfModelMixin):
 
     cxr_done = models.CharField(
-        verbose_name='Is CXR done',
-        choices=YES_NO,
-        max_length=5)
+        verbose_name="Is CXR done", choices=YES_NO, max_length=5
+    )
 
     cxr_date = models.DateField(
-        verbose_name='If yes, when was CXR done',
+        verbose_name="If yes, when was CXR done",
         validators=[date_not_future],
         blank=True,
-        null=True)
+        null=True,
+    )
 
     cxr_type = models.ManyToManyField(
-        CXRType,
-        verbose_name='If YES, result',
-        blank=True)
+        CXRType, verbose_name="If YES, result", blank=True
+    )
 
     infiltrate_location = models.ManyToManyField(
-        InfiltrateLocation,
-        verbose_name='If infiltrates, specify location',
-        blank=True)
+        InfiltrateLocation, verbose_name="If infiltrates, specify location", blank=True
+    )
 
     cxr_description = models.TextField(
-        verbose_name='Description/Comments',
-        blank=True,
-        null=True)
+        verbose_name="Description/Comments", blank=True, null=True
+    )
 
     ct_performed = models.CharField(
-        verbose_name='CT/MRI brain scan performed?',
-        choices=YES_NO,
-        max_length=5)
+        verbose_name="CT/MRI brain scan performed?", choices=YES_NO, max_length=5
+    )
 
     ct_performed_date = models.DateTimeField(
-        verbose_name='Date CT performed',
+        verbose_name="Date CT performed",
         validators=[datetime_not_future],
         editable=True,
         blank=True,
-        null=True)
+        null=True,
+    )
 
     scanned_with_contrast = models.CharField(
-        verbose_name='CT/MRI brain scan performed with contrast?',
+        verbose_name="CT/MRI brain scan performed with contrast?",
         blank=False,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
         max_length=5,
-        null=False)
+        null=False,
+    )
 
     brain_imaging_reason = models.CharField(
-        verbose_name='Reason for brain imaging',
+        verbose_name="Reason for brain imaging",
         blank=False,
         choices=BRAIN_IMAGINING_REASON,
         default=NOT_APPLICABLE,
         max_length=25,
-        null=True)
+        null=True,
+    )
 
     brain_imaging_reason_other = models.CharField(
-        verbose_name='If other, please specify',
-        blank=True,
-        max_length=50,
-        null=True)
+        verbose_name="If other, please specify", blank=True, max_length=50, null=True
+    )
 
     are_results_abnormal = models.CharField(
-        blank=False,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        null=False,
-        max_length=5)
+        blank=False, choices=YES_NO_NA, default=NOT_APPLICABLE, null=False, max_length=5
+    )
 
     abnormal_results_reason = models.ManyToManyField(
         AbnormalResultsReason,
-        verbose_name='If results are abnormal, what is the reason?',
-        blank=True)
+        verbose_name="If results are abnormal, what is the reason?",
+        blank=True,
+    )
 
     abnormal_results_reason_other = models.CharField(
-        verbose_name='If other, please specify reason',
+        verbose_name="If other, please specify reason",
         blank=True,
         max_length=50,
-        null=True)
+        null=True,
+    )
 
     infarcts_location = models.CharField(
-        verbose_name='If results are abnormal because of Infarcts, what is the location?',
+        verbose_name="If results are abnormal because of Infarcts, what is the location?",
         blank=True,
         max_length=50,
-        null=True)
+        null=True,
+    )
 
     on_site = CurrentSiteManager()
 
@@ -103,5 +100,5 @@ class Radiology(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = 'Radiology'
-        verbose_name_plural = 'Radiology'
+        verbose_name = "Radiology"
+        verbose_name_plural = "Radiology"

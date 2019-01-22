@@ -8,8 +8,9 @@ from edc_visit_tracking.modelform_mixins import VisitTrackingModelFormMixin
 from ..models import SubjectVisit
 
 
-class SubjectModelFormMixin(SiteModelFormMixin, VisitTrackingModelFormMixin,
-                            FormValidatorMixin, forms.ModelForm):
+class SubjectModelFormMixin(
+    SiteModelFormMixin, VisitTrackingModelFormMixin, FormValidatorMixin, forms.ModelForm
+):
 
     visit_model = SubjectVisit
 
@@ -20,7 +21,6 @@ class InlineSubjectModelFormMixin(FormValidatorMixin, forms.ModelForm):
 
 
 class PreviousAppointmentFormMixin:
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._previous_appointment_rdate = None
@@ -31,7 +31,8 @@ class PreviousAppointmentFormMixin:
         if not self._previous_appointment:
             cleaned_data = self.cleaned_data
             self._previous_appointment = cleaned_data.get(
-                'subject_visit').appointment.previous_by_timepoint
+                "subject_visit"
+            ).appointment.previous_by_timepoint
         return self._previous_appointment
 
     @property
@@ -48,7 +49,8 @@ class PreviousAppointmentFormMixin:
             if self.previous_appointment:
                 rdate = arrow.Arrow.fromdatetime(
                     self.previous_appointment.appt_datetime,
-                    tzinfo=self.previous_appointment.appt_datetime.tzinfo)
+                    tzinfo=self.previous_appointment.appt_datetime.tzinfo,
+                )
             else:
                 rdate = None
             self._previous_appointment_rdate = rdate

@@ -12,42 +12,45 @@ from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 
-@override_settings(SITE_ID='10')
+@override_settings(SITE_ID="10")
 class TestSubjectRules(AmbitionTestCaseMixin, TestCase):
-
     def setUp(self):
         screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening',
-            report_datetime=get_utcnow())
+            "ambition_screening.subjectscreening", report_datetime=get_utcnow()
+        )
         self.consent = mommy.make_recipe(
-            'ambition_subject.subjectconsent',
+            "ambition_subject.subjectconsent",
             consent_datetime=get_utcnow(),
-            screening_identifier=screening.screening_identifier)
+            screening_identifier=screening.screening_identifier,
+        )
         self.visit_code = WEEK10
 
-        for appointment in Appointment.objects.all().order_by('timepoint'):
+        for appointment in Appointment.objects.all().order_by("timepoint"):
             self.subject_visit = mommy.make_recipe(
-                'ambition_subject.subjectvisit',
+                "ambition_subject.subjectvisit",
                 appointment=appointment,
-                reason=SCHEDULED)
+                reason=SCHEDULED,
+            )
             if appointment.visit_code == self.visit_code:
                 break
 
     def test_medical_expenses_two_required(self):
         appointment = Appointment.objects.get(
-            subject_identifier=self.consent.subject_identifier,
-            visit_code=DAY1)
-        self.subject_visit = SubjectVisit.objects.get(
-            appointment=appointment)
+            subject_identifier=self.consent.subject_identifier, visit_code=DAY1
+        )
+        self.subject_visit = SubjectVisit.objects.get(appointment=appointment)
 
         mommy.make_recipe(
-            'ambition_subject.medicalexpenses',
+            "ambition_subject.medicalexpenses",
             subject_visit=self.subject_visit,
-            care_before_hospital=YES)
+            care_before_hospital=YES,
+        )
 
         self.assertEqual(
             CrfMetadata.objects.get(
-                model='ambition_subject.medicalexpensestwo',
+                model="ambition_subject.medicalexpensestwo",
                 subject_identifier=self.consent.subject_identifier,
-                visit_code=DAY1).entry_status,
-            REQUIRED)
+                visit_code=DAY1,
+            ).entry_status,
+            REQUIRED,
+        )

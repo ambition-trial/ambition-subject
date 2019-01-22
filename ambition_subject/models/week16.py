@@ -12,39 +12,41 @@ from .crf_model_mixin import CrfModelMixin
 class Week16(CrfModelMixin):
 
     patient_alive = models.CharField(
-        verbose_name='Is the patient alive?',
-        max_length=5,
-        choices=YES_NO)
+        verbose_name="Is the patient alive?", max_length=5, choices=YES_NO
+    )
 
     death_datetime = models.DateTimeField(
-        verbose_name='If dead, date and time of death',
+        verbose_name="If dead, date and time of death",
         validators=[date_not_future],
         null=True,
-        blank=True)
+        blank=True,
+    )
 
     activities_help = models.CharField(
         verbose_name=(
-            'Does the patient require help from anybody for everyday activities?'),
+            "Does the patient require help from anybody for everyday activities?"
+        ),
         max_length=5,
         choices=YES_NO_NA,
-        help_text=('For example eating, drinking, washing, brushing teeth, '
-                   'going to the toilet.'))
+        help_text=(
+            "For example eating, drinking, washing, brushing teeth, "
+            "going to the toilet."
+        ),
+    )
 
     illness_problems = models.CharField(
-        verbose_name='Has the illness left the patient with any other problems?',
+        verbose_name="Has the illness left the patient with any other problems?",
         max_length=5,
-        choices=YES_NO_NA)
+        choices=YES_NO_NA,
+    )
 
     rankin_score = models.CharField(
-        verbose_name='Modified Rankin score',
-        max_length=10,
-        choices=RANKIN_SCORE)
+        verbose_name="Modified Rankin score", max_length=10, choices=RANKIN_SCORE
+    )
 
     week16_narrative = models.TextField(
-        verbose_name='Narrative',
-        max_length=1000,
-        null=True,
-        blank=True)
+        verbose_name="Narrative", max_length=1000, null=True, blank=True
+    )
 
     on_site = CurrentSiteManager()
 
@@ -53,4 +55,4 @@ class Week16(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name_plural = 'Week16'
+        verbose_name_plural = "Week16"
