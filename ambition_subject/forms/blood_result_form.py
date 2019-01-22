@@ -1,12 +1,13 @@
 from django import forms
 
 from ambition_form_validators import BloodResultFormValidator
+from edc_action_item.forms import ActionItemFormMixin
 
 from ..models import BloodResult
 from .form_mixins import SubjectModelFormMixin
 
 
-class BloodResultForm(SubjectModelFormMixin, forms.ModelForm):
+class BloodResultForm(SubjectModelFormMixin, ActionItemFormMixin, forms.ModelForm):
 
     form_validator_cls = BloodResultFormValidator
 

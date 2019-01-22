@@ -36,7 +36,6 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
             appointment=self.appointment,
             reason=SCHEDULED)
 
-    @tag('1')
     def test_(self):
         obj = make_recipe(
             'ambition_subject.bloodresult',
