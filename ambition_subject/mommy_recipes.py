@@ -17,6 +17,8 @@ from .models import PatientHistory, Week16, Week4
 from .models import Week2, SubjectVisit, MedicalExpenses
 from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import PkPdCrf, SubjectReconsent
+from ambition_subject.models.subject_requisition import SubjectRequisition
+from edc_lab.constants import TUBE
 
 
 fake = Faker()
@@ -51,7 +53,10 @@ followup = Recipe(
 
 subjectvisit = Recipe(
     SubjectVisit,
-    reason=SCHEDULED,)
+    reason=SCHEDULED)
+
+subjectrequisition = Recipe(
+    SubjectRequisition)
 
 microbiology = Recipe(
     Microbiology,
