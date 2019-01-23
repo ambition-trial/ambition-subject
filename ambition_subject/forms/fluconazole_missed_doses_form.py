@@ -10,4 +10,4 @@ class FluconazoleMissedDosesForm(SubjectModelFormMixin):
 
     class Meta:
         model = FluconazoleMissedDoses
-        fields = '__all__'
+        fields = "__all__"

@@ -11,28 +11,32 @@ from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 
-@override_settings(SITE_ID='10')
+@override_settings(SITE_ID="10")
 class TestSyncInlineOrder(AmbitionTestCaseMixin, TestCase):
-
     def setUp(self):
         screening = mommy.make_recipe(
-            'ambition_screening.subjectscreening',
-            report_datetime=get_utcnow())
+            "ambition_screening.subjectscreening", report_datetime=get_utcnow()
+        )
         self.consent = mommy.make_recipe(
-            'ambition_subject.subjectconsent',
+            "ambition_subject.subjectconsent",
             consent_datetime=get_utcnow(),
-            screening_identifier=screening.screening_identifier)
+            screening_identifier=screening.screening_identifier,
+        )
 
         self.appointment = Appointment.objects.get(
-            visit_code=DAY1, subject_identifier=self.consent.subject_identifier)
+            visit_code=DAY1, subject_identifier=self.consent.subject_identifier
+        )
         self.subject_visit = mommy.make_recipe(
-            'ambition_subject.subjectvisit',
+            "ambition_subject.subjectvisit",
             appointment=self.appointment,
-            reason=SCHEDULED)
+            reason=SCHEDULED,
+        )
 
     def test_inline_order_outgoing(self):
         PatientHistoryFormSet = inlineformset_factory(
             PatientHistory,
             PreviousOpportunisticInfection,
-            form=PreviousOpportunisticInfectionForm, extra=1)
+            form=PreviousOpportunisticInfectionForm,
+            extra=1,
+        )
         PatientHistoryFormSet()

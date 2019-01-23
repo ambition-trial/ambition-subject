@@ -5,69 +5,125 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0034_auto_20181031_0740'),
-    ]
+    dependencies = [("ambition_subject", "0034_auto_20181031_0740")]
 
     operations = [
         migrations.AddField(
-            model_name='historicalpkpdcrf',
-            name='amphotericin_formulation',
-            field=models.CharField(blank=True, choices=[('ambisome', 'AmBisome'), ('amphotericin_b', 'Amphotericin B Deoxycholate')], max_length=25, null=True, verbose_name='If Yes, Which formulation of amphotericin?'),
+            model_name="historicalpkpdcrf",
+            name="amphotericin_formulation",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("ambisome", "AmBisome"),
+                    ("amphotericin_b", "Amphotericin B Deoxycholate"),
+                ],
+                max_length=25,
+                null=True,
+                verbose_name="If Yes, Which formulation of amphotericin?",
+            ),
         ),
         migrations.AddField(
-            model_name='historicalpkpdcrf',
-            name='amphotericin_given',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], max_length=5, null=True, verbose_name='Did the patient receive any amphotericin formulation in the last 24 hours?'),
+            model_name="historicalpkpdcrf",
+            name="amphotericin_given",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=5,
+                null=True,
+                verbose_name="Did the patient receive any amphotericin formulation in the last 24 hours?",
+            ),
         ),
         migrations.AddField(
-            model_name='pkpdcrf',
-            name='amphotericin_formulation',
-            field=models.CharField(blank=True, choices=[('ambisome', 'AmBisome'), ('amphotericin_b', 'Amphotericin B Deoxycholate')], max_length=25, null=True, verbose_name='If Yes, Which formulation of amphotericin?'),
+            model_name="pkpdcrf",
+            name="amphotericin_formulation",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("ambisome", "AmBisome"),
+                    ("amphotericin_b", "Amphotericin B Deoxycholate"),
+                ],
+                max_length=25,
+                null=True,
+                verbose_name="If Yes, Which formulation of amphotericin?",
+            ),
         ),
         migrations.AddField(
-            model_name='pkpdcrf',
-            name='amphotericin_given',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], max_length=5, null=True, verbose_name='Did the patient receive any amphotericin formulation in the last 24 hours?'),
+            model_name="pkpdcrf",
+            name="amphotericin_given",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=5,
+                null=True,
+                verbose_name="Did the patient receive any amphotericin formulation in the last 24 hours?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalpkpdcrf',
-            name='amphotericin_dose',
-            field=models.IntegerField(blank=True, help_text='Units in mg', null=True, verbose_name='Dose given'),
+            model_name="historicalpkpdcrf",
+            name="amphotericin_dose",
+            field=models.IntegerField(
+                blank=True,
+                help_text="Units in mg",
+                null=True,
+                verbose_name="Dose given",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalpkpdcrf',
-            name='amphotericin_ended_datetime',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Date and time stopped'),
+            model_name="historicalpkpdcrf",
+            name="amphotericin_ended_datetime",
+            field=models.DateTimeField(
+                blank=True, null=True, verbose_name="Date and time stopped"
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalpkpdcrf',
-            name='amphotericin_full_dose_given',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], max_length=5, null=True, verbose_name='Was the entire dose given?'),
+            model_name="historicalpkpdcrf",
+            name="amphotericin_full_dose_given",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=5,
+                null=True,
+                verbose_name="Was the entire dose given?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalpkpdcrf',
-            name='amphotericin_started_datetime',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Date and time started'),
+            model_name="historicalpkpdcrf",
+            name="amphotericin_started_datetime",
+            field=models.DateTimeField(
+                blank=True, null=True, verbose_name="Date and time started"
+            ),
         ),
         migrations.AlterField(
-            model_name='pkpdcrf',
-            name='amphotericin_dose',
-            field=models.IntegerField(blank=True, help_text='Units in mg', null=True, verbose_name='Dose given'),
+            model_name="pkpdcrf",
+            name="amphotericin_dose",
+            field=models.IntegerField(
+                blank=True,
+                help_text="Units in mg",
+                null=True,
+                verbose_name="Dose given",
+            ),
         ),
         migrations.AlterField(
-            model_name='pkpdcrf',
-            name='amphotericin_ended_datetime',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Date and time stopped'),
+            model_name="pkpdcrf",
+            name="amphotericin_ended_datetime",
+            field=models.DateTimeField(
+                blank=True, null=True, verbose_name="Date and time stopped"
+            ),
         ),
         migrations.AlterField(
-            model_name='pkpdcrf',
-            name='amphotericin_full_dose_given',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], max_length=5, null=True, verbose_name='Was the entire dose given?'),
+            model_name="pkpdcrf",
+            name="amphotericin_full_dose_given",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=5,
+                null=True,
+                verbose_name="Was the entire dose given?",
+            ),
         ),
         migrations.AlterField(
-            model_name='pkpdcrf',
-            name='amphotericin_started_datetime',
-            field=models.DateTimeField(blank=True, null=True, verbose_name='Date and time started'),
+            model_name="pkpdcrf",
+            name="amphotericin_started_datetime",
+            field=models.DateTimeField(
+                blank=True, null=True, verbose_name="Date and time started"
+            ),
         ),
     ]

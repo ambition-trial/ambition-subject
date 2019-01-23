@@ -7,16 +7,16 @@ style = color_style()
 
 
 class AppConfig(DjangoApponfig):
-    name = 'ambition_subject'
-    verbose_name = 'Ambition Subject CRFs'
-    admin_site_name = 'ambition_subject_admin'
+    name = "ambition_subject"
+    verbose_name = "Ambition Subject CRFs"
+    admin_site_name = "ambition_subject_admin"
     has_exportable_data = True
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save  # noqa
 
 
-if settings.APP_NAME == 'ambition_subject':
+if settings.APP_NAME == "ambition_subject":
 
     from datetime import datetime
     from dateutil.relativedelta import MO, TU, WE, TH, FR, SA, SU
@@ -33,47 +33,53 @@ if settings.APP_NAME == 'ambition_subject':
     from edc_visit_tracking.constants import SCHEDULED, UNSCHEDULED, LOST_VISIT
 
     class EdcProtocolAppConfig(BaseEdcProtocolAppConfig):
-        protocol = 'BHP092'
-        protocol_number = '092'
-        protocol_name = 'Ambition'
-        protocol_title = ''
+        protocol = "BHP092"
+        protocol_number = "092"
+        protocol_name = "Ambition"
+        protocol_title = ""
         year = datetime.now().year
-        study_open_datetime = datetime(
-            year, 1, 1, 0, 0, 0, tzinfo=gettz('UTC'))
+        study_open_datetime = datetime(year, 1, 1, 0, 0, 0, tzinfo=gettz("UTC"))
         study_close_datetime = datetime(
-            year + 5, 12, 31, 23, 59, 59, tzinfo=gettz('UTC'))
+            year + 5, 12, 31, 23, 59, 59, tzinfo=gettz("UTC")
+        )
 
     class EdcLabAppConfig(BaseEdcLabAppConfig):
-        base_template_name = f'ambition/bootstrap{settings.EDC_BOOTSTRAP}/base.html'
-        result_model = 'edc_lab.result'
+        base_template_name = f"ambition/bootstrap{settings.EDC_BOOTSTRAP}/base.html"
+        result_model = "edc_lab.result"
 
         @property
         def site_name(self):
-            return 'Gaborone'
+            return "Gaborone"
 
         @property
         def site_code(self):
-            return '40'
+            return "40"
 
     class EdcIdentifierAppConfig(BaseEdcIdentifierAppConfig):
-        identifier_prefix = '092'
+        identifier_prefix = "092"
 
     class EdcMetadataAppConfig(BaseEdcMetadataAppConfig):
-        reason_field = {'ambition_subject.subjectvisit': 'reason'}
+        reason_field = {"ambition_subject.subjectvisit": "reason"}
         create_on_reasons = [SCHEDULED, UNSCHEDULED]
         delete_on_reasons = [LOST_VISIT, FAILED_ELIGIBILITY, MISSED_VISIT]
 
     class EdcAppointmentAppConfig(BaseEdcAppointmentAppConfig):
-        default_appt_type = 'hospital'
+        default_appt_type = "hospital"
         configurations = [
             AppointmentConfig(
-                model='edc_appointment.appointment',
-                related_visit_model='ambition_subject.subjectvisit')]
+                model="edc_appointment.appointment",
+                related_visit_model="ambition_subject.subjectvisit",
+            )
+        ]
 
     class EdcFacilityAppConfig(BaseEdcFacilityAppConfig):
-        country = 'botswana'
+        country = "botswana"
         definitions = {
-            '7-day clinic': dict(days=[MO, TU, WE, TH, FR, SA, SU],
-                                 slots=[100, 100, 100, 100, 100, 100, 100]),
-            '5-day clinic': dict(days=[MO, TU, WE, TH, FR],
-                                 slots=[100, 100, 100, 100, 100])}
+            "7-day clinic": dict(
+                days=[MO, TU, WE, TH, FR, SA, SU],
+                slots=[100, 100, 100, 100, 100, 100, 100],
+            ),
+            "5-day clinic": dict(
+                days=[MO, TU, WE, TH, FR], slots=[100, 100, 100, 100, 100]
+            ),
+        }

@@ -5,23 +5,18 @@ from django.db import migrations
 
 
 def fix_subject_reconsent_site(apps, schema_editor):
-    Site = apps.get_model('sites.Site')
-    SubjectReconsent = apps.get_model('ambition_subject.subjectreconsent')
-    sys.stdout.write(f'\n')
+    Site = apps.get_model("sites.Site")
+    SubjectReconsent = apps.get_model("ambition_subject.subjectreconsent")
+    sys.stdout.write(f"\n")
     for site in Site.objects.all():
         updated = SubjectReconsent.objects.filter(
-            subject_identifier__startswith=f'092-{site.id}',
-            site__isnull=True).update(site=site)
-        sys.stdout.write(
-            f'  * Updated {updated} for {site.name} ({site.id}).\n')
+            subject_identifier__startswith=f"092-{site.id}", site__isnull=True
+        ).update(site=site)
+        sys.stdout.write(f"  * Updated {updated} for {site.name} ({site.id}).\n")
 
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0028_auto_20181019_0056'),
-    ]
+    dependencies = [("ambition_subject", "0028_auto_20181019_0056")]
 
-    operations = [
-        migrations.RunPython(fix_subject_reconsent_site),
-    ]
+    operations = [migrations.RunPython(fix_subject_reconsent_site)]

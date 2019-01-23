@@ -13,75 +13,75 @@ from ...model_mixins import MedAndDrugInterventionModelMixin
 from ..crf_model_mixin import CrfModelMixin
 
 
-class Week2(ClinicalAssessmentModelMixin, StudyMedicationModelMixin,
-            MedAndDrugInterventionModelMixin,
-            BloodTransfusionModelMixin,
-            CrfModelMixin):
+class Week2(
+    ClinicalAssessmentModelMixin,
+    StudyMedicationModelMixin,
+    MedAndDrugInterventionModelMixin,
+    BloodTransfusionModelMixin,
+    CrfModelMixin,
+):
 
     discharged = models.CharField(
-        verbose_name='Discharged?',
-        max_length=25,
-        choices=YES_NO)
+        verbose_name="Discharged?", max_length=25, choices=YES_NO
+    )
 
     discharge_date = models.DateField(
-        validators=[date_not_future],
-        null=True,
-        blank=True)
+        validators=[date_not_future], null=True, blank=True
+    )
 
     research_discharge_date = models.DateField(
-        verbose_name='On which date did the research team feel the patient was well '
-        'enough to go home?',
+        verbose_name="On which date did the research team feel the patient was well "
+        "enough to go home?",
         validators=[date_not_future],
         null=True,
-        blank=True)
+        blank=True,
+    )
 
-    died = models.CharField(
-        verbose_name='Died?',
-        max_length=25,
-        choices=YES_NO)
+    died = models.CharField(verbose_name="Died?", max_length=25, choices=YES_NO)
 
     death_date_time = models.DateTimeField(
-        validators=[datetime_not_future],
-        null=True,
-        blank=True)
+        validators=[datetime_not_future], null=True, blank=True
+    )
 
     temperature = models.FloatField(
-        verbose_name='Temperature',
-        null=True,
-        blank=True,
-        default=None)
+        verbose_name="Temperature", null=True, blank=True, default=None
+    )
 
     weight = models.DecimalField(
-        verbose_name='Weight:',
+        verbose_name="Weight:",
         validators=[MinValueValidator(20), MaxValueValidator(150)],
         decimal_places=1,
         max_digits=4,
-        help_text='kg')
+        help_text="kg",
+    )
 
     significant_dx = models.CharField(
-        verbose_name='Other significant diagnoses since enrolment?',
+        verbose_name="Other significant diagnoses since enrolment?",
         max_length=25,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     significant_dx_datetime = models.DateTimeField(
-        validators=[date_not_future],
-        null=True,
-        blank=True)
+        validators=[date_not_future], null=True, blank=True
+    )
 
     flucon_missed_doses = models.CharField(
-        verbose_name='Were any Fluconazole drug doses missed?',
+        verbose_name="Were any Fluconazole drug doses missed?",
         max_length=25,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     amphotericin_missed_doses = models.CharField(
-        verbose_name='Were any Amphotericin B drug doses missed?',
+        verbose_name="Were any Amphotericin B drug doses missed?",
         max_length=25,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     other_significant_dx = models.CharField(
-        verbose_name='Other significant diagnosis since enrollment?',
+        verbose_name="Other significant diagnosis since enrollment?",
         max_length=5,
-        choices=YES_NO)
+        choices=YES_NO,
+    )
 
     on_site = CurrentSiteManager()
 
@@ -90,5 +90,5 @@ class Week2(ClinicalAssessmentModelMixin, StudyMedicationModelMixin,
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = 'Week 2'
-        verbose_name_plural = 'Week 2'
+        verbose_name = "Week 2"
+        verbose_name_plural = "Week 2"

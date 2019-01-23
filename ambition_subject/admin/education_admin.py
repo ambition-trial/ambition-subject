@@ -14,28 +14,35 @@ class EducationAdmin(CrfModelAdminMixin, admin.ModelAdmin):
     form = EducationForm
 
     additional_instructions = (
-        'The following questions refer to the educational background of '
-        'the patient.')
+        "The following questions refer to the educational background of " "the patient."
+    )
 
     fieldsets = (
-        (None, {
-            'fields': [
-                'subject_visit',
-                'report_datetime',
-                'profession',
-                'education_years',
-                'education_certificate',
-                'elementary',
-                'attendance_years',
-                'secondary',
-                'secondary_years',
-                'higher_education',
-                'higher_years',
-                'household_head']}
-         ), audit_fieldset_tuple)
+        (
+            None,
+            {
+                "fields": [
+                    "subject_visit",
+                    "report_datetime",
+                    "profession",
+                    "education_years",
+                    "education_certificate",
+                    "elementary",
+                    "attendance_years",
+                    "secondary",
+                    "secondary_years",
+                    "higher_education",
+                    "higher_years",
+                    "household_head",
+                ]
+            },
+        ),
+        audit_fieldset_tuple,
+    )
 
     radio_fields = {
-        'household_head': admin.VERTICAL,
-        'elementary': admin.VERTICAL,
-        'secondary': admin.VERTICAL,
-        'higher_education': admin.VERTICAL}
+        "household_head": admin.VERTICAL,
+        "elementary": admin.VERTICAL,
+        "secondary": admin.VERTICAL,
+        "higher_education": admin.VERTICAL,
+    }

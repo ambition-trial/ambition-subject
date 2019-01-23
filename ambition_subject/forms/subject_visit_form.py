@@ -6,10 +6,10 @@ from edc_visit_tracking.form_validators import VisitFormValidator
 from ..models import SubjectVisit
 
 
-class SubjectVisitForm (SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
+class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
 
     form_validator_cls = VisitFormValidator
 
     class Meta:
         model = SubjectVisit
-        fields = '__all__'
+        fields = "__all__"

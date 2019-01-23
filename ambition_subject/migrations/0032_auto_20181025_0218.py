@@ -5,33 +5,30 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0031_auto_20181025_0212'),
-    ]
+    dependencies = [("ambition_subject", "0031_auto_20181025_0212")]
 
     operations = [
         migrations.RenameField(
-            model_name='fluconazolemisseddoses',
-            old_name='flucon_day_missed',
-            new_name='day_missed',
+            model_name="fluconazolemisseddoses",
+            old_name="flucon_day_missed",
+            new_name="day_missed",
         ),
         migrations.RenameField(
-            model_name='fluconazolemisseddoses',
-            old_name='flucon_missed_reason',
-            new_name='missed_reason',
+            model_name="fluconazolemisseddoses",
+            old_name="flucon_missed_reason",
+            new_name="missed_reason",
         ),
         migrations.RenameField(
-            model_name='historicalfluconazolemisseddoses',
-            old_name='flucon_day_missed',
-            new_name='day_missed',
+            model_name="historicalfluconazolemisseddoses",
+            old_name="flucon_day_missed",
+            new_name="day_missed",
         ),
         migrations.RenameField(
-            model_name='historicalfluconazolemisseddoses',
-            old_name='flucon_missed_reason',
-            new_name='missed_reason',
+            model_name="historicalfluconazolemisseddoses",
+            old_name="flucon_missed_reason",
+            new_name="missed_reason",
         ),
         migrations.AlterUniqueTogether(
-            name='fluconazolemisseddoses',
-            unique_together={('week2', 'day_missed')},
+            name="fluconazolemisseddoses", unique_together={("week2", "day_missed")}
         ),
     ]

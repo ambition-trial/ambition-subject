@@ -7,16 +7,12 @@ from edc_action_item.data_fixers import fix_null_action_item_fk
 def fix(apps, schema_editor):
 
     fix_null_action_item_fk(
-        apps,
-        app_label='ambition_subject',
-        models=['subjectreconsent',
-                'bloodresult'])
+        apps, app_label="ambition_subject", models=["subjectreconsent", "bloodresult"]
+    )
 
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0023_auto_20181010_2059'),
-    ]
+    dependencies = [("ambition_subject", "0023_auto_20181010_2059")]
 
     operations = [migrations.RunPython(fix)]

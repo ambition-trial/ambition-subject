@@ -7,16 +7,23 @@ from .week2 import Week2
 
 
 class SignificantDiagnosesManager(models.Manager):
-
-    def get_by_natural_key(self, possible_diagnoses, dx_date, subject_identifier,
-                           visit_schedule_name, schedule_name, visit_code):
+    def get_by_natural_key(
+        self,
+        possible_diagnoses,
+        dx_date,
+        subject_identifier,
+        visit_schedule_name,
+        schedule_name,
+        visit_code,
+    ):
         return self.get(
             possible_diagnoses=possible_diagnoses,
             dx_date=dx_date,
             subject_visit__subject_identifier=subject_identifier,
             subject_visit__visit_schedule_name=visit_schedule_name,
             subject_visit__schedule_name=schedule_name,
-            subject_visit__visit_code=visit_code)
+            subject_visit__visit_code=visit_code,
+        )
 
 
 class SignificantDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
@@ -29,10 +36,10 @@ class SignificantDiagnoses(SignificantDiagnosesModelMixin, BaseUuidModel):
 
     def natural_key(self):
         return (self.possible_diagnoses, self.dx_date) + self.week2.natural_key()
-    natural_key.dependencies = ['ambition_subject.week2']
+
+    natural_key.dependencies = ["ambition_subject.week2"]
 
     class Meta:
-        verbose_name = 'Significant Diagnosis'
-        verbose_name_plural = 'Significant Diagnoses'
-        unique_together = (
-            'week2', 'possible_diagnoses', 'dx_date', 'dx_other')
+        verbose_name = "Significant Diagnosis"
+        verbose_name_plural = "Significant Diagnoses"
+        unique_together = ("week2", "possible_diagnoses", "dx_date", "dx_other")

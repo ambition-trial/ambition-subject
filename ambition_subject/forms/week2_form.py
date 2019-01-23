@@ -10,4 +10,4 @@ class Week2Form(SubjectModelFormMixin):
 
     class Meta:
         model = Week2
-        fields = '__all__'
+        fields = "__all__"

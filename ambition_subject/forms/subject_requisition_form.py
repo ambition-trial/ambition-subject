@@ -11,46 +11,60 @@ from .form_mixins import SubjectModelFormMixin
 from edc_form_validators.form_validator_mixin import FormValidatorMixin
 
 
-class SubjectRequisitionForm(SubjectModelFormMixin, RequisitionFormMixin, FormValidatorMixin):
+class SubjectRequisitionForm(
+    SubjectModelFormMixin, RequisitionFormMixin, FormValidatorMixin
+):
 
     form_validator_cls = RequisitionFormValidator
 
     requisition_identifier = forms.CharField(
-        label='Requisition identifier',
-        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+        label="Requisition identifier",
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+    )
 
     def clean(self):
         cleaned_data = super().clean()
-        if cleaned_data.get('reason_not_drawn') == NOT_REQUIRED:
-            if self.cleaned_data.get('panel') == chemistry_panel.panel_model_obj:
+        if cleaned_data.get("reason_not_drawn") == NOT_REQUIRED:
+            if self.cleaned_data.get("panel") == chemistry_panel.panel_model_obj:
                 try:
                     self._meta.model.objects.get(
-                        subject_visit=cleaned_data.get('subject_visit'),
+                        subject_visit=cleaned_data.get("subject_visit"),
                         panel=chemistry_alt_panel.panel_model_obj,
-                        is_drawn=YES)
+                        is_drawn=YES,
+                    )
                 except ObjectDoesNotExist:
                     raise forms.ValidationError(
-                        {'reason_not_drawn': 'Invalid choice. At least one '
-                         'chemistry panel is expected.'})
+                        {
+                            "reason_not_drawn": "Invalid choice. At least one "
+                            "chemistry panel is expected."
+                        }
+                    )
             else:
                 raise forms.ValidationError(
-                    {'reason_not_drawn': 'Invalid choice. Not expected '
-                     'for this panel'})
-        if (self.cleaned_data.get('panel') == chemistry_alt_panel.panel_model_obj
-                and self.cleaned_data.get('is_drawn') == NO):
+                    {
+                        "reason_not_drawn": "Invalid choice. Not expected "
+                        "for this panel"
+                    }
+                )
+        if (
+            self.cleaned_data.get("panel") == chemistry_alt_panel.panel_model_obj
+            and self.cleaned_data.get("is_drawn") == NO
+        ):
             try:
                 self._meta.model.objects.get(
-                    subject_visit=cleaned_data.get('subject_visit'),
+                    subject_visit=cleaned_data.get("subject_visit"),
                     panel=chemistry_panel.panel_model_obj,
-                    reason_not_drawn=NOT_REQUIRED)
+                    reason_not_drawn=NOT_REQUIRED,
+                )
             except ObjectDoesNotExist:
                 pass
             else:
                 raise forms.ValidationError(
                     f'Remove the "{chemistry_panel.name}" requisition before '
-                    f'setting this requisition to not drawn.')
+                    f"setting this requisition to not drawn."
+                )
         return cleaned_data
 
     class Meta:
         model = SubjectRequisition
-        fields = '__all__'
+        fields = "__all__"

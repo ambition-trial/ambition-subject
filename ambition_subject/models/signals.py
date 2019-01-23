@@ -12,8 +12,12 @@ from .subject_consent import SubjectConsent
 from .subject_visit import SubjectVisit
 
 
-@receiver(post_save, weak=False, sender=SubjectConsent,
-          dispatch_uid='subject_consent_on_post_save')
+@receiver(
+    post_save,
+    weak=False,
+    sender=SubjectConsent,
+    dispatch_uid="subject_consent_on_post_save",
+)
 def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
     """Creates an onschedule instance for this consented subject, if
     it does not exist.
@@ -21,30 +25,35 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
     if not raw:
         if not created:
             _, schedule = site_visit_schedules.get_by_onschedule_model(
-                'ambition_prn.onschedule')
-            schedule.refresh_schedule(
-                subject_identifier=instance.subject_identifier)
+                "ambition_prn.onschedule"
+            )
+            schedule.refresh_schedule(subject_identifier=instance.subject_identifier)
         else:
             subject_screening = SubjectScreening.objects.get(
-                screening_identifier=instance.screening_identifier)
+                screening_identifier=instance.screening_identifier
+            )
             subject_screening.subject_identifier = instance.subject_identifier
             subject_screening.consented = True
             subject_screening.save_base(
-                update_fields=['subject_identifier', 'consented'])
+                update_fields=["subject_identifier", "consented"]
+            )
 
             # randomize
             Randomizer(
                 subject_identifier=instance.subject_identifier,
                 report_datetime=instance.consent_datetime,
                 site=instance.site,
-                user=instance.user_created)
+                user=instance.user_created,
+            )
 
             # put subject on schedule
             _, schedule = site_visit_schedules.get_by_onschedule_model(
-                'ambition_prn.onschedule')
+                "ambition_prn.onschedule"
+            )
             schedule.put_on_schedule(
                 subject_identifier=instance.subject_identifier,
-                onschedule_datetime=instance.consent_datetime)
+                onschedule_datetime=instance.consent_datetime,
+            )
 
         # create / delete action for reconsent
         if instance.completed_by_next_of_kin == YES:
@@ -53,30 +62,40 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             try:
                 delete_action_item(
                     action_cls=ReconsentAction,
-                    subject_identifier=instance.subject_identifier)
+                    subject_identifier=instance.subject_identifier,
+                )
             except ActionItemDeleteError:
                 pass
 
 
-@receiver(post_delete, weak=False, sender=SubjectConsent,
-          dispatch_uid="subject_consent_on_post_delete")
+@receiver(
+    post_delete,
+    weak=False,
+    sender=SubjectConsent,
+    dispatch_uid="subject_consent_on_post_delete",
+)
 def subject_consent_on_post_delete(sender, instance, using, **kwargs):
     """Updates/Resets subject screening.
     """
     # don't allow if subject visits exist. This should be caught
     # in the ModelAdmin delete view
-    if SubjectVisit.objects.filter(subject_identifier=instance.subject_identifier).exists():
-        raise ValidationError('Unable to delete consent. Visit data exists.')
+    if SubjectVisit.objects.filter(
+        subject_identifier=instance.subject_identifier
+    ).exists():
+        raise ValidationError("Unable to delete consent. Visit data exists.")
 
     _, schedule = site_visit_schedules.get_by_onschedule_model(
-        'ambition_prn.onschedule')
+        "ambition_prn.onschedule"
+    )
     schedule.take_off_schedule(
         subject_identifier=instance.subject_identifier,
-        offschedule_datetime=instance.consent_datetime)
+        offschedule_datetime=instance.consent_datetime,
+    )
 
     # update subject screening
     subject_screening = SubjectScreening.objects.get(
-        screening_identifier=instance.screening_identifier)
+        screening_identifier=instance.screening_identifier
+    )
     subject_screening.consented = False
     subject_screening.subject_identifier = subject_screening.subject_screening_as_pk
     subject_screening.save()

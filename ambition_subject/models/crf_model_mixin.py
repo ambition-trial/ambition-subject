@@ -12,10 +12,16 @@ from edc_visit_tracking.model_mixins import PreviousVisitModelMixin
 from .subject_visit import SubjectVisit
 
 
-class CrfModelMixin(BaseCrfModelMixin, SubjectScheduleCrfModelMixin,
-                    RequiresConsentFieldsModelMixin, PreviousVisitModelMixin,
-                    UpdatesCrfMetadataModelMixin, SiteModelMixin,
-                    ReferenceModelMixin, BaseUuidModel):
+class CrfModelMixin(
+    BaseCrfModelMixin,
+    SubjectScheduleCrfModelMixin,
+    RequiresConsentFieldsModelMixin,
+    PreviousVisitModelMixin,
+    UpdatesCrfMetadataModelMixin,
+    SiteModelMixin,
+    ReferenceModelMixin,
+    BaseUuidModel,
+):
 
     """ Base model for all scheduled models
     """
@@ -24,10 +30,12 @@ class CrfModelMixin(BaseCrfModelMixin, SubjectScheduleCrfModelMixin,
 
     def natural_key(self):
         return self.subject_visit.natural_key()
+
     natural_key.dependencies = [
-        'ambition_subject.subjectvisit',
-        'sites.Site',
-        'edc_appointment.appointment']
+        "ambition_subject.subjectvisit",
+        "sites.Site",
+        "edc_appointment.appointment",
+    ]
 
     class Meta:
         abstract = True

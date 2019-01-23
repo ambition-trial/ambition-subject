@@ -10,4 +10,4 @@ class MicrobiologyForm(SubjectModelFormMixin):
 
     class Meta:
         model = Microbiology
-        fields = '__all__'
+        fields = "__all__"

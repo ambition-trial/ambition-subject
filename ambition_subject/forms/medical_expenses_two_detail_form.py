@@ -10,4 +10,4 @@ class MedicalExpensesTwoDetailForm(InlineSubjectModelFormMixin):
 
     class Meta:
         model = MedicalExpensesTwoDetail
-        fields = '__all__'
+        fields = "__all__"

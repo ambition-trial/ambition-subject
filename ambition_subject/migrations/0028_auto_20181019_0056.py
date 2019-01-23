@@ -5,29 +5,41 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0027_auto_20181018_0054'),
-    ]
+    dependencies = [("ambition_subject", "0027_auto_20181018_0054")]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalpkpdcrf',
-            name='flucytosine_dose',
-            field=models.IntegerField(blank=True, help_text='Total of all doses given. Units in mg', null=True, verbose_name='Flucytosine dose?'),
+            model_name="historicalpkpdcrf",
+            name="flucytosine_dose",
+            field=models.IntegerField(
+                blank=True,
+                help_text="Total of all doses given. Units in mg",
+                null=True,
+                verbose_name="Flucytosine dose?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalweek2',
-            name='medicine_other',
-            field=models.TextField(blank=True, null=True, verbose_name='If other, please specify:'),
+            model_name="historicalweek2",
+            name="medicine_other",
+            field=models.TextField(
+                blank=True, null=True, verbose_name="If other, please specify:"
+            ),
         ),
         migrations.AlterField(
-            model_name='pkpdcrf',
-            name='flucytosine_dose',
-            field=models.IntegerField(blank=True, help_text='Total of all doses given. Units in mg', null=True, verbose_name='Flucytosine dose?'),
+            model_name="pkpdcrf",
+            name="flucytosine_dose",
+            field=models.IntegerField(
+                blank=True,
+                help_text="Total of all doses given. Units in mg",
+                null=True,
+                verbose_name="Flucytosine dose?",
+            ),
         ),
         migrations.AlterField(
-            model_name='week2',
-            name='medicine_other',
-            field=models.TextField(blank=True, null=True, verbose_name='If other, please specify:'),
+            model_name="week2",
+            name="medicine_other",
+            field=models.TextField(
+                blank=True, null=True, verbose_name="If other, please specify:"
+            ),
         ),
     ]

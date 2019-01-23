@@ -2,7 +2,10 @@ from .blood_result_admin import BloodResultsAdmin
 from .education_admin import EducationAdmin
 from .education_hoh_admin import EducationHohAdmin
 from .follow_up_admin import FollowUpAdmin
-from .medical_expenses_two_admin import MedicalExpensesTwoAdmin, MedicalExpensesTwoDetailAdmin
+from .medical_expenses_two_admin import (
+    MedicalExpensesTwoAdmin,
+    MedicalExpensesTwoDetailAdmin,
+)
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin
 from .medical_expenses_admin import MedicalExpensesAdmin

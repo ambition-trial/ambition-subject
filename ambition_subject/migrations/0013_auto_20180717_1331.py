@@ -6,29 +6,71 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0012_auto_20180708_1000'),
-    ]
+    dependencies = [("ambition_subject", "0012_auto_20180708_1000")]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalpatienthistory',
-            name='tablets_missed',
-            field=models.IntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(31)], verbose_name='If not adherent, how many doses missed in the last month?'),
+            model_name="historicalpatienthistory",
+            name="tablets_missed",
+            field=models.IntegerField(
+                blank=True,
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(0),
+                    django.core.validators.MaxValueValidator(31),
+                ],
+                verbose_name="If not adherent, how many doses missed in the last month?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectconsent',
-            name='language',
-            field=models.CharField(choices=[['af', 'Afrikaans'], ['ny', 'Chichewa'], ['en', 'English'], ['xh', 'isiXhosa'], ['lg', 'Luganda'], ['rny', 'Runyankore'], ['tn', 'Setswana'], ['sn', 'Shona']], help_text='The language used for the consent process will also be used during data collection.', max_length=25, verbose_name='Language of consent'),
+            model_name="historicalsubjectconsent",
+            name="language",
+            field=models.CharField(
+                choices=[
+                    ["af", "Afrikaans"],
+                    ["ny", "Chichewa"],
+                    ["en", "English"],
+                    ["xh", "isiXhosa"],
+                    ["lg", "Luganda"],
+                    ["rny", "Runyankore"],
+                    ["tn", "Setswana"],
+                    ["sn", "Shona"],
+                ],
+                help_text="The language used for the consent process will also be used during data collection.",
+                max_length=25,
+                verbose_name="Language of consent",
+            ),
         ),
         migrations.AlterField(
-            model_name='patienthistory',
-            name='tablets_missed',
-            field=models.IntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(31)], verbose_name='If not adherent, how many doses missed in the last month?'),
+            model_name="patienthistory",
+            name="tablets_missed",
+            field=models.IntegerField(
+                blank=True,
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(0),
+                    django.core.validators.MaxValueValidator(31),
+                ],
+                verbose_name="If not adherent, how many doses missed in the last month?",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectconsent',
-            name='language',
-            field=models.CharField(choices=[['af', 'Afrikaans'], ['ny', 'Chichewa'], ['en', 'English'], ['xh', 'isiXhosa'], ['lg', 'Luganda'], ['rny', 'Runyankore'], ['tn', 'Setswana'], ['sn', 'Shona']], help_text='The language used for the consent process will also be used during data collection.', max_length=25, verbose_name='Language of consent'),
+            model_name="subjectconsent",
+            name="language",
+            field=models.CharField(
+                choices=[
+                    ["af", "Afrikaans"],
+                    ["ny", "Chichewa"],
+                    ["en", "English"],
+                    ["xh", "isiXhosa"],
+                    ["lg", "Luganda"],
+                    ["rny", "Runyankore"],
+                    ["tn", "Setswana"],
+                    ["sn", "Shona"],
+                ],
+                help_text="The language used for the consent process will also be used during data collection.",
+                max_length=25,
+                verbose_name="Language of consent",
+            ),
         ),
     ]

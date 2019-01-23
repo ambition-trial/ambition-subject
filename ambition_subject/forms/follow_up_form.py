@@ -13,7 +13,7 @@ class FollowUpForm(SubjectModelFormMixin):
 
     class Meta:
         model = FollowUp
-        fields = '__all__'
+        fields = "__all__"
 
 
 class FollowUpDiagnosesForm(forms.ModelForm):
@@ -22,4 +22,4 @@ class FollowUpDiagnosesForm(forms.ModelForm):
 
     class Meta:
         model = FollowUpDiagnoses
-        fields = '__all__'
+        fields = "__all__"

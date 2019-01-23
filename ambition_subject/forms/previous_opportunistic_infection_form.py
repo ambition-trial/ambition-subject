@@ -10,4 +10,4 @@ class PreviousOpportunisticInfectionForm(InlineSubjectModelFormMixin):
 
     class Meta:
         model = PreviousOpportunisticInfection
-        fields = '__all__'
+        fields = "__all__"

@@ -10,4 +10,4 @@ class RadiologyForm(SubjectModelFormMixin):
 
     class Meta:
         model = Radiology
-        fields = '__all__'
+        fields = "__all__"

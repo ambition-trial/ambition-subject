@@ -10,4 +10,4 @@ class AmphotericinMissedDosesForm(InlineSubjectModelFormMixin):
 
     class Meta:
         model = AmphotericinMissedDoses
-        fields = '__all__'
+        fields = "__all__"

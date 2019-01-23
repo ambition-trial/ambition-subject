@@ -18,32 +18,42 @@ class CurrentSiteManager(VisitModelManager, BaseCurrentSiteManager):
     pass
 
 
-class SubjectVisit(VisitModelMixin, ReferenceModelMixin, CreatesMetadataModelMixin,
-                   SiteModelMixin, RequiresConsentFieldsModelMixin, BaseUuidModel):
+class SubjectVisit(
+    VisitModelMixin,
+    ReferenceModelMixin,
+    CreatesMetadataModelMixin,
+    SiteModelMixin,
+    RequiresConsentFieldsModelMixin,
+    BaseUuidModel,
+):
 
     """A model completed by the user that captures the covering
     information for the data collected for this timepoint/appointment,
     e.g.report_datetime.
     """
+
     appointment = models.OneToOneField(Appointment, on_delete=models.PROTECT)
 
     reason = models.CharField(
-        verbose_name='What is the reason for this visit report?',
+        verbose_name="What is the reason for this visit report?",
         max_length=25,
-        choices=VISIT_REASON)
+        choices=VISIT_REASON,
+    )
 
     reason_unscheduled = models.CharField(
         verbose_name=(
-            'If \'Unscheduled\' above, provide reason for '
-            'the unscheduled visit'),
+            "If 'Unscheduled' above, provide reason for " "the unscheduled visit"
+        ),
         max_length=25,
         choices=VISIT_UNSCHEDULED_REASON,
-        default=NOT_APPLICABLE)
+        default=NOT_APPLICABLE,
+    )
 
     info_source = models.CharField(
-        verbose_name='What is the main source of this information?',
+        verbose_name="What is the main source of this information?",
         max_length=25,
-        choices=INFO_SOURCE)
+        choices=INFO_SOURCE,
+    )
 
     on_site = CurrentSiteManager()
 

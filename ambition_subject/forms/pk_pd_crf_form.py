@@ -10,4 +10,4 @@ class PkPdCrfForm(SubjectModelFormMixin):
 
     class Meta:
         model = PkPdCrf
-        fields = '__all__'
+        fields = "__all__"

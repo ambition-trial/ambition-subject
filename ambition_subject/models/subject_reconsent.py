@@ -20,32 +20,38 @@ from ..model_mixins import SearchSlugModelMixin
 
 
 class SubjectReconsent(
-        UniqueSubjectIdentifierModelMixin, SiteModelMixin,
-        ReviewFieldsMixin, SearchSlugModelMixin,
-        ActionModelMixin, TrackingModelMixin, BaseUuidModel):
+    UniqueSubjectIdentifierModelMixin,
+    SiteModelMixin,
+    ReviewFieldsMixin,
+    SearchSlugModelMixin,
+    ActionModelMixin,
+    TrackingModelMixin,
+    BaseUuidModel,
+):
 
     """ A model completed by the user that updates the consent
     for those originally consented by next of kin.
     """
 
-    subject_screening_model = 'ambition_screening.subjectscreening'
+    subject_screening_model = "ambition_screening.subjectscreening"
 
-    subject_consent_model = 'ambition_subject.subjectconsent'
+    subject_consent_model = "ambition_subject.subjectconsent"
 
-    tracking_identifier_prefix = 'SR'
+    tracking_identifier_prefix = "SR"
 
     action_name = RECONSENT_ACTION
 
-    site = models.ForeignKey(
-        Site, on_delete=models.PROTECT, null=True, editable=False)
+    site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, editable=False)
 
-    report_datetime = models.DateTimeField(
-        default=get_utcnow)
+    report_datetime = models.DateTimeField(default=get_utcnow)
 
     identity = IdentityField(
-        verbose_name='Identity number',
-        help_text=('Provide the same identity number provided on the original '
-                   'consent complete by the next of kin.'))
+        verbose_name="Identity number",
+        help_text=(
+            "Provide the same identity number provided on the original "
+            "consent complete by the next of kin."
+        ),
+    )
 
     on_site = CurrentSiteManager()
 
@@ -57,12 +63,13 @@ class SubjectReconsent(
     def save(self, *args, **kwargs):
         subject_screening = self.get_subject_screening()
         if subject_screening.mental_status != ABNORMAL:
-            raise ValidationError('Reconsent is not required.')
+            raise ValidationError("Reconsent is not required.")
         try:
             self.get_subject_consent(
-                screening_identifier=subject_screening.screening_identifier)
+                screening_identifier=subject_screening.screening_identifier
+            )
         except ObjectDoesNotExist:
-            raise ValidationError('Previous consent does not exist.')
+            raise ValidationError("Previous consent does not exist.")
         super().save(*args, **kwargs)
 
     def natural_key(self):
@@ -77,22 +84,21 @@ class SubjectReconsent(
         return model_cls.objects.get(
             screening_identifier=screening_identifier,
             subject_identifier=self.subject_identifier,
-            identity=self.identity)
+            identity=self.identity,
+        )
 
     def get_subject_screening(self):
         """Returns the subject screening model instance.
         """
-        rs = RegisteredSubject.objects.get(
-            subject_identifier=self.subject_identifier)
+        rs = RegisteredSubject.objects.get(subject_identifier=self.subject_identifier)
         model_cls = django_apps.get_model(self.subject_screening_model)
-        return model_cls.objects.get(
-            screening_identifier=rs.screening_identifier)
+        return model_cls.objects.get(screening_identifier=rs.screening_identifier)
 
     @property
     def registration_unique_field(self):
         """Required for UpdatesOrCreatesRegistrationModelMixin.
         """
-        return 'subject_identifier'
+        return "subject_identifier"
 
     class Meta:
-        verbose_name = 'Subject re-consent'
+        verbose_name = "Subject re-consent"

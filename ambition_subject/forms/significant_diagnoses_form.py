@@ -10,4 +10,4 @@ class SignificantDiagnosesForm(InlineSubjectModelFormMixin):
 
     class Meta:
         model = SignificantDiagnoses
-        fields = '__all__'
+        fields = "__all__"
