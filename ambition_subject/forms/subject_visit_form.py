@@ -6,9 +6,13 @@ from edc_visit_tracking.form_validators import VisitFormValidator
 from ..models import SubjectVisit
 
 
+class SubjectVisitFormValidator(VisitFormValidator):
+    validate_missed_visit = False
+
+
 class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
 
-    form_validator_cls = VisitFormValidator
+    form_validator_cls = SubjectVisitFormValidator
 
     class Meta:
         model = SubjectVisit
