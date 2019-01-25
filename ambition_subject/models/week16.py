@@ -1,7 +1,7 @@
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
 from edc_base.model_validators import date_not_future
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import RANKIN_SCORE
@@ -12,7 +12,7 @@ from .crf_model_mixin import CrfModelMixin
 class Week16(CrfModelMixin):
 
     patient_alive = models.CharField(
-        verbose_name="Is the patient alive?", max_length=5, choices=YES_NO
+        verbose_name="Is the patient alive?", max_length=5, choices=YES_NO_UNKNOWN
     )
 
     death_datetime = models.DateTimeField(
@@ -20,6 +20,7 @@ class Week16(CrfModelMixin):
         validators=[date_not_future],
         null=True,
         blank=True,
+        help_text="removed version 0.1.74",
     )
 
     activities_help = models.CharField(
