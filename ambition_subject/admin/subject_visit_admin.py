@@ -22,6 +22,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, admin.ModelAdmin)
                     "appointment",
                     "report_datetime",
                     "reason",
+                    "reason_missed",
                     "reason_unscheduled",
                     "reason_unscheduled_other",
                     "info_source",
