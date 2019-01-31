@@ -7,7 +7,7 @@ from ..models import SubjectVisit
 
 
 class SubjectVisitFormValidator(VisitFormValidator):
-    validate_missed_visit = False
+    validate_missed_visit_reason = False
 
 
 class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):

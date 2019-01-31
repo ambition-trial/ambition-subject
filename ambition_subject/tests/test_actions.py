@@ -16,13 +16,15 @@ from edc_reportable.units import TEN_X_9_PER_LITER
 @override_settings(SITE_ID="10")
 class TestActions(AmbitionTestCaseMixin, TestCase):
     def setUp(self):
-        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe(
+            "ambition_screening.subjectscreening")
 
         options = {
             "screening_identifier": subject_screening.screening_identifier,
             "consent_datetime": get_utcnow,
         }
-        consent = mommy.make_recipe("ambition_subject.subjectconsent", **options)
+        consent = mommy.make_recipe(
+            "ambition_subject.subjectconsent", **options)
 
         self.subject_identifier = consent.subject_identifier
 
@@ -58,7 +60,6 @@ class TestActions(AmbitionTestCaseMixin, TestCase):
             self.fail("ActionItem unexpectedly does not exist.")
         obj.save()
 
-    @tag("1")
     def test_2(self):
         make_recipe(
             "ambition_subject.bloodresult",
