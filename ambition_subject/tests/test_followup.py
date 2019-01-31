@@ -94,6 +94,7 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
 #         self.assertEqual(RequisitionMetadata.objects.filter(
 #             visit_code=subject_visit.visit_code).count(), 0)
 
+    @tag('1')
     def test_(self):
         """Asserts custom antibiotic question shows for Week 10.
         """
