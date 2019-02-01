@@ -10,3 +10,4 @@ omit =
     .eggs/
     .settings/*
     runtests.py
+    /home/travis/virtualenv/*
