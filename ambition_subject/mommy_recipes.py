@@ -14,18 +14,19 @@ from .models import Education, EducationHoh
 from .models import LumbarPunctureCsf, Radiology
 from .models import MedicalExpensesTwo
 from .models import PatientHistory, Week16, Week4
-from .models import Week2, SubjectVisit, MedicalExpenses
-from .models import SubjectConsent, MedicalExpensesTwoDetail
 from .models import PkPdCrf, SubjectReconsent
-from ambition_subject.models.subject_requisition import SubjectRequisition
-from edc_lab.constants import TUBE
+from .models import SubjectConsent, MedicalExpensesTwoDetail
+from .models import SubjectRequisition
+from .models import Week2, SubjectVisit, MedicalExpenses
 
 
 fake = Faker()
 
-bloodresult = Recipe(BloodResult, action_identifier=None, tracking_identifier=None)
+bloodresult = Recipe(BloodResult, action_identifier=None,
+                     tracking_identifier=None)
 
-neurological = Recipe(Neurological, name="meningismus", short_name="Meningismus")
+neurological = Recipe(Neurological, name="meningismus",
+                      short_name="Meningismus")
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis, name=NOT_APPLICABLE, short_name=NOT_APPLICABLE

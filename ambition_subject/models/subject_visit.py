@@ -42,7 +42,7 @@ class SubjectVisit(
 
     reason_unscheduled = models.CharField(
         verbose_name=(
-            "If 'Unscheduled' above, provide reason for " "the unscheduled visit"
+            "If 'unscheduled', provide reason for the unscheduled visit"
         ),
         max_length=25,
         choices=VISIT_UNSCHEDULED_REASON,

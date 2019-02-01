@@ -110,12 +110,24 @@ WSGI_APPLICATION = "ambition_subject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+if os.environ.get("TRAVIS"):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'edc',
+            'USER': 'travis',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '',
+        },
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
 
 
 # Password validation
@@ -158,7 +170,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, APP_NAME, "tests", "ambition_subject", "static")
+STATIC_ROOT = os.path.join(BASE_DIR, APP_NAME, "tests",
+                           "ambition_subject", "static")
 STATIC_URL = "/static/"
 DEVICE_ID = "99"
 
