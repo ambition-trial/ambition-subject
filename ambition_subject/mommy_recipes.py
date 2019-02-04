@@ -22,11 +22,9 @@ from .models import Week2, SubjectVisit, MedicalExpenses
 
 fake = Faker()
 
-bloodresult = Recipe(BloodResult, action_identifier=None,
-                     tracking_identifier=None)
+bloodresult = Recipe(BloodResult, action_identifier=None, tracking_identifier=None)
 
-neurological = Recipe(Neurological, name="meningismus",
-                      short_name="Meningismus")
+neurological = Recipe(Neurological, name="meningismus", short_name="Meningismus")
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis, name=NOT_APPLICABLE, short_name=NOT_APPLICABLE

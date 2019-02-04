@@ -39,8 +39,7 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
         ):
             self.user.user_permissions.add(permission)
 
-        subject_screening = mommy.make_recipe(
-            "ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
         consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
@@ -66,35 +65,35 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
                     reason=SCHEDULED,
                 )
 
-#     @tag("1")
-#     def test_visit(self):
-#         subject_visit = SubjectVisit.objects.last()
-#         print('---------------------')
-#         print(
-#             'CrfMetadata', [pprint(o.__dict__) for o in CrfMetadata.objects.filter(
-#                 visit_code=subject_visit.visit_code)])
-#         print('---------------------')
-#         self.assertGreater(CrfMetadata.objects.filter(
-#             visit_code=subject_visit.visit_code).count(), 0)
-#         self.assertGreater(RequisitionMetadata.objects.filter(
-#             visit_code=subject_visit.visit_code).count(), 0)
-#         subject_visit.reason = MISSED_VISIT
-#         subject_visit.save()
-#         subject_visit.refresh_from_db()
-#         self.assertEqual(MISSED_VISIT, subject_visit.reason)
-#         print('---------------------')
-#         print(
-#             'CrfMetadata', [pprint(o.__dict__) for o in CrfMetadata.objects.filter(
-#                 visit_code=subject_visit.visit_code)])
-#         print('---------------------')
-#         self.assertEqual(CrfMetadata.objects.filter(
-#             visit_code=subject_visit.visit_code,
-#             subject_identifier=subject_visit.subject_identifier).exclude(
-#                 entry_status=KEYED).count(), 0)
-#         self.assertEqual(RequisitionMetadata.objects.filter(
-#             visit_code=subject_visit.visit_code).count(), 0)
+    #     @tag("1")
+    #     def test_visit(self):
+    #         subject_visit = SubjectVisit.objects.last()
+    #         print('---------------------')
+    #         print(
+    #             'CrfMetadata', [pprint(o.__dict__) for o in CrfMetadata.objects.filter(
+    #                 visit_code=subject_visit.visit_code)])
+    #         print('---------------------')
+    #         self.assertGreater(CrfMetadata.objects.filter(
+    #             visit_code=subject_visit.visit_code).count(), 0)
+    #         self.assertGreater(RequisitionMetadata.objects.filter(
+    #             visit_code=subject_visit.visit_code).count(), 0)
+    #         subject_visit.reason = MISSED_VISIT
+    #         subject_visit.save()
+    #         subject_visit.refresh_from_db()
+    #         self.assertEqual(MISSED_VISIT, subject_visit.reason)
+    #         print('---------------------')
+    #         print(
+    #             'CrfMetadata', [pprint(o.__dict__) for o in CrfMetadata.objects.filter(
+    #                 visit_code=subject_visit.visit_code)])
+    #         print('---------------------')
+    #         self.assertEqual(CrfMetadata.objects.filter(
+    #             visit_code=subject_visit.visit_code,
+    #             subject_identifier=subject_visit.subject_identifier).exclude(
+    #                 entry_status=KEYED).count(), 0)
+    #         self.assertEqual(RequisitionMetadata.objects.filter(
+    #             visit_code=subject_visit.visit_code).count(), 0)
 
-    @tag('1')
+    @tag("1")
     def test_(self):
         """Asserts custom antibiotic question shows for Week 10.
         """

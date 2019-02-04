@@ -12,9 +12,7 @@ from .crf_model_mixin import CrfModelMixin
 class Week16(CrfModelMixin):
 
     patient_alive = models.CharField(
-        verbose_name="Is the patient alive?",
-        max_length=15,
-        choices=YES_NO_UNKNOWN
+        verbose_name="Is the patient alive?", max_length=15, choices=YES_NO_UNKNOWN
     )
 
     death_datetime = models.DateTimeField(

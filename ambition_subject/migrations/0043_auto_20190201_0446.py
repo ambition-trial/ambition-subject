@@ -9,49 +9,93 @@ import edc_protocol.validators
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0042_auto_20190131_2004'),
-    ]
+    dependencies = [("ambition_subject", "0042_auto_20190131_2004")]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalsubjectvisit',
-            name='reason_missed',
-            field=models.CharField(blank=True, max_length=35, null=True, verbose_name="If 'Missed' above, provide the reason the scheduled visit was missed"),
+            model_name="historicalsubjectvisit",
+            name="reason_missed",
+            field=models.CharField(
+                blank=True,
+                max_length=35,
+                null=True,
+                verbose_name="If 'Missed' above, provide the reason the scheduled visit was missed",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectvisit',
-            name='reason_missed_other',
-            field=edc_model_fields.fields.other_charfield.OtherCharField(blank=True, max_length=25, null=True, verbose_name='If "Other" reason for missed visit, specify'),
+            model_name="historicalsubjectvisit",
+            name="reason_missed_other",
+            field=edc_model_fields.fields.other_charfield.OtherCharField(
+                blank=True,
+                max_length=25,
+                null=True,
+                verbose_name='If "Other" reason for missed visit, specify',
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectvisit',
-            name='reason_unscheduled_other',
-            field=edc_model_fields.fields.other_charfield.OtherCharField(blank=True, max_length=25, null=True, verbose_name='If "Other" reason for unscheduled visit, specify'),
+            model_name="historicalsubjectvisit",
+            name="reason_unscheduled_other",
+            field=edc_model_fields.fields.other_charfield.OtherCharField(
+                blank=True,
+                max_length=25,
+                null=True,
+                verbose_name='If "Other" reason for unscheduled visit, specify',
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectvisit',
-            name='report_datetime',
-            field=models.DateTimeField(default=edc_base.utils.get_utcnow, help_text='Date and time of this report', validators=[edc_protocol.validators.datetime_not_before_study_start, edc_base.model_validators.date.datetime_not_future], verbose_name='Visit Date and Time'),
+            model_name="historicalsubjectvisit",
+            name="report_datetime",
+            field=models.DateTimeField(
+                default=edc_base.utils.get_utcnow,
+                help_text="Date and time of this report",
+                validators=[
+                    edc_protocol.validators.datetime_not_before_study_start,
+                    edc_base.model_validators.date.datetime_not_future,
+                ],
+                verbose_name="Visit Date and Time",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectvisit',
-            name='reason_missed',
-            field=models.CharField(blank=True, max_length=35, null=True, verbose_name="If 'Missed' above, provide the reason the scheduled visit was missed"),
+            model_name="subjectvisit",
+            name="reason_missed",
+            field=models.CharField(
+                blank=True,
+                max_length=35,
+                null=True,
+                verbose_name="If 'Missed' above, provide the reason the scheduled visit was missed",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectvisit',
-            name='reason_missed_other',
-            field=edc_model_fields.fields.other_charfield.OtherCharField(blank=True, max_length=25, null=True, verbose_name='If "Other" reason for missed visit, specify'),
+            model_name="subjectvisit",
+            name="reason_missed_other",
+            field=edc_model_fields.fields.other_charfield.OtherCharField(
+                blank=True,
+                max_length=25,
+                null=True,
+                verbose_name='If "Other" reason for missed visit, specify',
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectvisit',
-            name='reason_unscheduled_other',
-            field=edc_model_fields.fields.other_charfield.OtherCharField(blank=True, max_length=25, null=True, verbose_name='If "Other" reason for unscheduled visit, specify'),
+            model_name="subjectvisit",
+            name="reason_unscheduled_other",
+            field=edc_model_fields.fields.other_charfield.OtherCharField(
+                blank=True,
+                max_length=25,
+                null=True,
+                verbose_name='If "Other" reason for unscheduled visit, specify',
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectvisit',
-            name='report_datetime',
-            field=models.DateTimeField(default=edc_base.utils.get_utcnow, help_text='Date and time of this report', validators=[edc_protocol.validators.datetime_not_before_study_start, edc_base.model_validators.date.datetime_not_future], verbose_name='Visit Date and Time'),
+            model_name="subjectvisit",
+            name="report_datetime",
+            field=models.DateTimeField(
+                default=edc_base.utils.get_utcnow,
+                help_text="Date and time of this report",
+                validators=[
+                    edc_protocol.validators.datetime_not_before_study_start,
+                    edc_base.model_validators.date.datetime_not_future,
+                ],
+                verbose_name="Visit Date and Time",
+            ),
         ),
     ]
