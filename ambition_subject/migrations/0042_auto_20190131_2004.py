@@ -5,19 +5,25 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0041_auto_20190130_2250'),
-    ]
+    dependencies = [("ambition_subject", "0041_auto_20190130_2250")]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalweek16',
-            name='patient_alive',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('unknown', 'Unknown')], max_length=15, verbose_name='Is the patient alive?'),
+            model_name="historicalweek16",
+            name="patient_alive",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("unknown", "Unknown")],
+                max_length=15,
+                verbose_name="Is the patient alive?",
+            ),
         ),
         migrations.AlterField(
-            model_name='week16',
-            name='patient_alive',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('unknown', 'Unknown')], max_length=15, verbose_name='Is the patient alive?'),
+            model_name="week16",
+            name="patient_alive",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("unknown", "Unknown")],
+                max_length=15,
+                verbose_name="Is the patient alive?",
+            ),
         ),
     ]

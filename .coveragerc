@@ -1,13 +1,4 @@
 [run]
-omit =
-    */wsgi.py
-    setup.py
-    manage.py
-    */migrations/*
-    */mommy_*
-    venv/*
-    .tox/*
-    .eggs/
-    .settings/*
-    runtests.py
-    /home/travis/virtualenv/*
+include = ambition_subject/*
+omit = ambition_subject/tests/*
+branch = 1
