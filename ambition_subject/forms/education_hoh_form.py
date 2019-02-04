@@ -8,19 +8,15 @@ class EducationHohForm(SubjectModelFormMixin):
 
     form_validator_cls = EducationFormValidator
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["profession"].label = "What is their profession?"
-        self.fields[
-            "education_years"
-        ].label = "How many years of education did they complete?"
-        self.fields[
-            "education_certificate"
-        ].label = "What is the their highest education certificate?"
-        self.fields["elementary"].label = "Did they go to elementary/primary school?"
-        self.fields["secondary"].label = "Did they go to secondary school?"
-        self.fields["higher_education"].label = "Did they go to higher education?"
-
     class Meta:
         model = EducationHoh
         fields = "__all__"
+
+        labels = {
+            "profession": "What is their profession?",
+            "education_years": "How many years of education did they complete?",
+            "education_certificate": "What is their highest education certificate?",
+            "elementary": "Did they go to elementary/primary school?",
+            "secondary": "Did they go to secondary school?",
+            "higher_education": "Did they go to higher education?",
+        }

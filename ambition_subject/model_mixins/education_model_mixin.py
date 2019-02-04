@@ -15,7 +15,7 @@ class EducationModelMixin(models.Model):
     )
 
     education_certificate = models.CharField(
-        verbose_name="What is the your highest education " "certificate?", max_length=25
+        verbose_name="What is the your highest education certificate?", max_length=25
     )
 
     elementary = models.CharField(

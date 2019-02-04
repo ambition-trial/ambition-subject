@@ -1,4 +1,4 @@
-|pypi| |travis| |coverage|
+|pypi| |travis| |codecov| |downloads|
 
 ambition-subject
 -----------------
@@ -11,5 +11,9 @@ Subject/Participant models
 .. |travis| image:: https://travis-ci.com/ambition-trial/ambition-subject.svg?branch=develop
     :target: https://travis-ci.com/ambition-trial/ambition-subject
     
-.. |coverage| image:: https://coveralls.io/repos/github/ambition-trial/ambition-subject/badge.svg?branch=develop
-    :target: https://coveralls.io/github/ambition-trial/ambition-subject?branch=develop
+.. |codecov| image:: https://codecov.io/gh/ambition-trial/ambition-subject/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/ambition-trial/ambition-subject
+
+.. |downloads| image:: https://pepy.tech/badge/ambition-subject
+   :target: https://pepy.tech/project/ambition-subject
+
