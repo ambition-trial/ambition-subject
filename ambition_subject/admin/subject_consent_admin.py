@@ -160,11 +160,19 @@ class SubjectConsentAdmin(
         'participant' with 'next of kin'.
         """
         form = super().get_form(request, obj=obj, **kwargs)
-        subject_screening = SubjectScreening.objects.get(
-            screening_identifier=request.GET.get("screening_identifier")
-        )
-        if subject_screening.mental_status == ABNORMAL:
-            form = self.replace_label_text(
-                form, "participant", "next of kin", skip_fields=["is_incarcerated"]
+        if obj:
+            screening_identifier = obj.screening_identifier
+        else:
+            screening_identifier = request.GET.get("screening_identifier")
+        try:
+            subject_screening = SubjectScreening.objects.get(
+                screening_identifier=screening_identifier
             )
+        except ObjectDoesNotExist:
+            pass
+        else:
+            if subject_screening.mental_status == ABNORMAL:
+                form = self.replace_label_text(
+                    form, "participant", "next of kin", skip_fields=["is_incarcerated"]
+                )
         return form
