@@ -128,8 +128,7 @@ class SubjectConsentAdmin(
         return super().get_readonly_fields(request, obj=obj) + audit_fields
 
     def view_on_site(self, obj):
-        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get(
-            "subject_dashboard_url")
+        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get("subject_dashboard_url")
         try:
             return reverse(
                 dashboard_url_name,
@@ -145,8 +144,7 @@ class SubjectConsentAdmin(
         obj = SubjectConsent.objects.get(id=object_id)
         try:
             protected = [
-                SubjectVisit.objects.get(
-                    subject_identifier=obj.subject_identifier)
+                SubjectVisit.objects.get(subject_identifier=obj.subject_identifier)
             ]
         except ObjectDoesNotExist:
             protected = None
@@ -168,7 +166,8 @@ class SubjectConsentAdmin(
             screening_identifier = request.GET.get("screening_identifier")
         try:
             subject_screening = SubjectScreening.objects.get(
-                screening_identifier=screening_identifier)
+                screening_identifier=screening_identifier
+            )
         except ObjectDoesNotExist:
             pass
         else:
