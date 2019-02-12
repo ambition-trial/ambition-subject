@@ -27,6 +27,7 @@ class Week16Admin(CrfModelAdminMixin, admin.ModelAdmin):
                     "subject_visit",
                     "report_datetime",
                     "patient_alive",
+                    "death_datetime",
                     "activities_help",
                     "illness_problems",
                     "rankin_score",
