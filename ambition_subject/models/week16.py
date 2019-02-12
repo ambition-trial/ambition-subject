@@ -1,6 +1,6 @@
 from django.db import models
 from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future
+from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_visit_tracking.managers import CrfModelManager
 
@@ -16,11 +16,11 @@ class Week16(CrfModelMixin):
     )
 
     death_datetime = models.DateTimeField(
-        verbose_name="If dead, date and time of death",
-        validators=[date_not_future],
+        verbose_name="If deceased, date and time of death",
+        validators=[datetime_not_future],
         null=True,
         blank=True,
-        help_text="removed version 0.1.74",
+        help_text="Leave blank if date is unknown.",
     )
 
     activities_help = models.CharField(

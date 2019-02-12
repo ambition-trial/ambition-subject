@@ -9,7 +9,7 @@ Subject/Participant models
     :target: https://pypi.python.org/pypi/ambition-subject
     
 .. |travis| image:: https://travis-ci.com/ambition-trial/ambition-subject.svg?branch=develop
-    :target: https://travis-ci.com/ambition-trial/ambition-subject
+    :target: https://travis-ci.org/ambition-trial/ambition-subject
     
 .. |codecov| image:: https://codecov.io/gh/ambition-trial/ambition-subject/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/ambition-trial/ambition-subject
