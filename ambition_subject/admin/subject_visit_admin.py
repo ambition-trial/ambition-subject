@@ -2,15 +2,16 @@ from django.contrib import admin
 from edc_model_admin import audit_fieldset_tuple
 from edc_visit_schedule.fieldsets import visit_schedule_fieldset_tuple
 from edc_visit_tracking.modeladmin_mixins import VisitModelAdminMixin
+from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectVisitForm
 from ..models import SubjectVisit
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin import ModelAdminMixin
 
 
 @admin.register(SubjectVisit, site=ambition_subject_admin)
-class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, admin.ModelAdmin):
+class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmin):
 
     form = SubjectVisitForm
 

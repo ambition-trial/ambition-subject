@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib import admin
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
@@ -17,9 +16,7 @@ from edc_model_admin import (
 from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_metadata import NextFormGetter
 from edc_notification import NotificationModelAdminMixin
-from edc_visit_tracking.modeladmin_mixins import (
-    CrfModelAdminMixin as VisitTrackingCrfModelAdminMixin,
-)
+from edc_visit_tracking.modeladmin_mixins import CrfModelAdminMixin
 
 
 class ModelAdminMixin(
@@ -41,13 +38,7 @@ class ModelAdminMixin(
     next_form_getter_cls = NextFormGetter
 
 
-class CrfModelAdminMixin(
-    VisitTrackingCrfModelAdminMixin,
-    ModelAdminMixin,
-    FieldsetsModelAdminMixin,
-    SimpleHistoryAdmin,
-    admin.ModelAdmin,
-):
+class CrfModelAdminMixin(CrfModelAdminMixin, ModelAdminMixin, FieldsetsModelAdminMixin):
 
     show_save_next = True
     show_cancel = True
@@ -73,3 +64,7 @@ class CrfModelAdminMixin(
         except NoReverseMatch:
             url = super().view_on_site(obj)
         return url
+
+
+class CrfModelAdmin(SimpleHistoryAdmin):
+    pass

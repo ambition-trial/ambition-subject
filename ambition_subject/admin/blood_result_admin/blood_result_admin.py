@@ -6,12 +6,12 @@ from ...admin_site import ambition_subject_admin
 from ...constants import DAY1
 from ...forms import BloodResultForm
 from ...models import BloodResult
-from ..modeladmin_mixins import CrfModelAdminMixin
+from ..modeladmin import CrfModelAdmin
 from .fieldsets import fieldset, biosynex_fieldset
 
 
 @admin.register(BloodResult, site=ambition_subject_admin)
-class BloodResultsAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class BloodResultsAdmin(CrfModelAdmin):
 
     form = BloodResultForm
 

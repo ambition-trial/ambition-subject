@@ -6,7 +6,7 @@ from ..admin_site import ambition_subject_admin
 from ..constants import DAY1, DAY7, DAY14
 from ..forms import PkPdCrfForm, PkPdExtraSamplesForm
 from ..models import PkPdCrf, PkPdExtraSamples
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 day1_fields = Fieldset(
     "blood_sample_one_datetime",
@@ -55,7 +55,7 @@ class PkPdExtraSamplesAdmin(StackedInlineMixin, admin.StackedInline):
 
 
 @admin.register(PkPdCrf, site=ambition_subject_admin)
-class PkPdCrfAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class PkPdCrfAdmin(CrfModelAdmin):
 
     form = PkPdCrfForm
 

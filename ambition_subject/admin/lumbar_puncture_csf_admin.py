@@ -4,11 +4,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import LumbarPunctureCsfForm
 from ..models import LumbarPunctureCsf
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 @admin.register(LumbarPunctureCsf, site=ambition_subject_admin)
-class LumbarPunctureCSFAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class LumbarPunctureCSFAdmin(CrfModelAdmin):
 
     form = LumbarPunctureCsfForm
 
