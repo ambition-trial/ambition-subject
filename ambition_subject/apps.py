@@ -1,7 +1,6 @@
 from django.apps import AppConfig as DjangoApponfig
 from django.conf import settings
 from django.core.management.color import color_style
-from dateutil.relativedelta import relativedelta
 
 style = color_style()
 
@@ -23,7 +22,6 @@ if settings.APP_NAME == "ambition_subject":
     from dateutil.tz import gettz
     from edc_appointment.appointment_config import AppointmentConfig
     from edc_appointment.apps import AppConfig as BaseEdcAppointmentAppConfig
-    from edc_constants.constants import FAILED_ELIGIBILITY
     from edc_facility.apps import AppConfig as BaseEdcFacilityAppConfig
     from edc_identifier.apps import AppConfig as BaseEdcIdentifierAppConfig
     from edc_lab.apps import AppConfig as BaseEdcLabAppConfig
@@ -38,7 +36,8 @@ if settings.APP_NAME == "ambition_subject":
         protocol_name = "Ambition"
         protocol_title = ""
         year = datetime.now().year
-        study_open_datetime = datetime(year, 1, 1, 0, 0, 0, tzinfo=gettz("UTC"))
+        study_open_datetime = datetime(
+            year, 1, 1, 0, 0, 0, tzinfo=gettz("UTC"))
         study_close_datetime = datetime(
             year + 5, 12, 31, 23, 59, 59, tzinfo=gettz("UTC")
         )
