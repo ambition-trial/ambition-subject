@@ -15,13 +15,11 @@ from urllib.parse import parse_qs, urlsplit
 from ..admin_site import ambition_subject_admin
 from ..models import SubjectRequisition
 from ..forms import SubjectRequisitionForm
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 @admin.register(SubjectRequisition, site=ambition_subject_admin)
-class SubjectRequisitionAdmin(
-    CrfModelAdminMixin, RequisitionAdminMixin, admin.ModelAdmin
-):
+class SubjectRequisitionAdmin(CrfModelAdmin, RequisitionAdminMixin, admin.ModelAdmin):
 
     # show_save_next = False
 

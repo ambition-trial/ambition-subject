@@ -56,9 +56,7 @@ class ModelAdminMixin(
 
 
 @admin.register(SubjectConsent, site=ambition_subject_admin)
-class SubjectConsentAdmin(
-    ModelAdminConsentMixin, ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin
-):
+class SubjectConsentAdmin(ModelAdminConsentMixin, ModelAdminMixin, SimpleHistoryAdmin):
 
     form = SubjectConsentForm
 

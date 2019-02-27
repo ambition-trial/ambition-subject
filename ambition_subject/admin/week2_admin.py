@@ -1,6 +1,7 @@
+from ambition_lists.models import OtherDrug, Day14Medication
 from django.contrib import admin
-from edc_model_admin import TabularInlineMixin
-from edc_model_admin import audit_fieldset_tuple
+from edc_constants.constants import NOT_APPLICABLE
+from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
 from ..forms import AmphotericinMissedDosesForm
@@ -10,9 +11,7 @@ from ..forms import SignificantDiagnosesForm
 from ..forms import Week2Form
 from ..models import SignificantDiagnoses, FlucytosineMissedDoses
 from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
-from .modeladmin_mixins import CrfModelAdminMixin
-from ambition_lists.models import OtherDrug, Day14Medication
-from edc_constants.constants import NOT_APPLICABLE
+from .modeladmin import CrfModelAdmin
 
 
 class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
@@ -79,7 +78,7 @@ class FlucytosineMissedDosesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(Week2, site=ambition_subject_admin)
-class Week2Admin(CrfModelAdminMixin, admin.ModelAdmin):
+class Week2Admin(CrfModelAdmin):
 
     form = Week2Form
 

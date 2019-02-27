@@ -14,12 +14,10 @@ class Week16Form(SubjectModelFormMixin):
         cleaned_data = super().clean()
         if self.cleaned_data.get("patient_alive") == NO:
             if self.cleaned_data.get("rankin_score") not in ["6", NOT_DONE]:
-                raise forms.ValidationError(
-                    {"rankin_score": "Invalid response."})
+                raise forms.ValidationError({"rankin_score": "Invalid response."})
         if self.cleaned_data.get("patient_alive") == YES:
             if self.cleaned_data.get("rankin_score") == "6":
-                raise forms.ValidationError(
-                    {"rankin_score": "Invalid response."})
+                raise forms.ValidationError({"rankin_score": "Invalid response."})
         return cleaned_data
 
     class Meta:

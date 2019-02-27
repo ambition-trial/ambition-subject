@@ -4,7 +4,7 @@ from edc_model_admin import audit_fieldset_tuple, StackedInlineMixin
 from ..admin_site import ambition_subject_admin
 from ..forms import MedicalExpensesTwoDetailForm, MedicalExpensesTwoForm
 from ..models import MedicalExpensesTwoDetail, MedicalExpensesTwo
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 class MedicalExpensesTwoDetailAdmin(StackedInlineMixin, admin.StackedInline):
@@ -51,7 +51,7 @@ class MedicalExpensesTwoDetailAdmin(StackedInlineMixin, admin.StackedInline):
 
 
 @admin.register(MedicalExpensesTwo, site=ambition_subject_admin)
-class MedicalExpensesTwoAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class MedicalExpensesTwoAdmin(CrfModelAdmin):
 
     form = MedicalExpensesTwoForm
 

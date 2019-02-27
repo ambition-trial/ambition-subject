@@ -4,11 +4,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import Week16Form
 from ..models import Week16
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 @admin.register(Week16, site=ambition_subject_admin)
-class Week16Admin(CrfModelAdminMixin, admin.ModelAdmin):
+class Week16Admin(CrfModelAdmin):
 
     form = Week16Form
 

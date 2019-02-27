@@ -1,15 +1,14 @@
 from django.contrib import admin
-
 from edc_model_admin import audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
 from ..forms import MicrobiologyForm
 from ..models import Microbiology
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 @admin.register(Microbiology, site=ambition_subject_admin)
-class MicrobiologyAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class MicrobiologyAdmin(CrfModelAdmin):
 
     form = MicrobiologyForm
 

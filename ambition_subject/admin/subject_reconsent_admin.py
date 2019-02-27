@@ -9,11 +9,11 @@ from simple_history.admin import SimpleHistoryAdmin
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectReconsentForm
 from ..models import SubjectReconsent, SubjectVisit
-from .modeladmin_mixins import ModelAdminMixin
+from .modeladmin import ModelAdminMixin
 
 
 @admin.register(SubjectReconsent, site=ambition_subject_admin)
-class SubjectReconsentAdmin(ModelAdminMixin, SimpleHistoryAdmin, admin.ModelAdmin):
+class SubjectReconsentAdmin(ModelAdminMixin, SimpleHistoryAdmin):
 
     form = SubjectReconsentForm
 

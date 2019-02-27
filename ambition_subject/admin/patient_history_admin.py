@@ -1,11 +1,10 @@
 from django.contrib import admin
-
 from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import PatientHistoryForm, PreviousOpportunisticInfectionForm
 from ..models import PatientHistory, PreviousOpportunisticInfection
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 class PreviousOpportunisticInfectionInline(TabularInlineMixin, admin.TabularInline):
@@ -29,7 +28,7 @@ class PreviousOpportunisticInfectionInline(TabularInlineMixin, admin.TabularInli
 
 
 @admin.register(PatientHistory, site=ambition_subject_admin)
-class PatientHistoryAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class PatientHistoryAdmin(CrfModelAdmin):
 
     form = PatientHistoryForm
 

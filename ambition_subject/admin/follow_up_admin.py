@@ -3,12 +3,13 @@ from edc_fieldsets import Fieldset
 from edc_form_label import FormLabel, CustomLabelCondition
 from edc_form_label import FormLabelModelAdminMixin
 from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
+from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..constants import WEEK10
 from ..forms import FollowUpForm, FollowUpDiagnosesForm
 from ..models import FollowUp, FollowUpDiagnoses
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdminMixin
 
 visual_acuity_fieldset = Fieldset(
     "visual_acuity_left_eye",
@@ -49,7 +50,7 @@ class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(FollowUp, site=ambition_subject_admin)
-class FollowUpAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, admin.ModelAdmin):
+class FollowUpAdmin(CrfModelAdminMixin, FormLabelModelAdminMixin, SimpleHistoryAdmin):
 
     form = FollowUpForm
 

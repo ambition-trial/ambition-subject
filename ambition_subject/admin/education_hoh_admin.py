@@ -5,11 +5,11 @@ from edc_model_admin import audit_fieldset_tuple
 from ..admin_site import ambition_subject_admin
 from ..forms import EducationHohForm
 from ..models import EducationHoh
-from .modeladmin_mixins import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 
 @admin.register(EducationHoh, site=ambition_subject_admin)
-class EducationHohAdmin(CrfModelAdminMixin, admin.ModelAdmin):
+class EducationHohAdmin(CrfModelAdmin):
 
     form = EducationHohForm
 
