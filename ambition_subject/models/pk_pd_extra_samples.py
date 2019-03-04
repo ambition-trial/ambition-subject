@@ -1,8 +1,8 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins.base_uuid_model import BaseUuidModel
-from edc_base.model_validators import datetime_not_future
+from edc_model.models import HistoricalRecords
+from edc_model.models import BaseUuidModel
+from edc_model.validators import datetime_not_future
 
 from ..models import PkPdCrf
 

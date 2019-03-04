@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_model.models import HistoricalRecords
 from edc_model_fields.fields import OtherCharField
 from edc_visit_tracking.managers import CrfModelManager
 

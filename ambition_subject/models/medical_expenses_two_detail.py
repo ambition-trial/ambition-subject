@@ -1,10 +1,10 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_constants.choices import YES_NO
 from edc_constants.constants import NOT_APPLICABLE
+from edc_model.models import BaseUuidModel
+from edc_model.models import HistoricalRecords
 from edc_model_fields.fields import OtherCharField
 
 from ..choices import LOCATION_CARE, CARE_PROVIDER, TRANSPORT

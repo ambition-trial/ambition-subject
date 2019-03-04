@@ -1,8 +1,8 @@
 from ambition_lists.models import AbnormalResultsReason, CXRType, InfiltrateLocation
 from django.db import models
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future, datetime_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA, NOT_APPLICABLE
+from edc_model.models import HistoricalRecords
+from edc_model.validators import date_not_future, datetime_not_future
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import BRAIN_IMAGINING_REASON

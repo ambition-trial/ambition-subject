@@ -1,8 +1,8 @@
 from django.db import models
 from django.db.models.deletion import PROTECT
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
-from edc_base.model_validators import date_not_future
+from edc_model.models import HistoricalRecords
+from edc_model.models import BaseUuidModel
+from edc_model.validators import date_not_future
 
 from ..choices import INFECTION
 from .patient_history import PatientHistory

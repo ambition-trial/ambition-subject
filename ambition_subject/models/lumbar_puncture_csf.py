@@ -2,9 +2,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.utils.safestring import mark_safe
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO_NA, NOT_APPLICABLE
+from edc_model.models import HistoricalRecords
+from edc_model.validators import datetime_not_future
 from edc_reportable import (
     GRAMS_PER_LITER,
     MILLIMOLES_PER_LITER,

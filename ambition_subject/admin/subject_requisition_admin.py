@@ -19,7 +19,7 @@ from .modeladmin import CrfModelAdmin
 
 
 @admin.register(SubjectRequisition, site=ambition_subject_admin)
-class SubjectRequisitionAdmin(CrfModelAdmin, RequisitionAdminMixin, admin.ModelAdmin):
+class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
 
     # show_save_next = False
 

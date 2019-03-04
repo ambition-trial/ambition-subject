@@ -3,8 +3,7 @@ from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
-from edc_model_admin import audit_fieldset_tuple, audit_fields
-from simple_history.admin import SimpleHistoryAdmin
+from edc_model_admin import audit_fieldset_tuple, audit_fields, SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectReconsentForm

@@ -6,8 +6,8 @@ from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from django.test.utils import override_settings
 from edc_appointment.models import Appointment
-from edc_base.utils import get_utcnow
 from edc_facility.holidays import Holidays
+from edc_utils import get_utcnow
 from model_mommy import mommy
 
 

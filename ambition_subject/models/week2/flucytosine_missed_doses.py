@@ -1,6 +1,6 @@
 from django.db import models
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
+from edc_model.models import HistoricalRecords
+from edc_model.models import BaseUuidModel
 
 from ...choices import DOSES_MISSED
 from .missed_doses_model_mixin import MissedDosesManager, MissedDosesModelMixin

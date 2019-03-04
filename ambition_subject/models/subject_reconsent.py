@@ -4,15 +4,15 @@ from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.db import models
 from django_crypto_fields.fields.identity_field import IdentityField
 from edc_action_item.models import ActionModelMixin
-from edc_base import get_utcnow
-from edc_base.model_mixins import BaseUuidModel
-from edc_base.sites.site_model_mixin import SiteModelMixin
 from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
-from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
 from edc_identifier.model_mixins import TrackingModelMixin
+from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
+from edc_model.models import BaseUuidModel
 from edc_registration.models import RegisteredSubject
+from edc_sites.models import SiteModelMixin
+from edc_utils import get_utcnow
 
 from ..action_items import RECONSENT_ACTION
 from ..managers import CurrentSiteManager

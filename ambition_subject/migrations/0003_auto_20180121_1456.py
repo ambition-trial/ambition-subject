@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 import django.utils.timezone
-import edc_base.model_validators.date
+import edc_model.validators.date
 
 
 class Migration(migrations.Migration):
@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name="lp_datetime",
             field=models.DateTimeField(
                 default=django.utils.timezone.now,
-                validators=[edc_base.model_validators.date.datetime_not_future],
+                validators=[edc_model.validators.date.datetime_not_future],
                 verbose_name="LP Date and Time",
             ),
             preserve_default=False,
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
             name="lp_datetime",
             field=models.DateTimeField(
                 default=django.utils.timezone.now,
-                validators=[edc_base.model_validators.date.datetime_not_future],
+                validators=[edc_model.validators.date.datetime_not_future],
                 verbose_name="LP Date and Time",
             ),
             preserve_default=False,

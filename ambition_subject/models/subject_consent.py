@@ -1,19 +1,19 @@
 from django.apps import apps as django_apps
 from django.db import models
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_mixins import BaseUuidModel
-from edc_base.sites.site_model_mixin import SiteModelMixin
+from edc_consent.field_mixins import IdentityFieldsMixin
 from edc_consent.field_mixins import ReviewFieldsMixin, PersonalFieldsMixin
 from edc_consent.field_mixins import SampleCollectionFieldsMixin, CitizenFieldsMixin
 from edc_consent.field_mixins import VulnerabilityFieldsMixin
-from edc_consent.field_mixins import IdentityFieldsMixin
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
-from edc_constants.constants import NOT_APPLICABLE, ABNORMAL, NO, YES
 from edc_constants.choices import YES_NO
+from edc_constants.constants import NOT_APPLICABLE, ABNORMAL, NO, YES
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
+from edc_model.models import BaseUuidModel
+from edc_model.models import HistoricalRecords
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_search.model_mixins import SearchSlugManager
+from edc_sites.models import SiteModelMixin
 
 from ..managers import CurrentSiteManager
 from ..model_mixins import SearchSlugModelMixin

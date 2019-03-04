@@ -5,9 +5,9 @@ from ambition_rando.tests import AmbitionTestCaseMixin
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase, tag
 from django.test.utils import override_settings
-from edc_base.utils import get_utcnow
 from edc_constants.constants import UUID_PATTERN
 from edc_registration.models import RegisteredSubject
+from edc_utils import get_utcnow
 from model_mommy import mommy
 
 from ..models import SubjectConsent

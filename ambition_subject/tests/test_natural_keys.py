@@ -3,12 +3,12 @@ from ambition_visit_schedule import DAY1, DAY3, DAY5, DAY7, DAY14, DAY12
 from ambition_visit_schedule import DAY10, WEEK4, WEEK6, WEEK8, WEEK10, WEEK16
 from django.test import TestCase, tag
 from django.test.utils import override_settings
-from edc_appointment.models import Appointment
-from edc_base.utils import get_utcnow
-from edc_metadata.tests import CrfTestHelper
 from django_collect_offline.tests import OfflineTestHelper
-from edc_visit_tracking.constants import SCHEDULED
+from edc_appointment.models import Appointment
 from edc_facility.import_holidays import import_holidays
+from edc_metadata.tests import CrfTestHelper
+from edc_utils import get_utcnow
+from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 from ..models import SubjectVisit
