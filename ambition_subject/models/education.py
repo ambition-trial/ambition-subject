@@ -1,6 +1,6 @@
 from django.db import models
-from edc_base.model_managers import HistoricalRecords
 from edc_constants.choices import YES_NO
+from edc_model.models import HistoricalRecords
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..managers import CurrentSiteManager

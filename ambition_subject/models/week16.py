@@ -1,7 +1,7 @@
 from django.db import models
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
+from edc_model.models import HistoricalRecords
+from edc_model.validators import datetime_not_future
 from edc_visit_tracking.managers import CrfModelManager
 
 from ..choices import RANKIN_SCORE

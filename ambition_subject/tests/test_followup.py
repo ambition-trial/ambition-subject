@@ -11,17 +11,13 @@ from django.test import TestCase, tag
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from edc_appointment.models.appointment import Appointment
-from edc_base.sites.utils import add_or_update_django_sites
-from edc_base.utils import get_utcnow
-from edc_visit_tracking.constants import SCHEDULED, MISSED_VISIT
+from edc_sites.utils import add_or_update_django_sites
+from edc_utils import get_utcnow
+from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
 from ..admin_site import ambition_subject_admin
 from ..models import FollowUp, SubjectVisit
-from edc_metadata.models.crf_metadata import CrfMetadata
-from edc_metadata.models.requisition_metadata import RequisitionMetadata
-from pprint import pprint
-from edc_metadata.constants import KEYED
 
 
 @override_settings(SITE_ID="10")

@@ -2,10 +2,10 @@ from ambition_lists.models import Medication, Symptom, Neurological
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
-from edc_base.model_managers import HistoricalRecords
-from edc_base.model_validators import date_not_future
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
+from edc_model.models import HistoricalRecords
+from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField, IsDateEstimatedFieldNa
 from edc_visit_tracking.managers import CrfModelManager
 

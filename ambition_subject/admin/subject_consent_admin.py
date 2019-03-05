@@ -14,9 +14,9 @@ from edc_model_admin import (
     ModelAdminNextUrlRedirectMixin,
     ModelAdminNextUrlRedirectError,
     ModelAdminReplaceLabelTextMixin,
+    SimpleHistoryAdmin,
 )
 from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
-from simple_history.admin import SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm

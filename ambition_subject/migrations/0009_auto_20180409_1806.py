@@ -2,7 +2,7 @@
 
 import django.core.validators
 from django.db import migrations, models
-import edc_base.model_validators.date
+import edc_model.validators.date
 
 
 class Migration(migrations.Migration):
@@ -232,7 +232,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_base.model_validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="On which date did the research team feel the patient was well enough to go home?",
             ),
         ),
@@ -242,7 +242,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_base.model_validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="On which date did the research team feel the patient was well enough to go home?",
             ),
         ),

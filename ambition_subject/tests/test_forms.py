@@ -6,9 +6,9 @@ from ambition_visit_schedule.constants import DAY1
 from datetime import datetime
 from django.test import TestCase, tag
 from edc_appointment.models.appointment import Appointment
-from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, NO
 from edc_lab.constants import TUBE
+from edc_utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 

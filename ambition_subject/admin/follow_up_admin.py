@@ -2,8 +2,7 @@ from django.contrib import admin
 from edc_fieldsets import Fieldset
 from edc_form_label import FormLabel, CustomLabelCondition
 from edc_form_label import FormLabelModelAdminMixin
-from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin
-from simple_history.admin import SimpleHistoryAdmin
+from edc_model_admin import audit_fieldset_tuple, TabularInlineMixin, SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..constants import WEEK10

@@ -2,8 +2,6 @@ from django.conf import settings
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
-from simple_history.admin import SimpleHistoryAdmin
-from edc_base.sites.admin import ModelAdminSiteMixin
 from edc_model_admin import (
     ModelAdminNextUrlRedirectMixin,
     ModelAdminFormInstructionsMixin,
@@ -12,10 +10,12 @@ from edc_model_admin import (
     ModelAdminReadOnlyMixin,
     ModelAdminInstitutionMixin,
     ModelAdminRedirectOnDeleteMixin,
+    SimpleHistoryAdmin,
 )
 from edc_fieldsets import FieldsetsModelAdminMixin
 from edc_metadata import NextFormGetter
 from edc_notification import NotificationModelAdminMixin
+from edc_sites.admin import ModelAdminSiteMixin
 from edc_visit_tracking.modeladmin_mixins import CrfModelAdminMixin
 
 
@@ -66,5 +66,6 @@ class CrfModelAdminMixin(CrfModelAdminMixin, ModelAdminMixin, FieldsetsModelAdmi
         return url
 
 
-class CrfModelAdmin(SimpleHistoryAdmin):
+class CrfModelAdmin(CrfModelAdminMixin, SimpleHistoryAdmin):
+
     pass
