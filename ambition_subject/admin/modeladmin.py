@@ -7,13 +7,11 @@ from edc_model_admin import (
     ModelAdminFormInstructionsMixin,
     ModelAdminFormAutoNumberMixin,
     ModelAdminAuditFieldsMixin,
-    ModelAdminReadOnlyMixin,
     ModelAdminInstitutionMixin,
     ModelAdminRedirectOnDeleteMixin,
     SimpleHistoryAdmin,
 )
 from edc_fieldsets import FieldsetsModelAdminMixin
-from edc_metadata import NextFormGetter
 from edc_notification import NotificationModelAdminMixin
 from edc_sites.admin import ModelAdminSiteMixin
 from edc_visit_tracking.modeladmin_mixins import CrfModelAdminMixin
@@ -26,7 +24,6 @@ class ModelAdminMixin(
     ModelAdminFormAutoNumberMixin,
     ModelAdminRevisionMixin,
     ModelAdminAuditFieldsMixin,
-    ModelAdminReadOnlyMixin,
     ModelAdminInstitutionMixin,
     ModelAdminRedirectOnDeleteMixin,
     ModelAdminSiteMixin,
@@ -35,7 +32,6 @@ class ModelAdminMixin(
     list_per_page = 10
     date_hierarchy = "modified"
     empty_value_display = "-"
-    next_form_getter_cls = NextFormGetter
 
 
 class CrfModelAdminMixin(CrfModelAdminMixin, ModelAdminMixin, FieldsetsModelAdminMixin):
