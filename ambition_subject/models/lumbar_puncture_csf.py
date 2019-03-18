@@ -89,7 +89,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     quantitative_culture = models.IntegerField(
         blank=True,
         null=True,
-        validators=[MinValueValidator(0), MaxValueValidator(9_999_999)],
+        validators=[MinValueValidator(0), MaxValueValidator(100_000_000)],
         help_text="Units CFU/ml",
     )
 
