@@ -89,7 +89,7 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
     quantitative_culture = models.IntegerField(
         blank=True,
         null=True,
-        validators=[MinValueValidator(0), MaxValueValidator(9_999_999)],
+        validators=[MinValueValidator(0), MaxValueValidator(100000000)],
         help_text="Units CFU/ml",
     )
 
@@ -137,7 +137,8 @@ class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
         choices=MM3_PERC_UNITS, max_length=6, null=True, blank=True
     )
 
-    india_ink = models.CharField(max_length=15, choices=POS_NEG, null=True, blank=True)
+    india_ink = models.CharField(
+        max_length=15, choices=POS_NEG, null=True, blank=True)
 
     csf_glucose = models.DecimalField(
         verbose_name="CSF glucose:",
