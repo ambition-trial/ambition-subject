@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models.deletion import ProtectedError
 from django.test import TestCase, tag, override_settings
 from edc_action_item.models.action_item import ActionItem
-from edc_appointment.models.appointment import Appointment
+from edc_appointment.models import Appointment
 from edc_constants.constants import YES
 from edc_reportable.units import TEN_X_9_PER_LITER
 from edc_utils import get_utcnow

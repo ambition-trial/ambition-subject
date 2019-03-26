@@ -6,8 +6,6 @@ from edc_lab.admin import (
     requisition_fieldset,
     requisition_status_fieldset,
     requisition_identifier_fieldset,
-    requisition_identifier_fields,
-    requisition_verify_fields,
     requisition_verify_fieldset,
 )
 from urllib.parse import parse_qs, urlsplit
@@ -25,8 +23,6 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
 
     form = SubjectRequisitionForm
 
-    ordering = ("requisition_identifier",)
-
     fieldsets = (
         (None, {"fields": ("subject_visit", "requisition_datetime", "panel")}),
         requisition_fieldset,
@@ -41,13 +37,6 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
         "reason_not_drawn": admin.VERTICAL,
         "item_type": admin.VERTICAL,
     }
-
-    def get_readonly_fields(self, request, obj=None):
-        return (
-            super().get_readonly_fields(request, obj=obj)
-            + requisition_identifier_fields
-            + requisition_verify_fields
-        )
 
     def get_search_results(self, request, queryset, search_term):
         queryset, use_distinct = super().get_search_results(

@@ -5,7 +5,7 @@ from ambition_rando.tests import AmbitionTestCaseMixin
 from ambition_visit_schedule.constants import DAY1
 from datetime import datetime
 from django.test import TestCase, tag
-from edc_appointment.models.appointment import Appointment
+from edc_appointment.models import Appointment
 from edc_constants.constants import YES, NO
 from edc_lab.constants import TUBE
 from edc_utils import get_utcnow
