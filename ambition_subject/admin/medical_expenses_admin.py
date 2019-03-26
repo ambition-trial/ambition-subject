@@ -1,15 +1,13 @@
 from django.contrib import admin
 
 from edc_model_admin import audit_fieldset_tuple, SimpleHistoryAdmin
-from edc_model_admin import ModelAdminReplaceLabelTextMixin
 from edc_fieldsets import Fieldset
 
 from ..admin_site import ambition_subject_admin
 from ..forms import MedicalExpensesForm
 from ..models import MedicalExpenses
 from ..constants import DAY1, WEEK10
-
-from .modeladmin import CrfModelAdminMixin
+from .modeladmin import CrfModelAdmin
 
 info_source = Fieldset("info_source", section="Information Source")
 
@@ -33,9 +31,7 @@ welfare = Fieldset("welfare", section="Welfare or social service support")
 
 
 @admin.register(MedicalExpenses, site=ambition_subject_admin)
-class MedicalExpensesAdmin(
-    CrfModelAdminMixin, ModelAdminReplaceLabelTextMixin, SimpleHistoryAdmin
-):
+class MedicalExpensesAdmin(CrfModelAdmin, SimpleHistoryAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {
@@ -72,12 +68,12 @@ class MedicalExpensesAdmin(
         "activities_missed": admin.VERTICAL,
         "care_before_hospital": admin.VERTICAL,
         "currency": admin.VERTICAL,
-        "info_source": admin.VERTICAL,
-        "loss_of_earnings": admin.VERTICAL,
         "form_of_transport": admin.VERTICAL,
-        "loans": admin.VERTICAL,
-        "sold_anything": admin.VERTICAL,
-        "private_healthcare": admin.VERTICAL,
         "healthcare_insurance": admin.VERTICAL,
+        "info_source": admin.VERTICAL,
+        "loans": admin.VERTICAL,
+        "loss_of_earnings": admin.VERTICAL,
+        "private_healthcare": admin.VERTICAL,
+        "sold_anything": admin.VERTICAL,
         "welfare": admin.VERTICAL,
     }

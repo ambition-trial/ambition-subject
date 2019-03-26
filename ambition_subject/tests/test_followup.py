@@ -10,7 +10,7 @@ from django.contrib.sites.models import Site
 from django.test import TestCase, tag
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from edc_appointment.models.appointment import Appointment
+from edc_appointment.models import Appointment
 from edc_sites.utils import add_or_update_django_sites
 from edc_utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED

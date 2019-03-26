@@ -14,7 +14,7 @@ class EducationAdmin(CrfModelAdmin):
     form = EducationForm
 
     additional_instructions = (
-        "The following questions refer to the educational background of " "the patient."
+        "The following questions refer to the educational background of the patient."
     )
 
     fieldsets = (

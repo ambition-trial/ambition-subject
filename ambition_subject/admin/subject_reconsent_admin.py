@@ -9,6 +9,7 @@ from ..admin_site import ambition_subject_admin
 from ..forms import SubjectReconsentForm
 from ..models import SubjectReconsent, SubjectVisit
 from .modeladmin import ModelAdminMixin
+from edc_dashboard.url_names import url_names
 
 
 @admin.register(SubjectReconsent, site=ambition_subject_admin)
@@ -45,14 +46,14 @@ class SubjectReconsentAdmin(ModelAdminMixin, SimpleHistoryAdmin):
     }
 
     def get_readonly_fields(self, request, obj=None):
-        return super().get_readonly_fields(request, obj=obj) + audit_fields
+        readonly_fields = super().get_readonly_fields(request, obj=obj)
+        return list(readonly_fields) + list(audit_fields)
 
     def view_on_site(self, obj):
-        dashboard_url_name = settings.DASHBOARD_URL_NAMES.get("subject_dashboard_url")
+        url_name = url_names.get("subject_dashboard_url")
         try:
             return reverse(
-                dashboard_url_name,
-                kwargs=dict(subject_identifier=obj.subject_identifier),
+                url_name, kwargs=dict(subject_identifier=obj.subject_identifier)
             )
         except NoReverseMatch:
             return super().view_on_site(obj)
