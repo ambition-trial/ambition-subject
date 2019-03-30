@@ -12,13 +12,14 @@ from edc_utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
 
-from ..forms import SubjectRequisitionForm
+from ...forms import SubjectRequisitionForm
 
 
 class TestForms(AmbitionTestCaseMixin, TestCase):
     def setUp(self):
         year = get_utcnow().year
-        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe(
+            "ambition_screening.subjectscreening")
         consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
@@ -53,7 +54,8 @@ class TestForms(AmbitionTestCaseMixin, TestCase):
         form = SubjectRequisitionForm(data=data)
         form.is_valid()
         self.assertIn("drawn_datetime", form.errors.keys())
-        self.assertEqual(["This field is required."], form.errors.get("drawn_datetime"))
+        self.assertEqual(["This field is required."],
+                         form.errors.get("drawn_datetime"))
 
         data = {"is_drawn": NO, "drawn_datetime": get_utcnow()}
         form = SubjectRequisitionForm(data=data)

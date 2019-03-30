@@ -1,5 +1,4 @@
 from django.db import models
-from edc_appointment.models import Appointment
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.constants import NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
@@ -32,8 +31,6 @@ class SubjectVisit(
     e.g.report_datetime.
     """
 
-    appointment = models.OneToOneField(Appointment, on_delete=models.PROTECT)
-
     reason = models.CharField(
         verbose_name="What is the reason for this visit report?",
         max_length=25,
@@ -41,7 +38,8 @@ class SubjectVisit(
     )
 
     reason_unscheduled = models.CharField(
-        verbose_name=("If 'unscheduled', provide reason for the unscheduled visit"),
+        verbose_name=(
+            "If 'unscheduled', provide reason for the unscheduled visit"),
         max_length=25,
         choices=VISIT_UNSCHEDULED_REASON,
         default=NOT_APPLICABLE,
