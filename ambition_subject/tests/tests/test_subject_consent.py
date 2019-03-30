@@ -10,7 +10,7 @@ from edc_registration.models import RegisteredSubject
 from edc_utils import get_utcnow
 from model_mommy import mommy
 
-from ..models import SubjectConsent
+from ...models import SubjectConsent
 
 
 @override_settings(SITE_ID="10")
@@ -30,7 +30,8 @@ class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
         }
         mommy.make_recipe("ambition_subject.subjectconsent", **options)
         self.assertFalse(
-            re.match(UUID_PATTERN, SubjectConsent.objects.all()[0].subject_identifier)
+            re.match(UUID_PATTERN, SubjectConsent.objects.all()
+                     [0].subject_identifier)
         )
 
     def test_consent_creates_registered_subject(self):

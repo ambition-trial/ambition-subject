@@ -4,7 +4,7 @@ from edc_model.models import BaseUuidModel
 from edc_reference.model_mixins import ReferenceModelMixin
 
 # from .subject_visit import SubjectVisit
-from edc_lab.managers import RequisitionManager as Manager
+# from edc_lab.managers import RequisitionManager as Manager
 
 
 class SubjectRequisition(RequisitionModelMixin, ReferenceModelMixin, BaseUuidModel):

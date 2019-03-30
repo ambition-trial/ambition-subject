@@ -7,7 +7,7 @@ from edc_action_item.models import ActionItem
 from edc_constants.constants import ABNORMAL, NORMAL, CLOSED
 from model_mommy import mommy
 
-from ..action_items import RECONSENT_ACTION
+from ...action_items import RECONSENT_ACTION
 
 
 class TestReconsent(AmbitionTestCaseMixin, TestCase):
