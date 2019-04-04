@@ -7,6 +7,5 @@ from edc_lab.managers import RequisitionManager as Manager  # noqa
 
 
 class SubjectRequisition(RequisitionModelMixin, ReferenceModelMixin, BaseUuidModel):
-
     class Meta(RequisitionModelMixin.Meta):
         pass

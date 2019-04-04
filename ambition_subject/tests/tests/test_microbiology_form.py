@@ -15,14 +15,12 @@ from ...forms import MicrobiologyForm
 @override_settings(SITE_ID="10")
 class TestMicrobiologyForm(AmbitionTestCaseMixin, TestCase):
     def setUp(self):
-        subject_screening = mommy.make_recipe(
-            "ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
         options = {
             "screening_identifier": subject_screening.screening_identifier,
             "consent_datetime": get_utcnow,
         }
-        consent = mommy.make_recipe(
-            "ambition_subject.subjectconsent", **options)
+        consent = mommy.make_recipe("ambition_subject.subjectconsent", **options)
         self.subject_identifier = consent.subject_identifier
         self.appointment = Appointment.objects.get(
             subject_identifier=self.subject_identifier, visit_code=DAY1
