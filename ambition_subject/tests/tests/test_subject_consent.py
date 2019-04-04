@@ -30,8 +30,7 @@ class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
         }
         mommy.make_recipe("ambition_subject.subjectconsent", **options)
         self.assertFalse(
-            re.match(UUID_PATTERN, SubjectConsent.objects.all()
-                     [0].subject_identifier)
+            re.match(UUID_PATTERN, SubjectConsent.objects.all()[0].subject_identifier)
         )
 
     def test_consent_creates_registered_subject(self):
