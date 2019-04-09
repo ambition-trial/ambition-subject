@@ -1,4 +1,0 @@
-faker
-model-mommy
-django-webtest
-mock
