@@ -45,7 +45,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "rest_framework",
         "rest_framework.authtoken",
         "edc_action_item.apps.AppConfig",
-        "edc_base.apps.AppConfig",
         "edc_dashboard.apps.AppConfig",
         "edc_prn.apps.AppConfig",
         "edc_reference.apps.AppConfig",
@@ -97,7 +96,7 @@ def main():
     if not settings.configured:
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
-    failures = DiscoverRunner(failfast=True).run_tests(
+    failures = DiscoverRunner(failfast=False).run_tests(
         [f'{app_name}.tests'])
     sys.exit(bool(failures))
 
