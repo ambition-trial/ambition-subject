@@ -5,10 +5,12 @@ from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 from edc_constants.constants import ABNORMAL
 from edc_model_admin import audit_fieldset_tuple, SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from edc_identifier import is_subject_identifier_or_raise, SubjectIdentifierError
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
 from ..models import SubjectConsent, SubjectVisit
+from pprint import pprint
 
 
 @admin.register(SubjectConsent, site=ambition_subject_admin)
@@ -87,7 +89,8 @@ class SubjectConsentAdmin(
         obj = SubjectConsent.objects.get(id=object_id)
         try:
             protected = [
-                SubjectVisit.objects.get(subject_identifier=obj.subject_identifier)
+                SubjectVisit.objects.get(
+                    subject_identifier=obj.subject_identifier)
             ]
         except ObjectDoesNotExist:
             protected = None
@@ -119,3 +122,18 @@ class SubjectConsentAdmin(
                     form, "participant", "next of kin", skip_fields=["is_incarcerated"]
                 )
         return form
+
+    def get_next_options(self, request=None, **kwargs):
+        """Returns the key/value pairs from the "next" querystring
+        as a dictionary.
+        """
+        next_options = super().get_next_options(request=request, **kwargs)
+        try:
+            is_subject_identifier_or_raise(next_options["subject_identifier"])
+        except SubjectIdentifierError:
+            next_options["subject_identifier"] = SubjectScreening.objects.get(
+                subject_identifier_as_pk=next_options[
+                    "subject_identifier"]).subject_identifier
+        except KeyError:
+            pass
+        return next_options
