@@ -35,7 +35,8 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
         ):
             self.user.user_permissions.add(permission)
 
-        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe(
+            "ambition_screening.subjectscreening")
         consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
@@ -61,7 +62,6 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
                     reason=SCHEDULED,
                 )
 
-    #     @tag("1")
     #     def test_visit(self):
     #         subject_visit = SubjectVisit.objects.last()
     #         print('---------------------')
@@ -89,7 +89,6 @@ class TestFollowUp(AmbitionTestCaseMixin, TestCase):
     #         self.assertEqual(RequisitionMetadata.objects.filter(
     #             visit_code=subject_visit.visit_code).count(), 0)
 
-    @tag("1")
     def test_(self):
         """Asserts custom antibiotic question shows for Week 10.
         """
