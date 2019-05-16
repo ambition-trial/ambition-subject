@@ -7,7 +7,7 @@ from ..models import BloodResult
 from .form_mixins import SubjectModelFormMixin
 
 
-class BloodResultForm(SubjectModelFormMixin, ActionItemFormMixin, forms.ModelForm):
+class BloodResultForm(ActionItemFormMixin, SubjectModelFormMixin, forms.ModelForm):
 
     form_validator_cls = BloodResultFormValidator
 

@@ -89,8 +89,7 @@ class SubjectConsentAdmin(
         obj = SubjectConsent.objects.get(id=object_id)
         try:
             protected = [
-                SubjectVisit.objects.get(
-                    subject_identifier=obj.subject_identifier)
+                SubjectVisit.objects.get(subject_identifier=obj.subject_identifier)
             ]
         except ObjectDoesNotExist:
             protected = None
@@ -132,8 +131,8 @@ class SubjectConsentAdmin(
             is_subject_identifier_or_raise(next_options["subject_identifier"])
         except SubjectIdentifierError:
             next_options["subject_identifier"] = SubjectScreening.objects.get(
-                subject_identifier_as_pk=next_options[
-                    "subject_identifier"]).subject_identifier
+                subject_identifier_as_pk=next_options["subject_identifier"]
+            ).subject_identifier
         except KeyError:
             pass
         return next_options

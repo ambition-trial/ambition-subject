@@ -11,7 +11,7 @@ class StudyMedicationModelMixin(models.Model):
         blank=True,
     )
 
-    ampho_end_date = models.DateField(
+    ampho_stop_date = models.DateField(
         verbose_name="Amphotericin B end date: ",
         validators=[date_not_future],
         null=True,
