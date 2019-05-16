@@ -12,7 +12,7 @@ from edc_form_validators.form_validator_mixin import FormValidatorMixin
 
 
 class SubjectRequisitionForm(
-    SubjectModelFormMixin, RequisitionFormMixin, FormValidatorMixin
+    RequisitionFormMixin, SubjectModelFormMixin, FormValidatorMixin
 ):
 
     form_validator_cls = RequisitionFormValidator

@@ -9,7 +9,7 @@ from ..models import SubjectVisit
 
 
 class SubjectModelFormMixin(
-    SiteModelFormMixin, VisitTrackingModelFormMixin, FormValidatorMixin, forms.ModelForm
+    SiteModelFormMixin, FormValidatorMixin, VisitTrackingModelFormMixin, forms.ModelForm
 ):
 
     visit_model = SubjectVisit
