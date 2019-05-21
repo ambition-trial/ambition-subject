@@ -104,7 +104,7 @@ class BloodResult(
     )
 
     wbc = models.DecimalField(
-        verbose_name="WBC", decimal_places=1, max_digits=6, null=True, blank=True
+        verbose_name="WBC", decimal_places=2, max_digits=6, null=True, blank=True
     )
 
     wbc_units = models.CharField(
