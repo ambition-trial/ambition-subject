@@ -5,7 +5,6 @@ from ambition_prn.constants import TDF_3TC_FTC_with_EFV_or_NVP
 from ambition_visit_schedule import DAY1, DAY3, DAY5, DAY7, DAY14, DAY12, DAY10
 from ambition_visit_schedule import WEEK16, WEEK10, WEEK8, WEEK6, WEEK4
 
-ALREADY_REPORTED = "Already reported"
 AMBISOME = "ambisome"
 AMPHOTERICIN = "amphotericin_b"
 AMS_A4 = "AMS_A"
@@ -27,7 +26,6 @@ NEW_NEUROLOGY = "new_neurology"
 NVP = "NVP"
 PATIENT = "patient"
 POSITIVE = "positive"
-PRESENT_AT_BASELINE = "present_at_baseline"
 RECONSENT_ACTION = "reconsent"
 RESULTS_UNKNOWN = "results_unknown"
 ROUTINE_APPT = "routine"
