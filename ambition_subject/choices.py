@@ -26,7 +26,7 @@ from .constants import ROUTINE_APPT, THERAPEUTIC_PL
 from .constants import ECOLI, TDF_3TC_FTC_with_EFV_or_NVP
 from .constants import TDF_3TC_FTC_with_ATZ_r_or_Lopinavir_r
 from .constants import RESULTS_UNKNOWN, AWAITING_RESULTS, PATIENT
-from .constants import AMBISOME, AMPHOTERICIN
+from .constants import AMBISOME, AMPHOTERICIN, ART_CONTINUED, ART_STOPPED
 
 
 ABNORMAL_RESULTS_REASON = (
@@ -80,6 +80,11 @@ ARV_REGIMEN = (
     (OTHER, "Other"),
 )
 
+ARV_DECISION = (
+    (NOT_APPLICABLE, "Not applicable"),
+    (ART_CONTINUED, "ART continued"),
+    (ART_STOPPED, "ART stopped"),
+)
 
 BLOOD_CULTURE_RESULTS_ORGANISM = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -271,7 +276,8 @@ MEDICINES = (
     (OTHER, "Other"),
 )
 
-POS_NEG_NA = ((POS, "Positive"), (NEG, "Negative"), (NOT_APPLICABLE, "Not applicable"))
+POS_NEG_NA = ((POS, "Positive"), (NEG, "Negative"),
+              (NOT_APPLICABLE, "Not applicable"))
 
 
 REASON_DRUG_MISSED = (
@@ -448,7 +454,8 @@ YES_NO_ALREADY_ND = (
 )
 
 
-YES_NO_RESULTS_UNKNOWN = ((YES, YES), (NO, NO), (RESULTS_UNKNOWN, "Results unknown"))
+YES_NO_RESULTS_UNKNOWN = ((YES, YES), (NO, NO),
+                          (RESULTS_UNKNOWN, "Results unknown"))
 
 PATIENT_REL = (("patient", "Patient"), ("next_of_kin", "Next of Kin/Relative"))
 
@@ -460,7 +467,8 @@ YES_NO_NOT_DONE_WAIT_RESULTS = (
 )
 
 SPUTUM_GENEXPERT = (
-    ("mtb_detected_rif_resistance_detected", "MTB DETECTED & Rif Resistance DETECTED"),
+    ("mtb_detected_rif_resistance_detected",
+     "MTB DETECTED & Rif Resistance DETECTED"),
     (
         "mtb_detected_rif_resistance_not_detected",
         "MTB DETECTED & Rif Resistance NOT detected",
