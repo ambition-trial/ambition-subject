@@ -1,18 +1,23 @@
-from ambition_lists.models import Medication, Symptom, Neurological
+from ambition_lists.models import Medication, Symptom, Neurological, ArvRegimens
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
+from edc_constants.constants import NOT_APPLICABLE, QUESTION_RETIRED
+from edc_constants.utils import append_question_retired_choice
 from edc_model.models import HistoricalRecords
 from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField, IsDateEstimatedFieldNa
 from edc_visit_tracking.managers import CrfModelManager
 
-from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE
+from ..choices import FIRST_LINE_REGIMEN, FIRST_ARV_REGIMEN, TB_SITE, ARV_DECISION
 from ..choices import ECOG_SCORE, SECOND_ARV_REGIMEN, WEIGHT_DETERMINATION
 from ..managers import CurrentSiteManager
 from .crf_model_mixin import CrfModelMixin
+
+
+SECOND_ARV_REGIMEN_RETIRED = append_question_retired_choice(SECOND_ARV_REGIMEN)
+FIRST_LINE_REGIMEN_RETIRED = append_question_retired_choice(FIRST_LINE_REGIMEN)
 
 
 class PatientHistory(CrfModelMixin):
@@ -76,62 +81,167 @@ class PatientHistory(CrfModelMixin):
     )
 
     taking_arv = models.CharField(
-        verbose_name="If NO, already taking ARVs?",
+        verbose_name="If NO, has the patient ever been on ART?",
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
     )
 
-    arv_date = models.DateField(
-        verbose_name="If YES, date ARVs were started.",
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    arv_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name=("Is the subject's ARV date estimated?"), default=NOT_APPLICABLE
-    )
-
+    # retired
     first_arv_regimen = models.CharField(
-        verbose_name="Drug used in first line ARV regimen",
+        verbose_name="If YES, which drugs were prescribed for their first ART regimen?",
         max_length=50,
         choices=FIRST_ARV_REGIMEN,
         default=NOT_APPLICABLE,
+        editable=False,
     )
 
-    first_arv_regimen_other = OtherCharField()
+    # retired
+    first_arv_regimen_other = OtherCharField(editable=False)
 
-    second_arv_regimen = models.CharField(
-        verbose_name="Second line ARV regimen",
-        max_length=50,
-        choices=SECOND_ARV_REGIMEN,
-        default=NOT_APPLICABLE,
-    )
-
-    second_arv_regimen_other = OtherCharField()
-
+    # retired
     first_line_choice = models.CharField(
         verbose_name="If first line:",
         max_length=5,
         choices=FIRST_LINE_REGIMEN,
         default=NOT_APPLICABLE,
+        editable=False,
     )
 
-    patient_adherence = models.CharField(
-        verbose_name="Is the patient reportedly adherent?",
+    initial_arv_date = models.DateField(
+        verbose_name=mark_safe(
+            "If YES, when did the patient <u>start</u> ART for the first time."),
+        validators=[date_not_future],
+        null=True,
+        blank=True,
+    )
+
+    initial_arv_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this ART date estimated?",
+        default=NOT_APPLICABLE
+    )
+
+    # new
+    initial_arv_regimen = models.ManyToManyField(
+        ArvRegimens,
+        verbose_name=mark_safe(
+            "If YES, which drugs were prescribed for their "
+            "first ART regimen?"),
+        related_name="initial_arv",
+    )
+
+    # new
+    initial_arv_regimen_other = OtherCharField()
+
+    # new
+    has_switched_regimen = models.CharField(
+        verbose_name="Has the patient ever switched ART regimen?",
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
     )
 
-    tablets_missed = models.IntegerField(
-        verbose_name=("If not adherent, how many doses missed in the last month?"),
+    # new
+    current_arv_date = models.DateField(
+        verbose_name=mark_safe(
+            "If YES, when was their <u>current or most recent</u> "
+            "ART regimen started?"),
+        validators=[date_not_future],
+        null=True,
+        blank=True,
+    )
+
+    # new
+    current_arv_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this ART date estimated?",
+        default=NOT_APPLICABLE
+    )
+
+    # new
+    current_arv_regimen = models.ManyToManyField(
+        ArvRegimens,
+        verbose_name=mark_safe(
+            "If YES, what is their current or most recent ART regimen?"),
+        related_name="current_arv",
+    )
+
+    current_arv_regimen_other = OtherCharField()
+
+    # new
+    current_arv_is_defaulted = models.CharField(
+        verbose_name=mark_safe(
+            "Has the patient <u>now</u> defaulted from their ART regimen?"),
+        max_length=5,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="'DEFAULTED' means no ART for at least one month.",
+    )
+
+    # new
+    current_arv_defaulted_date = models.DateField(
+        verbose_name=mark_safe(
+            "If the patient has DEFAULTED, on what date did they default "
+            "from their <u>most recent</u> ART regimen?"),
+        validators=[date_not_future],
+        null=True,
+        blank=True,
+    )
+
+    # new
+    current_arv_defaulted_date_estimated = IsDateEstimatedFieldNa(
+        verbose_name="If DEFAULTED, is this date estimated?",
+        default=NOT_APPLICABLE
+    )
+
+    # new
+    current_arv_is_adherent = models.CharField(
+        verbose_name=mark_safe(
+            "If the patient is currently on ART, are they ADHERENT to "
+            "their <u>current</u> ART regimen?"),
+        max_length=5,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    current_arv_tablets_missed = models.IntegerField(
+        verbose_name=(
+            "If not ADHERENT, how many doses missed in the last month?"),
         validators=[MinValueValidator(0), MaxValueValidator(31)],
         null=True,
         blank=True,
     )
 
+    current_arv_decision = models.CharField(
+        verbose_name=mark_safe(
+            "What decision was made at admission regarding their "
+            "<u>current</u> ART regimen?"),
+        max_length=25,
+        choices=ARV_DECISION,
+        default=NOT_APPLICABLE,
+    )
+
+    # retired
+    second_arv_regimen = models.CharField(
+        verbose_name="Second line ARV regimen",
+        max_length=50,
+        choices=SECOND_ARV_REGIMEN_RETIRED,
+        default=QUESTION_RETIRED,
+        editable=False
+    )
+
+    # retired
+    second_arv_regimen_other = OtherCharField(editable=False)
+
+    # retired
+    patient_adherence = models.CharField(
+        verbose_name="Is the patient reportedly adherent?",
+        max_length=5,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        editable=False
+    )
+
+    # retired
     last_dose = models.IntegerField(
         verbose_name=(
             "If no tablets taken this month, how many months "
@@ -140,6 +250,7 @@ class PatientHistory(CrfModelMixin):
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
+        editable=False
     )
 
     last_viral_load = models.DecimalField(
@@ -287,7 +398,8 @@ class PatientHistory(CrfModelMixin):
 
     specify_medications = models.ManyToManyField(Medication, blank=True)
 
-    specify_medications_other = models.TextField(max_length=150, blank=True, null=True)
+    specify_medications_other = models.TextField(
+        max_length=150, blank=True, null=True)
 
     previous_oi = models.CharField(
         verbose_name="Previous opportunistic infection other than TB?",
