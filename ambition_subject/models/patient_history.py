@@ -16,8 +16,10 @@ from ..managers import CurrentSiteManager
 from .crf_model_mixin import CrfModelMixin
 
 
+FIRST_ARV_REGIMEN_RETIRED = append_question_retired_choice(FIRST_ARV_REGIMEN)
 SECOND_ARV_REGIMEN_RETIRED = append_question_retired_choice(SECOND_ARV_REGIMEN)
 FIRST_LINE_REGIMEN_RETIRED = append_question_retired_choice(FIRST_LINE_REGIMEN)
+YES_NO_NA_RETIRED = append_question_retired_choice(YES_NO_NA)
 
 
 class PatientHistory(CrfModelMixin):
@@ -91,8 +93,8 @@ class PatientHistory(CrfModelMixin):
     first_arv_regimen = models.CharField(
         verbose_name="If YES, which drugs were prescribed for their first ART regimen?",
         max_length=50,
-        choices=FIRST_ARV_REGIMEN,
-        default=NOT_APPLICABLE,
+        choices=FIRST_ARV_REGIMEN_RETIRED,
+        default=QUESTION_RETIRED,
         editable=False,
     )
 
@@ -102,38 +104,35 @@ class PatientHistory(CrfModelMixin):
     # retired
     first_line_choice = models.CharField(
         verbose_name="If first line:",
-        max_length=5,
-        choices=FIRST_LINE_REGIMEN,
-        default=NOT_APPLICABLE,
+        max_length=25,
+        choices=FIRST_LINE_REGIMEN_RETIRED,
+        default=QUESTION_RETIRED,
         editable=False,
     )
 
     initial_arv_date = models.DateField(
         verbose_name=mark_safe(
-            "If YES, when did the patient <u>start</u> ART for the first time."),
+            "If YES, when did the patient <u>start</u> ART for the first time."
+        ),
         validators=[date_not_future],
         null=True,
         blank=True,
     )
 
     initial_arv_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this ART date estimated?",
-        default=NOT_APPLICABLE
+        verbose_name="If YES, is this ART date estimated?", default=NOT_APPLICABLE
     )
 
-    # new
     initial_arv_regimen = models.ManyToManyField(
         ArvRegimens,
         verbose_name=mark_safe(
-            "If YES, which drugs were prescribed for their "
-            "first ART regimen?"),
+            "If YES, which drugs were prescribed for their first ART regimen?"
+        ),
         related_name="initial_arv",
     )
 
-    # new
     initial_arv_regimen_other = OtherCharField()
 
-    # new
     has_switched_regimen = models.CharField(
         verbose_name="Has the patient ever switched ART regimen?",
         max_length=5,
@@ -141,63 +140,59 @@ class PatientHistory(CrfModelMixin):
         default=NOT_APPLICABLE,
     )
 
-    # new
     current_arv_date = models.DateField(
         verbose_name=mark_safe(
             "If YES, when was their <u>current or most recent</u> "
-            "ART regimen started?"),
+            "ART regimen started?"
+        ),
         validators=[date_not_future],
         null=True,
         blank=True,
     )
 
-    # new
     current_arv_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this ART date estimated?",
-        default=NOT_APPLICABLE
+        verbose_name="If YES, is this ART date estimated?", default=NOT_APPLICABLE
     )
 
-    # new
     current_arv_regimen = models.ManyToManyField(
         ArvRegimens,
         verbose_name=mark_safe(
-            "If YES, what is their current or most recent ART regimen?"),
+            "If YES, what is their current or most recent ART regimen?"
+        ),
         related_name="current_arv",
     )
 
     current_arv_regimen_other = OtherCharField()
 
-    # new
     current_arv_is_defaulted = models.CharField(
         verbose_name=mark_safe(
-            "Has the patient <u>now</u> defaulted from their ART regimen?"),
+            "Has the patient <u>now</u> defaulted from their ART regimen?"
+        ),
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
         help_text="'DEFAULTED' means no ART for at least one month.",
     )
 
-    # new
     current_arv_defaulted_date = models.DateField(
         verbose_name=mark_safe(
             "If the patient has DEFAULTED, on what date did they default "
-            "from their <u>most recent</u> ART regimen?"),
+            "from their <u>most recent</u> ART regimen?"
+        ),
         validators=[date_not_future],
         null=True,
         blank=True,
     )
 
-    # new
     current_arv_defaulted_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If DEFAULTED, is this date estimated?",
-        default=NOT_APPLICABLE
+        verbose_name="If DEFAULTED, is this date estimated?", default=NOT_APPLICABLE
     )
 
-    # new
     current_arv_is_adherent = models.CharField(
         verbose_name=mark_safe(
             "If the patient is currently on ART, are they ADHERENT to "
-            "their <u>current</u> ART regimen?"),
+            "their <u>current</u> ART regimen?"
+        ),
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -214,7 +209,8 @@ class PatientHistory(CrfModelMixin):
     current_arv_decision = models.CharField(
         verbose_name=mark_safe(
             "What decision was made at admission regarding their "
-            "<u>current</u> ART regimen?"),
+            "<u>current</u> ART regimen?"
+        ),
         max_length=25,
         choices=ARV_DECISION,
         default=NOT_APPLICABLE,
@@ -226,7 +222,7 @@ class PatientHistory(CrfModelMixin):
         max_length=50,
         choices=SECOND_ARV_REGIMEN_RETIRED,
         default=QUESTION_RETIRED,
-        editable=False
+        editable=False,
     )
 
     # retired
@@ -235,10 +231,10 @@ class PatientHistory(CrfModelMixin):
     # retired
     patient_adherence = models.CharField(
         verbose_name="Is the patient reportedly adherent?",
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        editable=False
+        max_length=25,
+        choices=YES_NO_NA_RETIRED,
+        default=QUESTION_RETIRED,
+        editable=False,
     )
 
     # retired
@@ -250,7 +246,7 @@ class PatientHistory(CrfModelMixin):
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
-        editable=False
+        editable=False,
     )
 
     last_viral_load = models.DecimalField(

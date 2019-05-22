@@ -73,7 +73,6 @@
 #         form["password"] = "pass"
 #         return form.submit()
 #
-#     @tag('3')
 #     def test_form(self):
 #         self.login()
 #         app_config = django_apps.get_app_config('ambition_subject')
