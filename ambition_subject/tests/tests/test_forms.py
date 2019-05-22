@@ -4,7 +4,7 @@ from ambition_labs.panels import wb_panel
 from ambition_rando.tests import AmbitionTestCaseMixin
 from ambition_visit_schedule.constants import DAY1
 from datetime import datetime
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_appointment.models import Appointment
 from edc_constants.constants import YES, NO, NOT_APPLICABLE
 from edc_lab.constants import TUBE
@@ -61,7 +61,6 @@ class TestForms(AmbitionTestCaseMixin, TestCase):
     def test_is_drawn_and_drawn_datetime2(self):
         data = {k: v for k, v in self.data.items()}
         data.update({"is_drawn": YES, "drawn_datetime": get_utcnow()})
-
         form = SubjectRequisitionForm(data=data)
         form.is_valid()
         self.assertNotIn("drawn_datetime", form.errors.keys())

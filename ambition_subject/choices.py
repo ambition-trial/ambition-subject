@@ -276,8 +276,7 @@ MEDICINES = (
     (OTHER, "Other"),
 )
 
-POS_NEG_NA = ((POS, "Positive"), (NEG, "Negative"),
-              (NOT_APPLICABLE, "Not applicable"))
+POS_NEG_NA = ((POS, "Positive"), (NEG, "Negative"), (NOT_APPLICABLE, "Not applicable"))
 
 
 REASON_DRUG_MISSED = (
@@ -454,8 +453,7 @@ YES_NO_ALREADY_ND = (
 )
 
 
-YES_NO_RESULTS_UNKNOWN = ((YES, YES), (NO, NO),
-                          (RESULTS_UNKNOWN, "Results unknown"))
+YES_NO_RESULTS_UNKNOWN = ((YES, YES), (NO, NO), (RESULTS_UNKNOWN, "Results unknown"))
 
 PATIENT_REL = (("patient", "Patient"), ("next_of_kin", "Next of Kin/Relative"))
 
@@ -467,8 +465,7 @@ YES_NO_NOT_DONE_WAIT_RESULTS = (
 )
 
 SPUTUM_GENEXPERT = (
-    ("mtb_detected_rif_resistance_detected",
-     "MTB DETECTED & Rif Resistance DETECTED"),
+    ("mtb_detected_rif_resistance_detected", "MTB DETECTED & Rif Resistance DETECTED"),
     (
         "mtb_detected_rif_resistance_not_detected",
         "MTB DETECTED & Rif Resistance NOT detected",

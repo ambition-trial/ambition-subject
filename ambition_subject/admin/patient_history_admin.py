@@ -34,8 +34,13 @@ class PatientHistoryAdmin(CrfModelAdmin):
 
     inlines = [PreviousOpportunisticInfectionInline]
 
-    filter_horizontal = ("neurological", "symptom", "specify_medications",
-                         "initial_arv_regimen", "current_arv_regimen")
+    filter_horizontal = (
+        "neurological",
+        "symptom",
+        "specify_medications",
+        "initial_arv_regimen",
+        "current_arv_regimen",
+    )
 
     fieldsets = (
         (
@@ -83,13 +88,6 @@ class PatientHistoryAdmin(CrfModelAdmin):
                     "current_arv_is_adherent",
                     "current_arv_tablets_missed",
                     "current_arv_decision",
-                    # "first_arv_regimen_other",
-                    # "first_line_choice",
-                    # "second_arv_regimen",
-                    # "second_arv_regimen_other",
-                    # "patient_adherence",
-                    # "tablets_missed",
-                    # "last_dose",
                     "last_viral_load",
                     "viral_load_date",
                     "vl_date_estimated",
@@ -164,8 +162,4 @@ class PatientHistoryAdmin(CrfModelAdmin):
         "tb_treatment": admin.VERTICAL,
         "vl_date_estimated": admin.VERTICAL,
         "weight_determination": admin.VERTICAL,
-        # "first_arv_regimen": admin.VERTICAL,
-        # "first_line_choice": admin.VERTICAL,
-        # "patient_adherence": admin.VERTICAL,
-        # "second_arv_regimen": admin.VERTICAL,
     }
