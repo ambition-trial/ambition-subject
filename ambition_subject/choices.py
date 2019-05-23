@@ -423,6 +423,7 @@ RANKIN_SCORE = (
     ),
     ("6", "6 - Dead"),
     (NOT_DONE, "Not done"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 # REASON_NOT_DRAWN = (

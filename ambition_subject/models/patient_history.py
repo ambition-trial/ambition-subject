@@ -199,8 +199,7 @@ class PatientHistory(CrfModelMixin):
     )
 
     current_arv_tablets_missed = models.IntegerField(
-        verbose_name=(
-            "If not ADHERENT, how many doses missed in the last month?"),
+        verbose_name=("If not ADHERENT, how many doses missed in the last month?"),
         validators=[MinValueValidator(0), MaxValueValidator(31)],
         null=True,
         blank=True,
@@ -394,8 +393,7 @@ class PatientHistory(CrfModelMixin):
 
     specify_medications = models.ManyToManyField(Medication, blank=True)
 
-    specify_medications_other = models.TextField(
-        max_length=150, blank=True, null=True)
+    specify_medications_other = models.TextField(max_length=150, blank=True, null=True)
 
     previous_oi = models.CharField(
         verbose_name="Previous opportunistic infection other than TB?",

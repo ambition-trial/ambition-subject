@@ -7,6 +7,7 @@ from edc_visit_tracking.managers import CrfModelManager
 from ..choices import RANKIN_SCORE
 from ..managers import CurrentSiteManager
 from .crf_model_mixin import CrfModelMixin
+from edc_constants.constants import NOT_APPLICABLE
 
 
 class Week16(CrfModelMixin):
@@ -42,7 +43,10 @@ class Week16(CrfModelMixin):
     )
 
     rankin_score = models.CharField(
-        verbose_name="Modified Rankin score", max_length=10, choices=RANKIN_SCORE
+        verbose_name="Modified Rankin score",
+        max_length=10,
+        choices=RANKIN_SCORE,
+        default=NOT_APPLICABLE,
     )
 
     week16_narrative = models.TextField(
