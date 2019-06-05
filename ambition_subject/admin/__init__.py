@@ -9,7 +9,7 @@ from .medical_expenses_two_admin import (
 from .lumbar_puncture_csf_admin import LumbarPunctureCSFAdmin
 from .microbiology_admin import MicrobiologyAdmin
 from .medical_expenses_admin import MedicalExpensesAdmin
-from .patient_history_admin import PatientHistory
+from .patient_history_admin import PatientHistoryAdmin
 from .pk_pd_crf_admin import PkPdCrfAdmin
 from .radiology_admin import RadiologyAdmin
 from .subject_consent_admin import SubjectConsentAdmin
