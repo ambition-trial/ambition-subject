@@ -1,9 +1,7 @@
-from django import forms
-
 from ambition_form_validators import FollowUpFormValidator
 from ambition_form_validators import SignificantDiagnosesFormValidator
 
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import SubjectModelFormMixin, InlineSubjectModelFormMixin
 from ..models import FollowUp, FollowUpDiagnoses
 
 
@@ -16,7 +14,7 @@ class FollowUpForm(SubjectModelFormMixin):
         fields = "__all__"
 
 
-class FollowUpDiagnosesForm(forms.ModelForm):
+class FollowUpDiagnosesForm(InlineSubjectModelFormMixin):
 
     form_validator_cls = SignificantDiagnosesFormValidator
 
