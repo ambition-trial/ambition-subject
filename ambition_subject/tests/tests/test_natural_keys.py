@@ -64,6 +64,7 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                 reason=SCHEDULED,
             )
 
+    @tag("1")
     def test_offline_test_natural_keys(self):
         complete_required_crfs = {}
         visit = self.complete_all_subject_visits()

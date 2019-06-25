@@ -1,7 +1,7 @@
 import pytz
 
+from ambition_sites import ambition_sites, fqdn
 from ambition_rando.tests import AmbitionTestCaseMixin
-from ambition_sites.sites import fqdn, ambition_sites
 from ambition_visit_schedule.constants import WEEK10
 from datetime import datetime
 from django.apps import apps as django_apps

@@ -22,13 +22,20 @@ from .models import Week2, SubjectVisit, MedicalExpenses
 
 fake = Faker()
 
+antibiotic = Recipe(Antibiotic)
+
 bloodresult = Recipe(BloodResult, action_identifier=None, tracking_identifier=None)
 
-neurological = Recipe(Neurological, name="meningismus", short_name="Meningismus")
+medicines = Recipe(Day14Medication)
+
+neurological = Recipe(Neurological)
+
+symptom = Recipe(Symptom)
 
 significantnewdiagnosis = Recipe(
     SignificantNewDiagnosis, name=NOT_APPLICABLE, short_name=NOT_APPLICABLE
 )
+
 
 followup = Recipe(
     FollowUp,
@@ -54,8 +61,6 @@ microbiology = Recipe(
     sputum_results_culture=NEG,
     tissue_biopsy_taken=NO,
 )
-
-symptom = Recipe(Symptom, name="vomiting", short_name="vomiting")
 
 patienthistory = Recipe(
     PatientHistory,
@@ -84,10 +89,6 @@ patienthistory = Recipe(
     viral_load_date=None,
 )
 
-
-antibiotic = Recipe(Antibiotic)
-
-medicines = Recipe(Day14Medication)
 
 week2 = Recipe(
     Week2,

@@ -2,8 +2,8 @@ from ambition_ae.constants import AE_INITIAL_ACTION
 from ambition_prn.constants import STUDY_TERMINATION_CONCLUSION_ACTION
 from ambition_screening import EarlyWithdrawalEvaluator
 from ambition_visit_schedule import DAY1
-from edc_action_item import Action, site_action_items, HIGH_PRIORITY
-from edc_constants.constants import YES
+from edc_action_item import Action, site_action_items
+from edc_constants.constants import YES, HIGH_PRIORITY
 
 from .constants import BLOOD_RESULTS_ACTION, RECONSENT_ACTION
 
