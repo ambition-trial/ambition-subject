@@ -10,6 +10,7 @@ class AppConfig(DjangoApponfig):
     verbose_name = "Ambition Subject CRFs"
     admin_site_name = "ambition_subject_admin"
     has_exportable_data = True
+    include_in_administration_section = True
 
     def ready(self):
         from .models.signals import subject_consent_on_post_save  # noqa

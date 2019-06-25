@@ -1,7 +1,7 @@
 |pypi| |travis| |codecov| |downloads|
 
 ambition-subject
------------------
+----------------
 
 Subject/Participant models
 

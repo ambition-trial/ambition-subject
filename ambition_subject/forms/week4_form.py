@@ -4,10 +4,10 @@ from ambition_form_validators import (
 )
 from django.forms import forms
 from edc_constants.constants import YES
-from edc_form_validators import FormValidatorMixin, NOT_REQUIRED_ERROR
+from edc_form_validators import NOT_REQUIRED_ERROR
 
 from ..models import Week4, Week4Diagnoses
-from .form_mixins import SubjectModelFormMixin
+from .form_mixins import SubjectModelFormMixin, InlineSubjectModelFormMixin
 
 
 class Week4Form(SubjectModelFormMixin):
@@ -30,7 +30,7 @@ class Week4Form(SubjectModelFormMixin):
         fields = "__all__"
 
 
-class Week4DiagnosesForm(FormValidatorMixin):
+class Week4DiagnosesForm(InlineSubjectModelFormMixin):
 
     form_validator_cls = SignificantDiagnosesFormValidator
 
