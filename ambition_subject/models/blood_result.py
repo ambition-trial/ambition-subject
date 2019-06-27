@@ -464,8 +464,7 @@ class BloodResult(
                         summary.append(f"{field}: {value} {units} is abnormal")
         return summary
 
-    @property
-    def action_item_reason(self):
+    def get_action_item_reason(self):
         return self.summary
 
     @property
