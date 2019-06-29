@@ -41,3 +41,4 @@ class CrfModelMixin(
 
     class Meta:
         abstract = True
+        indexes = [models.Index(fields=["subject_visit", "site", "id"])]
