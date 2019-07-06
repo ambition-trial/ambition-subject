@@ -60,4 +60,5 @@ class Week16(CrfModelMixin):
     history = HistoricalRecords()
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name_plural = "Week16"
+        verbose_name = "Week 16"
+        verbose_name_plural = "Week 16"
