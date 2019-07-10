@@ -5,17 +5,19 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('ambition_subject', '0062_auto_20190628_2236'),
-    ]
+    dependencies = [("ambition_subject", "0062_auto_20190628_2236")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='historicalweek16',
-            options={'get_latest_by': 'history_date', 'ordering': ('-history_date', '-history_id'), 'verbose_name': 'historical Week 16'},
+            name="historicalweek16",
+            options={
+                "get_latest_by": "history_date",
+                "ordering": ("-history_date", "-history_id"),
+                "verbose_name": "historical Week 16",
+            },
         ),
         migrations.AlterModelOptions(
-            name='week16',
-            options={'verbose_name': 'Week 16', 'verbose_name_plural': 'Week 16'},
+            name="week16",
+            options={"verbose_name": "Week 16", "verbose_name_plural": "Week 16"},
         ),
     ]
