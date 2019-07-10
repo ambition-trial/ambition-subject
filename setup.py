@@ -47,6 +47,7 @@ setup(
         'django-collect-offline',
         'django-collect-offline-files',
         'edc-action-item',
+        'edc-data-manager',
         'edc-appointment',
         'edc-consent',
         'edc-form-describer',
