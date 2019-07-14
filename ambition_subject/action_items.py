@@ -16,6 +16,9 @@ class BloodResultAction(Action):
     show_on_dashboard = True
     create_by_user = False
 
+    def reopen_action_item_on_change(self):
+        return False
+
     def get_next_actions(self):
         next_actions = []
         if (
@@ -53,6 +56,9 @@ class ReconsentAction(Action):
         "Participant must be re-consented as soon as able. "
         "Participant's ICF was initially completed by next-of-kin."
     )
+
+    def reopen_action_item_on_change(self):
+        return False
 
 
 site_action_items.register(BloodResultAction)

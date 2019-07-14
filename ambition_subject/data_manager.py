@@ -1,24 +1,23 @@
 from ambition_subject.constants import AWAITING_RESULTS
 from edc_constants.constants import NOT_DONE, YES, NO
-from edc_data_manager.rule import ModelHandler
+from edc_data_manager.handlers import QueryRuleHandler
 from edc_data_manager.site_data_manager import site_data_manager
 
 
-class LumbarPunctureHandlerQ13(ModelHandler):
+class LumbarPunctureQueryRuleHandlerQ13(QueryRuleHandler):
 
     name = "lumbar_puncture_q13"
     display_name = "Lumbar Puncture (Q13, 15, 21, 23, 24)"
     model_name = "ambition_subject.lumbarpuncturecsf"
 
-    @property
-    def resolved(self):
+    def inspect_model(self):
         """Lumbar Puncture/Cerebrospinal Fluid 13, 15, 21, 23, 24.
         """
-        resolved = False
+        valid = False
         if self.get_field_value("csf_culture") == AWAITING_RESULTS:
             pass
         elif self.get_field_value("csf_culture") == NOT_DONE:
-            resolved = True
+            valid = True
         elif self.get_field_value("csf_culture") == YES:
             if (
                 self.get_field_value("other_csf_culture")
@@ -30,7 +29,7 @@ class LumbarPunctureHandlerQ13(ModelHandler):
                     or self.get_field_value("india_ink")
                 )
             ):
-                resolved = True
+                valid = True
         elif self.get_field_value("csf_culture") == NO:
             if (
                 self.get_field_value("csf_wbc_cell_count")
@@ -41,8 +40,8 @@ class LumbarPunctureHandlerQ13(ModelHandler):
                     or self.get_field_value("india_ink")
                 )
             ):
-                resolved = True
-        return resolved
+                valid = True
+        return valid
 
 
-site_data_manager.register(LumbarPunctureHandlerQ13)
+site_data_manager.register(LumbarPunctureQueryRuleHandlerQ13)
