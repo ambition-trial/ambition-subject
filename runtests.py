@@ -50,12 +50,12 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_dashboard.apps.AppConfig",
         "edc_data_manager.apps.AppConfig",
         "edc_device.apps.AppConfig",
+        "edc_reference.apps.AppConfig",
         "edc_metadata_rules.apps.AppConfig",
         "edc_model_admin.apps.AppConfig",
         "edc_notification.apps.AppConfig",
         "edc_offstudy.apps.AppConfig",
         "edc_prn.apps.AppConfig",
-        "edc_reference.apps.AppConfig",
         "edc_registration.apps.AppConfig",
         "edc_timepoint.apps.AppConfig",
         "edc_visit_schedule.apps.AppConfig",
@@ -83,16 +83,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     add_lab_dashboard_middleware=True,
 ).settings
 
-
-#     DASHBOARD_BASE_TEMPLATES={
-#         "listboard_base_template": "ambition/base.html",
-#         "dashboard_base_template": "ambition/base.html",
-#         "screening_listboard_template": "ambition_dashboard/screening/listboard.html",
-#         "subject_listboard_template": "ambition_dashboard/subject/listboard.html",
-#         "subject_dashboard_template": "ambition_dashboard/subject/dashboard.html",
-#     },
-#     STATIC_ROOT=join(base_dir, app_name, "tests",
-#                      "ambition_subject", "static"),
 
 def main():
     if not settings.configured:
