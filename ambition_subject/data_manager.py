@@ -2,6 +2,7 @@ from ambition_subject.constants import AWAITING_RESULTS
 from edc_constants.constants import NOT_DONE, YES, NO
 from edc_data_manager.handlers import QueryRuleHandler
 from edc_data_manager.site_data_manager import site_data_manager
+from edc_data_manager.handlers.handlers import CrfInspectionFailed
 
 
 class LumbarPunctureQueryRuleHandlerQ13(QueryRuleHandler):
@@ -14,8 +15,10 @@ class LumbarPunctureQueryRuleHandlerQ13(QueryRuleHandler):
         """Lumbar Puncture/Cerebrospinal Fluid 13, 15, 21, 23, 24.
         """
         valid = False
+        if not self.model_obj:
+            raise CrfInspectionFailed()
         if self.get_field_value("csf_culture") == AWAITING_RESULTS:
-            pass
+            raise CrfInspectionFailed("csf_culture")
         elif self.get_field_value("csf_culture") == NOT_DONE:
             valid = True
         elif self.get_field_value("csf_culture") == YES:
@@ -41,7 +44,8 @@ class LumbarPunctureQueryRuleHandlerQ13(QueryRuleHandler):
                 )
             ):
                 valid = True
-        return valid
+        if not valid:
+            raise CrfInspectionFailed()
 
 
 site_data_manager.register(LumbarPunctureQueryRuleHandlerQ13)
