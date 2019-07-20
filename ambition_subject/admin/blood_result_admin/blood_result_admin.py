@@ -37,13 +37,7 @@ class BloodResultsAdmin(CrfModelAdmin):
 
     readonly_fields = ("summary",) + action_fields
 
-    list_display = (
-        "subject_visit",
-        "abnormal",
-        "reportable",
-        "tracking_identifier",
-        "action_identifier",
-    )
+    list_display = ("abnormal", "reportable", "action_identifier")
 
     list_filter = ("results_abnormal", "results_reportable")
 

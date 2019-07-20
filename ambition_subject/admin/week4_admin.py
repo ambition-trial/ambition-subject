@@ -22,7 +22,7 @@ class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
 
 
 @admin.register(Week4, site=ambition_subject_admin)
-class Week4Admin(CrfModelAdmin, admin.ModelAdmin):
+class Week4Admin(CrfModelAdmin):
 
     form = Week4Form
 

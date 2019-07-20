@@ -77,4 +77,6 @@ class LumbarPunctureCSFAdmin(CrfModelAdmin):
         "crag_t2_result": admin.VERTICAL,
     }
 
+    list_display = ("lp_datetime", "reason_for_lp")
+
     list_filter = ("lp_datetime", "reason_for_lp")
