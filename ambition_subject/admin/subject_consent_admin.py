@@ -10,7 +10,6 @@ from edc_identifier import is_subject_identifier_or_raise, SubjectIdentifierErro
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectConsentForm
 from ..models import SubjectConsent, SubjectVisit
-from pprint import pprint
 
 
 @admin.register(SubjectConsent, site=ambition_subject_admin)

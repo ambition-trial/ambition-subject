@@ -31,7 +31,7 @@ welfare = Fieldset("welfare", section="Welfare or social service support")
 
 
 @admin.register(MedicalExpenses, site=ambition_subject_admin)
-class MedicalExpensesAdmin(CrfModelAdmin, SimpleHistoryAdmin):
+class MedicalExpensesAdmin(CrfModelAdmin):
 
     form = MedicalExpensesForm
     conditional_fieldsets = {
