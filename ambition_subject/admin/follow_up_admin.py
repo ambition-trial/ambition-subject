@@ -39,6 +39,7 @@ class FollowUpDiagnosesInline(TabularInlineMixin, admin.TabularInline):
     model = FollowUpDiagnoses
     form = FollowUpDiagnosesForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [
