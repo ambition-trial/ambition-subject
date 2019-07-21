@@ -12,6 +12,7 @@ class Week4DiagnosesInline(TabularInlineMixin, admin.TabularInline):
     model = Week4Diagnoses
     form = Week4DiagnosesForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [

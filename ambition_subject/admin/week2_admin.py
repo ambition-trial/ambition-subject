@@ -19,6 +19,7 @@ class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
     model = SignificantDiagnoses
     form = SignificantDiagnosesForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [
@@ -33,6 +34,7 @@ class AmphotericinMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     model = AmphotericinMissedDoses
     form = AmphotericinMissedDosesForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [
@@ -47,6 +49,7 @@ class FluconazoleMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     model = FluconazoleMissedDoses
     form = FluconazoleMissedDosesForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [
@@ -61,6 +64,7 @@ class FlucytosineMissedDosesInline(TabularInlineMixin, admin.TabularInline):
     model = FlucytosineMissedDoses
     form = FlucytosineMissedDosesForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [

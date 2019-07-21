@@ -12,6 +12,7 @@ class PreviousOpportunisticInfectionInline(TabularInlineMixin, admin.TabularInli
     model = PreviousOpportunisticInfection
     form = PreviousOpportunisticInfectionForm
     extra = 1
+    view_on_site = False
 
     fieldsets = (
         [
