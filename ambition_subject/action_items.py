@@ -1,4 +1,4 @@
-from ambition_ae.constants import AE_INITIAL_ACTION
+from edc_adverse_event.constants import AE_INITIAL_ACTION
 from ambition_prn.constants import STUDY_TERMINATION_CONCLUSION_ACTION
 from ambition_screening import EarlyWithdrawalEvaluator
 from ambition_visit_schedule import DAY1
