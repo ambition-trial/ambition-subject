@@ -45,6 +45,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "rest_framework",
         "rest_framework.authtoken",
         "edc_action_item.apps.AppConfig",
+        "edc_adverse_event.apps.AppConfig",
         "edc_auth.apps.AppConfig",
         "edc_consent.apps.AppConfig",
         "edc_dashboard.apps.AppConfig",
