@@ -38,7 +38,8 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
         ]
 
     def test_natural_key_attrs(self):
-        self.offline_test_helper.offline_test_natural_key_attr("ambition_subject")
+        self.offline_test_helper.offline_test_natural_key_attr(
+            "ambition_subject")
 
     def test_get_by_natural_key_attr(self):
         self.offline_test_helper.offline_test_get_by_natural_key_attr(
@@ -80,24 +81,25 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                     )
                 }
             )
-            self.offline_test_helper.offline_test_natural_keys(complete_required_crfs)
+            self.offline_test_helper.offline_test_natural_keys(
+                complete_required_crfs)
 
-    def test_offline_deserialize(self):
-        complete_required_crfs = {}
-        visit = self.complete_all_subject_visits()
-        for visit_code in self.visit_codes:
-            visit = SubjectVisit.objects.get(
-                appointment=Appointment.objects.get(visit_code=visit_code)
-            )
-            complete_required_crfs.update(
-                {
-                    visit.visit_code: self.crf_test_helper.complete_required_crfs(
-                        visit_code=visit.visit_code,
-                        visit=visit,
-                        subject_identifier=visit.subject_identifier,
-                    )
-                }
-            )
-            self.offline_test_helper.offline_test_serializers_for_visit(
-                complete_required_crfs
-            )
+#     def test_offline_deserialize(self):
+#         complete_required_crfs = {}
+#         visit = self.complete_all_subject_visits()
+#         for visit_code in self.visit_codes:
+#             visit = SubjectVisit.objects.get(
+#                 appointment=Appointment.objects.get(visit_code=visit_code)
+#             )
+#             complete_required_crfs.update(
+#                 {
+#                     visit.visit_code: self.crf_test_helper.complete_required_crfs(
+#                         visit_code=visit.visit_code,
+#                         visit=visit,
+#                         subject_identifier=visit.subject_identifier,
+#                     )
+#                 }
+#             )
+#             self.offline_test_helper.offline_test_serializers_for_visit(
+#                 complete_required_crfs
+#             )
