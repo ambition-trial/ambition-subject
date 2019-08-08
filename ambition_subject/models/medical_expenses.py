@@ -105,7 +105,7 @@ class MedicalExpenses(CrfModelMixin):
 
     duration_present_condition = models.IntegerField(
         verbose_name="How long have you been sick with your current condition?",
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(0)],
         null=True,
         help_text="in days",
     )

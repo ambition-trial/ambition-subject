@@ -38,8 +38,7 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
         ]
 
     def test_natural_key_attrs(self):
-        self.offline_test_helper.offline_test_natural_key_attr(
-            "ambition_subject")
+        self.offline_test_helper.offline_test_natural_key_attr("ambition_subject")
 
     def test_get_by_natural_key_attr(self):
         self.offline_test_helper.offline_test_get_by_natural_key_attr(
@@ -81,8 +80,8 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
                     )
                 }
             )
-            self.offline_test_helper.offline_test_natural_keys(
-                complete_required_crfs)
+            self.offline_test_helper.offline_test_natural_keys(complete_required_crfs)
+
 
 #     def test_offline_deserialize(self):
 #         complete_required_crfs = {}
