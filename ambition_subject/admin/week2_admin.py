@@ -1,5 +1,5 @@
 from ambition_lists.models import OtherDrug, Day14Medication
-from django.contrib import admin
+from django.contrib import admin, messages
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 
@@ -12,6 +12,14 @@ from ..forms import Week2Form
 from ..models import SignificantDiagnoses, FlucytosineMissedDoses
 from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
 from .modeladmin import CrfModelAdmin
+from edc_fieldsets.fieldsets import Fieldsets
+import pdb
+from ambition_permissions.group_names import TMG
+from django.contrib.auth.models import Group
+from django.core.exceptions import ObjectDoesNotExist
+
+
+PART_TWO = "Part 2: Induction phase study medication"
 
 
 class SignificantDiagnosesInline(TabularInlineMixin, admin.TabularInline):
@@ -95,7 +103,7 @@ class Week2Admin(CrfModelAdmin):
 
     fieldsets = (
         [
-            "Part1: Admission history",
+            "Part 1: Admission history",
             {
                 "fields": (
                     "subject_visit",
@@ -109,7 +117,7 @@ class Week2Admin(CrfModelAdmin):
             },
         ],
         [
-            "Part2: Induction phase study medication",
+            PART_TWO,
             {
                 "fields": (
                     "ampho_start_date",
@@ -130,7 +138,7 @@ class Week2Admin(CrfModelAdmin):
             },
         ],
         [
-            "Part3: Clinical assessment",
+            "Part 3: Clinical assessment",
             {
                 "fields": (
                     "headache",
@@ -177,3 +185,31 @@ class Week2Admin(CrfModelAdmin):
                 short_name=NOT_APPLICABLE
             ).order_by("display_index")
         return super().formfield_for_manytomany(db_field, request, **kwargs)
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj=obj)
+        fieldsets = Fieldsets(fieldsets=fieldsets)
+        fields = [
+            "ampho_start_date",
+            "ampho_stop_date",
+            "flucon_start_date",
+            "flucon_stop_date",
+            "flucy_start_date",
+            "flucy_stop_date",
+            "ambi_start_date",
+            "ambi_stop_date",
+        ]
+        try:
+            request.user.groups.get(name=TMG)
+        except ObjectDoesNotExist:
+            pass
+        else:
+            fieldsets.remove_fields(*fields, section=PART_TWO)
+            msg = (
+                "Since you are a TMG member, study drug dates do not appear "
+                "in Part 2 of this form."
+            )
+            queued_messages = [q.message for q in request._messages._queued_messages]
+            if msg not in queued_messages:
+                messages.warning(request, msg)
+        return fieldsets.fieldsets

@@ -4,10 +4,10 @@ from django.db import models
 
 class MedAndDrugInterventionModelMixin(models.Model):
 
-    medicines = models.ManyToManyField(Day14Medication, verbose_name="Medicine day 14:")
+    medicines = models.ManyToManyField(Day14Medication, verbose_name="Medicine day 14")
 
     medicine_other = models.TextField(
-        verbose_name="If other, please specify:", null=True, blank=True
+        verbose_name="If other, please specify", null=True, blank=True
     )
 
     drug_intervention = models.ManyToManyField(
@@ -15,7 +15,7 @@ class MedAndDrugInterventionModelMixin(models.Model):
     )
 
     drug_intervention_other = models.TextField(
-        verbose_name="If other, please specify:", blank=True, null=True
+        verbose_name="If other, please specify", blank=True, null=True
     )
 
     antibiotic = models.ManyToManyField(
@@ -25,7 +25,7 @@ class MedAndDrugInterventionModelMixin(models.Model):
     )
 
     antibiotic_other = models.TextField(
-        verbose_name="If other antibiotics, please specify:", null=True, blank=True
+        verbose_name="If other antibiotics, please specify", null=True, blank=True
     )
 
     class Meta:
