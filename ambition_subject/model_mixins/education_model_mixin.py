@@ -24,7 +24,7 @@ class EducationModelMixin(models.Model):
         choices=YES_NO,
     )
 
-    attendance_years = models.IntegerField(
+    elementary_years = models.IntegerField(
         verbose_name="If YES, for how many years?",
         validators=[MinValueValidator(1)],
         blank=True,

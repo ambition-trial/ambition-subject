@@ -31,7 +31,7 @@ class EducationHohAdmin(CrfModelAdmin):
                     "education_years",
                     "education_certificate",
                     "elementary",
-                    "attendance_years",
+                    "elementary_years",
                     "secondary",
                     "secondary_years",
                     "higher_education",
