@@ -10,7 +10,7 @@ class BloodTransfusionModelMixin(models.Model):
     )
 
     units = models.IntegerField(
-        verbose_name="If YES, no. of units",
+        verbose_name="If YES, number of units",
         validators=[MinValueValidator(1)],
         null=True,
         blank=True,
