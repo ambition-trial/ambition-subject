@@ -1,6 +1,9 @@
 from ambition_lists.models import OtherDrug, Day14Medication
+from ambition_permissions.group_names import TMG
 from django.contrib import admin, messages
+from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import NOT_APPLICABLE
+from edc_fieldsets.fieldsets import Fieldsets
 from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
 
 from ..admin_site import ambition_subject_admin
@@ -12,11 +15,6 @@ from ..forms import Week2Form
 from ..models import SignificantDiagnoses, FlucytosineMissedDoses
 from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
 from .modeladmin import CrfModelAdmin
-from edc_fieldsets.fieldsets import Fieldsets
-import pdb
-from ambition_permissions.group_names import TMG
-from django.contrib.auth.models import Group
-from django.core.exceptions import ObjectDoesNotExist
 
 
 PART_TWO = "Part 2: Induction phase study medication"
@@ -205,11 +203,17 @@ class Week2Admin(CrfModelAdmin):
             pass
         else:
             fieldsets.remove_fields(*fields, section=PART_TWO)
-            msg = (
-                "Since you are a TMG member, study drug dates do not appear "
-                "in Part 2 of this form."
-            )
-            queued_messages = [q.message for q in request._messages._queued_messages]
-            if msg not in queued_messages:
-                messages.warning(request, msg)
+            try:
+                queued_messages = [
+                    q.message for q in request._messages._queued_messages
+                ]
+            except AttributeError:
+                pass
+            else:
+                msg = (
+                    "Since you are a TMG member, study drug dates do not appear "
+                    "in Part 2 of this form."
+                )
+                if msg not in queued_messages:
+                    messages.warning(request, msg)
         return fieldsets.fieldsets
