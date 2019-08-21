@@ -359,7 +359,7 @@ class BloodResult(
 
     cd4 = models.IntegerField(
         verbose_name="abs CD4",
-        validators=[MinValueValidator(1), MaxValueValidator(999)],
+        validators=[MinValueValidator(0), MaxValueValidator(999)],
         blank=True,
         null=True,
     )
