@@ -9,7 +9,7 @@ from django.test import TestCase, tag
 from django.test.utils import override_settings
 from edc_appointment.models import Appointment
 from edc_registration.models import RegisteredSubject
-from edc_sites.utils import add_or_update_django_sites
+from edc_sites import add_or_update_django_sites
 from edc_utils import get_utcnow
 from edc_visit_tracking.constants import SCHEDULED
 from model_mommy import mommy
@@ -33,7 +33,8 @@ class TestDataManager(AmbitionTestCaseMixin, TestCase):
         ):
             self.user.user_permissions.add(permission)
 
-        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe(
+            "ambition_screening.subjectscreening")
         consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
