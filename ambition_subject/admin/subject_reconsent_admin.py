@@ -2,17 +2,20 @@ from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
+from edc_action_item import ModelAdminActionItemMixin
+from edc_dashboard.url_names import url_names
 from edc_model_admin import audit_fieldset_tuple, audit_fields, SimpleHistoryAdmin
 
 from ..admin_site import ambition_subject_admin
 from ..forms import SubjectReconsentForm
 from ..models import SubjectReconsent, SubjectVisit
 from .modeladmin import ModelAdminMixin
-from edc_dashboard.url_names import url_names
 
 
 @admin.register(SubjectReconsent, site=ambition_subject_admin)
-class SubjectReconsentAdmin(ModelAdminMixin, SimpleHistoryAdmin):
+class SubjectReconsentAdmin(
+    ModelAdminMixin, ModelAdminActionItemMixin, SimpleHistoryAdmin
+):
 
     form = SubjectReconsentForm
 

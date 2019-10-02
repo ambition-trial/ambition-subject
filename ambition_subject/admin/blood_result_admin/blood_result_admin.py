@@ -1,17 +1,21 @@
 from django.contrib import admin
 from edc_action_item import action_fields
+from edc_action_item.modeladmin_mixins import ModelAdminActionItemMixin
 from edc_model_admin import audit_fieldset_tuple
+from edc_model_admin.model_admin_simple_history import SimpleHistoryAdmin
 
 from ...admin_site import ambition_subject_admin
 from ...constants import DAY1
 from ...forms import BloodResultForm
 from ...models import BloodResult
-from ..modeladmin import CrfModelAdmin
+from ..modeladmin import CrfModelAdminMixin
 from .fieldsets import fieldset, biosynex_fieldset
 
 
 @admin.register(BloodResult, site=ambition_subject_admin)
-class BloodResultsAdmin(CrfModelAdmin):
+class BloodResultsAdmin(
+    CrfModelAdminMixin, ModelAdminActionItemMixin, SimpleHistoryAdmin
+):
 
     form = BloodResultForm
 
