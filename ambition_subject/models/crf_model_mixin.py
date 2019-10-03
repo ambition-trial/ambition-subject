@@ -39,6 +39,10 @@ class CrfModelMixin(
         "edc_appointment.appointment",
     ]
 
+    @property
+    def subject_identifier(self):
+        return self.subject_visit.subject_identifier
+
     class Meta:
         abstract = True
         indexes = [models.Index(fields=["subject_visit", "site", "id"])]
