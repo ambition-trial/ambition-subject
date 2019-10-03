@@ -33,8 +33,7 @@ class TestDataManager(AmbitionTestCaseMixin, TestCase):
         ):
             self.user.user_permissions.add(permission)
 
-        subject_screening = mommy.make_recipe(
-            "ambition_screening.subjectscreening")
+        subject_screening = mommy.make_recipe("ambition_screening.subjectscreening")
         consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
