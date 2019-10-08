@@ -19,6 +19,8 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     APP_NAME=app_name,
     ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
     EDC_BOOTSTRAP=3,
+    ADVERSE_EVENT_ADMIN_SITE="ambition_ae_admin",
+    ADVERSE_EVENT_APP_LABEL="ambition_ae",
     EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
     EMAIL_CONTACTS={
         "data_request": "someone@example.com",
