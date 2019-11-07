@@ -176,11 +176,11 @@ class Week2Admin(CrfModelAdmin):
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == "drug_intervention":
             kwargs["queryset"] = OtherDrug.objects.exclude(
-                short_name=NOT_APPLICABLE
+                name=NOT_APPLICABLE
             ).order_by("display_index")
         if db_field.name == "medicines":
             kwargs["queryset"] = Day14Medication.objects.exclude(
-                short_name=NOT_APPLICABLE
+                name=NOT_APPLICABLE
             ).order_by("display_index")
         return super().formfield_for_manytomany(db_field, request, **kwargs)
 

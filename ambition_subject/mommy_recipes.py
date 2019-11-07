@@ -33,7 +33,7 @@ neurological = Recipe(Neurological)
 symptom = Recipe(Symptom)
 
 significantnewdiagnosis = Recipe(
-    SignificantNewDiagnosis, name=NOT_APPLICABLE, short_name=NOT_APPLICABLE
+    SignificantNewDiagnosis, display_name=NOT_APPLICABLE, name=NOT_APPLICABLE
 )
 
 
