@@ -32,7 +32,7 @@ setup(
     zip_safe=False,
     keywords='django ambition',
     install_requires=[
-        'ambition_permissions',
+        'ambition-auth',
         'ambition-rando',
         'ambition-prn',
         'ambition-ae',

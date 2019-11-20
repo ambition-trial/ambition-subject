@@ -1,7 +1,7 @@
 from ambition_lists.models import OtherDrug, Day14Medication
-from ambition_permissions.group_names import TMG
 from django.contrib import admin, messages
 from django.core.exceptions import ObjectDoesNotExist
+from edc_auth.group_names import TMG
 from edc_constants.constants import NOT_APPLICABLE
 from edc_fieldsets.fieldsets import Fieldsets
 from edc_model_admin import TabularInlineMixin, audit_fieldset_tuple
@@ -15,7 +15,6 @@ from ..forms import Week2Form
 from ..models import SignificantDiagnoses, FlucytosineMissedDoses
 from ..models import Week2, FluconazoleMissedDoses, AmphotericinMissedDoses
 from .modeladmin import CrfModelAdmin
-
 
 PART_TWO = "Part 2: Induction phase study medication"
 
