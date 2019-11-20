@@ -64,7 +64,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_timepoint.apps.AppConfig",
         "edc_visit_schedule.apps.AppConfig",
         "edc_visit_tracking.apps.AppConfig",
-        "ambition_permissions.apps.AppConfig",
+        "ambition_auth.apps.AppConfig",
         "ambition_labs.apps.AppConfig",
         "ambition_lists.apps.AppConfig",
         "ambition_ae.apps.AppConfig",
