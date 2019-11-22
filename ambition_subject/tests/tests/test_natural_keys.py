@@ -53,6 +53,7 @@ class TestNaturalKey(AmbitionTestCaseMixin, TestCase):
             "ambition_subject.subjectconsent",
             consent_datetime=get_utcnow(),
             screening_identifier=screening.screening_identifier,
+            user_created="erikvw",
         )
         self.subject_identifier = consent.subject_identifier
 

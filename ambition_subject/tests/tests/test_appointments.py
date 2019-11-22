@@ -20,6 +20,7 @@ class TestAppointment(AmbitionTestCaseMixin, TestCase):
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
             consent_datetime=datetime(year, 12, 1, 0, 0, 0, 0, pytz.utc),
+            user_created="erikvw",
         )
         self.subject_identifier = consent.subject_identifier
 
