@@ -22,6 +22,7 @@ class TestSubjectRules(AmbitionTestCaseMixin, TestCase):
             "ambition_subject.subjectconsent",
             consent_datetime=get_utcnow(),
             screening_identifier=screening.screening_identifier,
+            user_created="erikvw",
         )
         self.visit_code = WEEK10
 

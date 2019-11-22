@@ -27,6 +27,7 @@ class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
         options = {
             "screening_identifier": self.subject_screening.screening_identifier,
             "consent_datetime": get_utcnow,
+            "user_created": "erikvw",
         }
         mommy.make_recipe("ambition_subject.subjectconsent", **options)
         self.assertFalse(
@@ -37,6 +38,7 @@ class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
         options = {
             "screening_identifier": self.subject_screening.screening_identifier,
             "consent_datetime": get_utcnow,
+            "user_created": "erikvw",
         }
         self.assertEqual(RegisteredSubject.objects.all().count(), 0)
         mommy.make_recipe("ambition_subject.subjectconsent", **options)
@@ -50,6 +52,7 @@ class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
         options = {
             "screening_identifier": self.subject_screening.screening_identifier,
             "consent_datetime": get_utcnow,
+            "user_created": "erikvw",
         }
         # consent
         mommy.make_recipe("ambition_subject.subjectconsent", **options)
@@ -73,6 +76,7 @@ class TestSubjectConsent(AmbitionTestCaseMixin, TestCase):
             "ambition_subject.subjectconsent",
             consent_datetime=get_utcnow,
             screening_identifier=self.subject_screening.screening_identifier,
+            user_created="erikvw",
         )
 
         try:

@@ -18,12 +18,14 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
+            user_created="erikvw",
         )
         try:
             mommy.make_recipe(
                 "ambition_subject.subjectreconsent",
                 subject_identifier=subject_consent.subject_identifier,
                 identity=subject_consent.identity,
+                user_created="erikvw",
             )
         except ValidationError:
             self.fail("ValidationError unexpectedly raised")
@@ -35,6 +37,7 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
+            user_created="erikvw",
         )
         self.assertRaises(
             ValidationError,
@@ -42,6 +45,7 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
             "ambition_subject.subjectreconsent",
             subject_identifier=subject_consent.subject_identifier,
             identity=subject_consent.identity,
+            user_created="erikvw",
         )
 
     def test_abnormal_creates_action(self):
@@ -51,6 +55,7 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
+            user_created="erikvw",
         )
         try:
             ActionItem.objects.get(
@@ -67,6 +72,7 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
+            user_created="erikvw",
         )
         subject_consent.save()
         subject_consent.save()
@@ -85,6 +91,7 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
+            user_created="erikvw",
         )
         subject_screening.mental_status = NORMAL
         subject_screening.save()
@@ -103,11 +110,13 @@ class TestReconsent(AmbitionTestCaseMixin, TestCase):
         subject_consent = mommy.make_recipe(
             "ambition_subject.subjectconsent",
             screening_identifier=subject_screening.screening_identifier,
+            user_created="erikvw",
         )
         mommy.make_recipe(
             "ambition_subject.subjectreconsent",
             subject_identifier=subject_consent.subject_identifier,
             identity=subject_consent.identity,
+            user_created="erikvw",
         )
         action_item = ActionItem.objects.get(
             subject_identifier=subject_consent.subject_identifier,

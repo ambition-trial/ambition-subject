@@ -5,6 +5,7 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from edc_action_item import delete_action_item, ActionItemDeleteError
 from edc_constants.constants import YES
+from edc_randomization.site_randomizers import site_randomizers
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 
 from ..action_items import ReconsentAction
@@ -39,6 +40,7 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
             )
 
             # randomize
+            Randomizer = site_randomizers.get("ambition")
             Randomizer(
                 subject_identifier=instance.subject_identifier,
                 report_datetime=instance.consent_datetime,
