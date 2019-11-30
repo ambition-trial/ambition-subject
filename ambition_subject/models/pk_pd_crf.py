@@ -89,7 +89,7 @@ class PkPdCrf(CrfModelMixin):
 
     flucytosine_dose_two_given = models.CharField(
         verbose_name="Flucytosine <b><u>DOSE&nbsp;2</u></b> given? ",
-        choices=YES_NO,
+        choices=YES_NO_NA,
         max_length=5,
         null=True,
         blank=True,
